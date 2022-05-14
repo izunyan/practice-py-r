@@ -1,0 +1,219 @@
+---
+title: "r with py"
+author: ""
+date: "`r format(Sys.time(), '%Y/%m/%d')`"
+output:
+  html_document: 
+    toc: TRUE
+    toc_float: true
+    toc_depth: 4
+    number_sections: true
+    # theme: readable
+    # highlight: pygments
+    css: custom.css
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Pythonインストール時
+* `Add Python 3.x to PATH`にチェックを入れる
+  + https://www.python.jp/install/windows/install.html
+
+# パッケージの管理（pip関連）
+* 以下，コマンドプロンプトから実行
+  + Windowsでは，「ここに入力して検索」にcmdを入れて検索
+* インストール済みパッケージの確認
+  + `pip list`
+* パッケージインストール
+  + `pip install {ここにパッケージ名}`
+* アップデートが必要なパッケージ一覧
+  + `pip list -o`  
+* パッケージのアップデート
+  + `pip install -U {ここにパッケージ名}`
+
+<!-- * アップデートが必要なパッケージインストール -->
+<!--   + pip install （どこからか忘れた…要確認） -->
+
+
+# コマンドプロンプトの操作
+
+* ルートに移動
+  + `cd \`
+* ディレクトリに移動しカレントに
+  + `cd ここにパス`
+* フォルダ作成
+  + `mkdir フォルダ名`
+* 構造図式化
+  + `tree`
+
+# 仮想環境:venv
+
+* 以下，コマンドプロンプトから実行
+* 作成
+  + `python -m venv パス名\myenv(名前は任意)`
+  + 該当フォルダがすでにカレントになっていればmyenvだけでOK
+* 仮想環境に入る
+  + `myenv\Scripts\activate`
+* 仮想環境から出る
+  + `deactivate`
+
+
+
+# rとpythonでデータフレームのやり取り
+
+* 緑チャンクがpython
+
+```{r }
+library(reticulate)
+
+df <- 
+  palmerpenguins::penguins
+
+```
+
+```{python class.source="bg-success"}
+r.df.head()
+
+df_py = r.df[['species',	'bill_length_mm']]
+
+```
+
+```{r }
+head(py$df_py)
+```
+
+# Pythonでもペンギン
+
+-   ペンギンデータ for python
+    -   https://pypi.org/project/palmerpenguins/
+
+<!-- ```{python eval = FALSE} -->
+
+<!-- import os -->
+
+<!-- os.system("pip3 install palmerpenguins") -->
+
+<!-- ``` -->
+
+<!-- ```{r eval = FALSE} -->
+
+<!-- py_install("palmerpenguins", pip = TRUE) -->
+
+<!-- ``` -->
+
+<!-- * https://solutions.rstudio.com/python/minimum-viable-python/installing-packages/ -->
+
+<!-- ```{r eval = FALSE} -->
+
+<!-- $ python -m pip install palmerpenguins -->
+
+<!-- ``` -->
+
+```{python class.source="bg-success"}
+from palmerpenguins import load_penguins
+pen_p = load_penguins()
+ 
+pen_p
+```
+
+# Rとpythonの対応
+
+## 列を選ぶ
+### R
+```{r}
+library(tidyverse)
+
+pen_r <- df
+
+names(pen_r)
+
+pen_r %>% 
+  select(species, bill_length_mm)
+
+pen_r %>% 
+  select(species:bill_length_mm)
+```
+
+### Python
+```{python class.source="bg-success"}
+pen_p.info()
+
+pen_p[['species', 'bill_length_mm']]
+
+pen_p.loc[:, 'species':'bill_length_mm']
+
+```
+
+## 列名を変更する
+### R
+
+```{r}
+pen_r %>% 
+  rename(species2 = species)
+```
+
+### Python
+
+```{python class.source="bg-success"}
+pen_p.rename(columns = {'species':'species2'})
+
+```
+
+## 行を選ぶ
+### R
+
+```{r}
+pen_r %>% 
+  filter(bill_length_mm > 55)
+
+pen_r %>% 
+  filter(bill_length_mm > 55 & bill_depth_mm == 17)
+```
+
+### Python
+```{python class.source="bg-success"}
+pen_p[pen_p['bill_length_mm'] > 55]
+pen_p.query('bill_length_mm > 55 & bill_depth_mm == 17')
+
+```
+
+## 新たな列を作る
+### R
+
+```{r}
+pen_r %>% 
+  mutate(species2 = species)
+```
+
+### Python
+```{python class.source="bg-success"}
+pen_p.assign(species2 = pen_p['species'])
+```
+
+## 
+
+```{r}
+
+```
+
+```{python class.source="bg-success"}
+
+```
+
+## 
+
+```{r}
+
+```
+
+```{python class.source="bg-success"}
+#| eval: false
+
+```
+
