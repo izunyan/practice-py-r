@@ -156,6 +156,8 @@ pen_p.loc[:, 'species':'bill_length_mm']
 ## 列名を変更する
 ### R
 
+* new = old
+
 ```{r}
 pen_r |> 
   rename(species2 = species,
@@ -163,6 +165,8 @@ pen_r |>
 ```
 
 ### Python
+
+* 'old':'new'
 
 ```{python class.source="bg-success"}
 pen_p.rename(columns = {'species':'species2',
@@ -220,10 +224,11 @@ pen_p[['species']].assign(species2 = pen_p['species'])
 #### R
 ```{r}
 pen_r |> 
-  summarise(mean_blm = mean(bill_length_mm, 
+  summarise(blm_mean = mean(bill_length_mm, 
                             na.rm = TRUE),
-            sd_blm   = sd(bill_length_mm, 
-                            na.rm = TRUE))
+            blm_sd   = sd(bill_length_mm, 
+                            na.rm = TRUE),
+            blm_n    = sum(!is.na(bill_length_mm)))
 ```
 
 #### Python
@@ -233,13 +238,14 @@ pen_r |>
 ```{python class.source="bg-success"}
 pen_p.bill_length_mm.mean()
 pen_p.bill_length_mm.std()
+pen_p.bill_length_mm.count()
 ```
 
 * [pandas.DataFrame.aggregate](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.aggregate.html#)
 * 短縮して`agg`で実行できる
 
 ```{python}
-pen_p.bill_length_mm.agg(['mean', 'std'])
+pen_p.bill_length_mm.agg(['mean', 'std', 'count'])
 ```
 
 ### 変数複数
@@ -248,21 +254,22 @@ pen_p.bill_length_mm.agg(['mean', 'std'])
 pen_r |> 
   summarise(across(c(bill_length_mm, bill_depth_mm),
                    list(mean = ~mean(., na.rm = TRUE),
-                          sd =   ~sd(., na.rm = TRUE))))
+                          sd =   ~sd(., na.rm = TRUE),
+                           n =  ~sum(!is.na(.)))))
 ```
 
 #### Python
 
 ```{python class.source="bg-success"}
-pen_p.agg({'bill_length_mm' : ['mean', 'std'],
-            'bill_depth_mm' : ['mean', 'std']})
+pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count'],
+            'bill_depth_mm' : ['mean', 'std', 'count']})
 
 ```
 
 * 先に列選択すれば関数繰り返さなくてもよい
 
 ```{rpython class.source="bg-success"}
-pen_p[['bill_length_mm', 'bill_depth_mm']].agg(['mean', 'std'])
+pen_p[['bill_length_mm', 'bill_depth_mm']].agg(['mean', 'std', 'count'])
 ```
 
 
@@ -389,6 +396,28 @@ df_r_a |>
 #### Python
 ```{python class.source="bg-success"}
 pd.merge(df_py_a, df_py_b, how = 'inner')
+```
+
+## 縦に連結
+### R
+```{r}
+
+```
+
+### Python
+```{python class.source="bg-success"}
+
+```
+
+## データフレームの縦横構造の変換
+### R
+```{r}
+
+```
+
+### Python
+```{python class.source="bg-success"}
+
 ```
 
 ## 

@@ -1758,6 +1758,9 @@ names(pen_r)</code></pre>
 <h2><span class="header-section-number">5.5</span> 列名を変更する</h2>
 <div id="r-1" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> R</h3>
+<ul>
+<li>new = old</li>
+</ul>
 <pre class="r"><code>pen_r |&gt; 
   rename(species2 = species,
          island2  = island)</code></pre>
@@ -1773,6 +1776,9 @@ names(pen_r)</code></pre>
 </div>
 <div id="python-1" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Python</h3>
+<ul>
+<li>‘old’:‘new’</li>
+</ul>
 <pre class="python bg-success"><code>pen_p.rename(columns = {&#39;species&#39;:&#39;species2&#39;,
                         &#39;island&#39;:&#39;island2&#39;})</code></pre>
 <pre><code>##       species2    island2  bill_length_mm  ...  body_mass_g     sex  year
@@ -1909,14 +1915,15 @@ pen_r |&gt;
 <div id="r-4" class="section level4" number="5.8.1.1">
 <h4><span class="header-section-number">5.8.1.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
-  summarise(mean_blm = mean(bill_length_mm, 
+  summarise(blm_mean = mean(bill_length_mm, 
                             na.rm = TRUE),
-            sd_blm   = sd(bill_length_mm, 
-                            na.rm = TRUE))</code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   mean_blm sd_blm
-##      &lt;dbl&gt;  &lt;dbl&gt;
-## 1     43.9   5.46</code></pre>
+            blm_sd   = sd(bill_length_mm, 
+                            na.rm = TRUE),
+            blm_n    = sum(!is.na(bill_length_mm)))</code></pre>
+<pre><code>## # A tibble: 1 × 3
+##   blm_mean blm_sd blm_n
+##      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
+## 1     43.9   5.46   342</code></pre>
 </div>
 <div id="python-4" class="section level4" number="5.8.1.2">
 <h4><span class="header-section-number">5.8.1.2</span> Python</h4>
@@ -1927,13 +1934,16 @@ pen_r |&gt;
 <pre><code>## 43.9219298245614</code></pre>
 <pre class="python bg-success"><code>pen_p.bill_length_mm.std()</code></pre>
 <pre><code>## 5.4595837139265315</code></pre>
+<pre class="python bg-success"><code>pen_p.bill_length_mm.count()</code></pre>
+<pre><code>## 342</code></pre>
 <ul>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.aggregate.html#">pandas.DataFrame.aggregate</a></li>
 <li>短縮して<code>agg</code>で実行できる</li>
 </ul>
-<pre class="python"><code>pen_p.bill_length_mm.agg([&#39;mean&#39;, &#39;std&#39;])</code></pre>
-<pre><code>## mean    43.921930
-## std      5.459584
+<pre class="python"><code>pen_p.bill_length_mm.agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
+<pre><code>## mean      43.921930
+## std        5.459584
+## count    342.000000
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
 </div>
@@ -1944,23 +1954,26 @@ pen_r |&gt;
 <pre class="r"><code>pen_r |&gt; 
   summarise(across(c(bill_length_mm, bill_depth_mm),
                    list(mean = ~mean(., na.rm = TRUE),
-                          sd =   ~sd(., na.rm = TRUE))))</code></pre>
-<pre><code>## # A tibble: 1 × 4
-##   bill_length_mm_mean bill_length_mm_sd bill_depth_mm_mean bill_depth_mm_sd
-##                 &lt;dbl&gt;             &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;
-## 1                43.9              5.46               17.2             1.97</code></pre>
+                          sd =   ~sd(., na.rm = TRUE),
+                           n =  ~sum(!is.na(.)))))</code></pre>
+<pre><code>## # A tibble: 1 × 6
+##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_depth_mm_mean
+##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;              &lt;dbl&gt;
+## 1                43.9              5.46              342               17.2
+## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
 <div id="python-5" class="section level4" number="5.8.2.2">
 <h4><span class="header-section-number">5.8.2.2</span> Python</h4>
-<pre class="python bg-success"><code>pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;],
-            &#39;bill_depth_mm&#39; : [&#39;mean&#39;, &#39;std&#39;]})</code></pre>
-<pre><code>##       bill_length_mm  bill_depth_mm
-## mean       43.921930      17.151170
-## std         5.459584       1.974793</code></pre>
+<pre class="python bg-success"><code>pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;],
+            &#39;bill_depth_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;]})</code></pre>
+<pre><code>##        bill_length_mm  bill_depth_mm
+## mean        43.921930      17.151170
+## std          5.459584       1.974793
+## count      342.000000     342.000000</code></pre>
 <ul>
 <li>先に列選択すれば関数繰り返さなくてもよい</li>
 </ul>
-<pre class="rpython bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;])</code></pre>
+<pre class="rpython bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 </div>
 </div>
 <div id="グループごとに集計" class="section level3" number="5.8.3">
@@ -2163,13 +2176,32 @@ df_py_a</code></pre>
 </div>
 </div>
 </div>
-<div id="section" class="section level2" number="5.11">
-<h2><span class="header-section-number">5.11</span> </h2>
+<div id="縦に連結" class="section level2" number="5.11">
+<h2><span class="header-section-number">5.11</span> 縦に連結</h2>
 <div id="r-12" class="section level3" number="5.11.1">
 <h3><span class="header-section-number">5.11.1</span> R</h3>
 </div>
 <div id="python-12" class="section level3" number="5.11.2">
 <h3><span class="header-section-number">5.11.2</span> Python</h3>
+</div>
+</div>
+<div id="データフレームの縦横構造の変換" class="section level2" number="5.12">
+<h2><span class="header-section-number">5.12</span>
+データフレームの縦横構造の変換</h2>
+<div id="r-13" class="section level3" number="5.12.1">
+<h3><span class="header-section-number">5.12.1</span> R</h3>
+</div>
+<div id="python-13" class="section level3" number="5.12.2">
+<h3><span class="header-section-number">5.12.2</span> Python</h3>
+</div>
+</div>
+<div id="section" class="section level2" number="5.13">
+<h2><span class="header-section-number">5.13</span> </h2>
+<div id="r-14" class="section level3" number="5.13.1">
+<h3><span class="header-section-number">5.13.1</span> R</h3>
+</div>
+<div id="python-14" class="section level3" number="5.13.2">
+<h3><span class="header-section-number">5.13.2</span> Python</h3>
 </div>
 </div>
 </div>
