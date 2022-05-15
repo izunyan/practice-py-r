@@ -19,6 +19,16 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+
+# tibbleの表示行数指定
+tibble_opt <- list(
+  "tibble.print_min" = 5 #, # 表示する行の数
+  # "tibble.width" = 65     # 横の表示幅
+)
+
+options(tibble_opt)
+
 ```
 
 # Pythonインストール時
@@ -123,20 +133,31 @@ pen_p
 ```
 
 # Rとpythonの対応
+## ここまで作ったオブジェクト生理
+### Rのデータフレーム名変更
+```{r}
+pen_r <- df
+rm(df) # df削除
+```
+
+### pythonのオブジェクト削除
+```{python}
+del df_py
+```
+
 
 ## 列を選ぶ
 ### R
 ```{r}
 library(tidyverse)
 
-pen_r <- df
 
 names(pen_r)
 
-pen_r %>% 
+pen_r |> 
   select(species, bill_length_mm)
 
-pen_r %>% 
+pen_r |> 
   select(species:bill_length_mm)
 ```
 
@@ -154,14 +175,16 @@ pen_p.loc[:, 'species':'bill_length_mm']
 ### R
 
 ```{r}
-pen_r %>% 
-  rename(species2 = species)
+pen_r |> 
+  rename(species2 = species,
+         island2  = island)
 ```
 
 ### Python
 
 ```{python class.source="bg-success"}
-pen_p.rename(columns = {'species':'species2'})
+pen_p.rename(columns = {'species':'species2',
+                        'island':'island2'})
 
 ```
 
@@ -169,10 +192,10 @@ pen_p.rename(columns = {'species':'species2'})
 ### R
 
 ```{r}
-pen_r %>% 
+pen_r |> 
   filter(bill_length_mm > 55)
 
-pen_r %>% 
+pen_r |> 
   filter(bill_length_mm > 55 & bill_depth_mm == 17)
 ```
 
@@ -187,33 +210,212 @@ pen_p.query('bill_length_mm > 55 & bill_depth_mm == 17')
 ### R
 
 ```{r}
-pen_r %>% 
-  mutate(species2 = species)
+pen_r |> 
+  mutate(species2 = species,
+         island2 = island) 
+
+# 列を選択してから
+pen_r |> 
+  select(species) |> 
+  mutate(species2 = species) 
+```
+
+
+
+### Python
+```{python class.source="bg-success"}
+pen_p.assign(species2 = pen_p['species'],
+              island2 = pen_p['island'])
+
+# 列を選択してから
+
+pen_p[['species']].assign(species2 = pen_p['species'])  
+
+```
+
+## 要約値作成
+### 変数1つのみ
+#### R
+```{r}
+pen_r |> 
+  summarise(mean_blm = mean(bill_length_mm, 
+                            na.rm = TRUE),
+            sd_blm   = sd(bill_length_mm, 
+                            na.rm = TRUE))
+```
+
+#### Python
+
+* 欠損値は自動で削除して計算されている
+
+```{python class.source="bg-success"}
+pen_p.bill_length_mm.mean()
+pen_p.bill_length_mm.std()
+```
+
+* [pandas.DataFrame.aggregate](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.aggregate.html#)
+* 短縮して`agg`で実行できる
+
+```{python}
+pen_p.bill_length_mm.agg(['mean', 'std'])
+```
+
+### 変数複数
+#### R
+```{r}
+pen_r |> 
+  summarise(across(c(bill_length_mm, bill_depth_mm),
+                   list(mean = ~mean(., na.rm = TRUE),
+                          sd =   ~sd(., na.rm = TRUE))))
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+pen_p.agg({'bill_length_mm' : ['mean', 'std'],
+            'bill_depth_mm' : ['mean', 'std']})
+
+```
+
+* 先に列選択すれば関数繰り返さなくてもよい
+
+```{rpython class.source="bg-success"}
+pen_p[['bill_length_mm', 'bill_depth_mm']].agg(['mean', 'std'])
+```
+
+
+### グループごとに集計 
+#### R
+```{r}
+pen_r |> 
+  group_by(species) |> 
+  summarise(mean_blm = mean(bill_length_mm, 
+                            na.rm = TRUE))
+```
+
+#### Python
+```{python class.source="bg-success"}
+pen_p.groupby('species').bill_length_mm.agg('mean')
+
+```
+
+ 
+### データフレーム全体
+#### R
+```{r}
+pen_r |> 
+  summarise(across(where(is.numeric),
+    mean, na.rm = TRUE))
+```
+
+#### Python
+
+
+```{python class.source="bg-success"}
+pen_p.agg('mean')
+```
+
+
+## データフレーム作成
+### R
+```{r}
+df_r_a <- 
+ tribble(
+    ~id, ~x1, ~x2,
+    1,  10,  50,
+    2,  20,  60,
+    3,  30,  70
+  )
+
+df_r_b <- 
+  tribble(
+    ~id, ~x1, ~x3,
+    1,  10,  80,
+    2,  20,  90,
+    4,  40, 100
+  )
+
+df_r_a
+df_r_b
+```
+
+
+
+### Python
+```{python class.source="bg-success"}
+import pandas as pd
+df_py_a = pd.DataFrame([[1,10,50], 
+                        [2,20,60], 
+                        [3,30,70]],
+              columns = ['id','x1','x2'])
+
+df_py_b = pd.DataFrame([[1,10,80], 
+                        [2,20,90], 
+                        [4,40,100]],
+              columns = ['id','x1','x3'])
+
+
+df_py_a
+df_py_b
+
+# または
+
+pd.DataFrame({'id':[1,2,3],
+              'x1':[10,20,30], 
+              'x2':[50,60,70]})
+
+
+```
+
+## キー変数を元にデータフレームを横に連結
+
+* [dplyr::join](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+* [pandas.merge](https://pandas.pydata.org/docs/reference/api/pandas.merge.html#)
+
+### 左に連結
+#### R
+```{r}
+df_r_a |> 
+  left_join(df_r_b, by = "id")
+```
+
+#### Python
+```{python class.source="bg-success"}
+pd.merge(df_py_a, df_py_b, on = 'id', how = 'left')
+```
+
+
+### すべて連結
+#### R
+```{r}
+df_r_a |> 
+  full_join(df_r_b)
+```
+
+#### Python
+```{python class.source="bg-success"}
+pd.merge(df_py_a, df_py_b, how = 'outer')
+```
+
+### 共通するデータの連結
+#### R
+```{r}
+df_r_a |> 
+  inner_join(df_r_b)
+```
+
+#### Python
+```{python class.source="bg-success"}
+pd.merge(df_py_a, df_py_b, how = 'inner')
+```
+
+## 
+### R
+```{r}
+
 ```
 
 ### Python
 ```{python class.source="bg-success"}
-pen_p.assign(species2 = pen_p['species'])
-```
-
-## 
-
-```{r}
 
 ```
-
-```{python class.source="bg-success"}
-
-```
-
-## 
-
-```{r}
-
-```
-
-```{python class.source="bg-success"}
-#| eval: false
-
-```
-
