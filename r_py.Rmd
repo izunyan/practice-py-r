@@ -75,7 +75,11 @@ options(tibble_opt)
 
 
 
-# rとpythonでデータフレームのやり取り
+
+
+# Rとpythonの対応
+
+## RとPythonでデータフレームのやり取り
 
 * 緑チャンクがpython
 
@@ -98,42 +102,8 @@ df_py = r.df[['species',	'bill_length_mm']]
 head(py$df_py)
 ```
 
-# Pythonでもペンギン
 
--   ペンギンデータ for python
-    -   https://pypi.org/project/palmerpenguins/
-
-<!-- ```{python eval = FALSE} -->
-
-<!-- import os -->
-
-<!-- os.system("pip3 install palmerpenguins") -->
-
-<!-- ``` -->
-
-<!-- ```{r eval = FALSE} -->
-
-<!-- py_install("palmerpenguins", pip = TRUE) -->
-
-<!-- ``` -->
-
-<!-- * https://solutions.rstudio.com/python/minimum-viable-python/installing-packages/ -->
-
-<!-- ```{r eval = FALSE} -->
-
-<!-- $ python -m pip install palmerpenguins -->
-
-<!-- ``` -->
-
-```{python class.source="bg-success"}
-from palmerpenguins import load_penguins
-pen_p = load_penguins()
- 
-pen_p
-```
-
-# Rとpythonの対応
-## ここまで作ったオブジェクト生理
+## ここまで作ったオブジェクトの整理
 ### Rのデータフレーム名変更
 ```{r}
 pen_r <- df
@@ -143,6 +113,18 @@ rm(df) # df削除
 ### pythonのオブジェクト削除
 ```{python}
 del df_py
+```
+
+## Pythonでもペンギン
+
+-   ペンギンデータ for python
+    -   https://pypi.org/project/palmerpenguins/
+
+```{python class.source="bg-success"}
+from palmerpenguins import load_penguins
+pen_p = load_penguins()
+ 
+pen_p
 ```
 
 
