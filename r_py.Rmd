@@ -129,37 +129,62 @@ pen_p
 
 # 基本用語
 ## python
+
+* https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures
+
 ### リスト
 ```{python}
 py_l = [1,2,3]
 py_l
 ```
 
-### 辞書型
+### 辞書型：dictionary
 ```{python}
 py_d = {'x':1, 'y':2}
 py_d
 ```
 
-### タプル
+### タプル：tuple
 ```{python}
 py_t = (3,4,5)
 ```
 
+### メソッド
 
-## R
-```{r}
-py$py_l
-py$py_d
-py$py_t
+* データに結びついた関数
+
+https://www.python.jp/train/string/method.html
+
+```{python}
 
 ```
 
 
+## RでPythonの変数を読む
 
-# 基本動詞
+* リスト（Python）　→　ベクトル（R）
+
+```{r}
+py$py_l
+```
+
+* 辞書型（Python）　→　名前付きリスト（R）
+
+```{r}
+py$py_d
+```
+
+* タプル（Python）　→　リスト（R）
+
+```{r}
+py$py_t
+```
+
+
+# データフレーム操作の基本動詞
 ## 列を選ぶ
-### R
+### 列名
+#### R
 ```{r}
 library(tidyverse)
 
@@ -173,13 +198,27 @@ pen_r |>
   select(species:bill_length_mm)
 ```
 
-### Python
+#### Python
 ```{python class.source="bg-success"}
 pen_p.info()
 
 pen_p[['species', 'bill_length_mm']]
 
 pen_p.loc[:, 'species':'bill_length_mm']
+
+```
+
+### 列名を正規表現で
+#### R
+```{r}
+pen_r |> 
+  select(matches("bill"))
+```
+
+
+#### Python
+```{python}
+pen_p.filter(regex = 'bill')
 
 ```
 
@@ -203,6 +242,9 @@ pen_p.rename(columns = {'species':'species2',
                         'island':'island2'})
 
 ```
+
+
+
 
 ## 行を選ぶ
 ### R
@@ -243,11 +285,14 @@ pen_r |>
 pen_p.assign(species2 = pen_p['species'],
               island2 = pen_p['island'])
 
-# 列を選択してから
+```
 
+```{python class.source="bg-success"}
+# 列を選択してから
 pen_p[['species']].assign(species2 = pen_p['species'])  
 
 ```
+
 
 ## 要約値作成
 ### 変数1つのみ
@@ -298,7 +343,7 @@ pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count'],
 
 * 先に列選択すれば関数繰り返さなくてもよい
 
-```{rpython class.source="bg-success"}
+```{python class.source="bg-success"}
 pen_p[['bill_length_mm', 'bill_depth_mm']].agg(['mean', 'std', 'count'])
 ```
 
@@ -334,7 +379,32 @@ pen_r |>
 pen_p.agg('mean')
 ```
 
-# データフレーム操作
+## 動詞をつなげる
+### R
+
+* `|>`でつなげる 
+
+```{r}
+pen_r |> 
+  select(species, bill_length_mm) |> 
+  filter(species == "Gentoo")
+
+
+```
+
+### Python
+
+* `.`でつなげてコード全体を`( )`で囲む
+
+```{python class.source="bg-success"}
+
+(pen_p[['species', 'bill_length_mm']]
+      .query('species == "Gentoo"'))
+
+```
+
+
+# データフレームの連結や構造変換
 ## データフレーム作成
 ### R
 ```{r}
@@ -386,7 +456,7 @@ pd.DataFrame({'id':[1,2,3],
 
 ```
 
-## キー変数を元にデータフレームを横に連結
+## キー変数を元に横に連結
 
 * [dplyr::join](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 * [pandas.merge](https://pandas.pydata.org/docs/reference/api/pandas.merge.html#)
@@ -431,32 +501,72 @@ pd.merge(df_py_a, df_py_b, how = 'inner')
 ## 縦に連結
 ### R
 ```{r}
+# 連結用データ作成
+df_r_b2 <- 
+  tribble(
+    ~id, ~x1, ~x2, ~x3,
+    4,  40, 80,  110,
+    5,  50, 90,  120,
+    6,  60, 100, 130
+  )
 
+df_r_b2
+
+# 縦に連結
+df_r_a |> 
+  bind_rows(df_r_b2)
 ```
 
 ### Python
 ```{python class.source="bg-success"}
+# 連結用データ作成
+df_py_b2 = pd.DataFrame([[4,40,80,110], 
+                         [5,50,90,120], 
+                         [6,60,100,130]],
+              columns = ['id','x1','x2','x3'])
+
+df_py_b2
+
+# 縦に連結
+
+pd.concat([df_py_a, df_py_b2])
 
 ```
 
-## データフレームの縦横構造の変換
-### R
+## 縦横構造の変換
+### long形式に
+#### R
 ```{r}
+df_r_a_long <- 
+df_r_a |> 
+pivot_longer(!id,
+             names_to = "変数",
+             values_to = "得点")
 
+df_r_a_long
 ```
 
-### Python
+#### Python
 ```{python class.source="bg-success"}
-
+df_py_a_long = pd.melt(df_py_a, 
+                           id_vars = ['id'],
+                           var_name = '変数',
+                           value_name = '得点')
+          
+df_py_a_long          
 ```
 
-## 
-### R
+### wide形式に
+#### R
 ```{r}
-
+df_r_a_long |> 
+  pivot_wider(names_from = 変数,
+              values_from = 得点)
 ```
 
-### Python
+#### Python
 ```{python class.source="bg-success"}
-
+df_py_a_long.pivot(index = ['id'],
+                   columns = ['変数'],
+                   values  = ['得点'])
 ```

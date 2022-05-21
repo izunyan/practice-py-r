@@ -1511,7 +1511,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">r with py</h1>
 <h4 class="author"></h4>
-<h4 class="date">2022/05/15</h4>
+<h4 class="date">2022/05/21</h4>
 
 </div>
 
@@ -1670,10 +1670,79 @@ pen_p</code></pre>
 ## 
 ## [344 rows x 8 columns]</code></pre>
 </div>
-<div id="列を選ぶ" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> 列を選ぶ</h2>
-<div id="r" class="section level3" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> R</h3>
+</div>
+<div id="基本用語" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> 基本用語</h1>
+<div id="python" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> python</h2>
+<ul>
+<li><a href="https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures" class="uri">https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures</a></li>
+</ul>
+<div id="リスト" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> リスト</h3>
+<pre class="python"><code>py_l = [1,2,3]
+py_l</code></pre>
+<pre><code>## [1, 2, 3]</code></pre>
+</div>
+<div id="辞書型dictionary" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span>
+辞書型：dictionary</h3>
+<pre class="python"><code>py_d = {&#39;x&#39;:1, &#39;y&#39;:2}
+py_d</code></pre>
+<pre><code>## {&#39;x&#39;: 1, &#39;y&#39;: 2}</code></pre>
+</div>
+<div id="タプルtuple" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> タプル：tuple</h3>
+<pre class="python"><code>py_t = (3,4,5)</code></pre>
+</div>
+<div id="メソッド" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> メソッド</h3>
+<ul>
+<li>データに結びついた関数</li>
+</ul>
+<p><a href="https://www.python.jp/train/string/method.html" class="uri">https://www.python.jp/train/string/method.html</a></p>
+</div>
+</div>
+<div id="rでpythonの変数を読む" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span>
+RでPythonの変数を読む</h2>
+<ul>
+<li>リスト（Python）　→　ベクトル（R）</li>
+</ul>
+<pre class="r"><code>py$py_l</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<ul>
+<li>辞書型（Python）　→　名前付きリスト（R）</li>
+</ul>
+<pre class="r"><code>py$py_d</code></pre>
+<pre><code>## $x
+## [1] 1
+## 
+## $y
+## [1] 2</code></pre>
+<ul>
+<li>タプル（Python）　→　リスト（R）</li>
+</ul>
+<pre class="r"><code>py$py_t</code></pre>
+<pre><code>## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 5</code></pre>
+</div>
+</div>
+<div id="データフレーム操作の基本動詞" class="section level1" number="7">
+<h1><span class="header-section-number">7</span>
+データフレーム操作の基本動詞</h1>
+<div id="列を選ぶ" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> 列を選ぶ</h2>
+<div id="列名" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> 列名</h3>
+<div id="r" class="section level4" number="7.1.1.1">
+<h4><span class="header-section-number">7.1.1.1</span> R</h4>
 <pre class="r"><code>library(tidyverse)
 
 
@@ -1704,8 +1773,8 @@ names(pen_r)</code></pre>
 ## 5 Adelie  Torgersen           36.7
 ## # … with 339 more rows</code></pre>
 </div>
-<div id="python" class="section level3" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Python</h3>
+<div id="python-1" class="section level4" number="7.1.1.2">
+<h4><span class="header-section-number">7.1.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.info()</code></pre>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 344 entries, 0 to 343
@@ -1754,10 +1823,47 @@ names(pen_r)</code></pre>
 ## [344 rows x 3 columns]</code></pre>
 </div>
 </div>
-<div id="列名を変更する" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> 列名を変更する</h2>
-<div id="r-1" class="section level3" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> R</h3>
+<div id="列名を正規表現で" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span>
+列名を正規表現で</h3>
+<div id="r-1" class="section level4" number="7.1.2.1">
+<h4><span class="header-section-number">7.1.2.1</span> R</h4>
+<pre class="r"><code>pen_r |&gt; 
+  select(matches(&quot;bill&quot;))</code></pre>
+<pre><code>## # A tibble: 344 × 2
+##   bill_length_mm bill_depth_mm
+##            &lt;dbl&gt;         &lt;dbl&gt;
+## 1           39.1          18.7
+## 2           39.5          17.4
+## 3           40.3          18  
+## 4           NA            NA  
+## 5           36.7          19.3
+## # … with 339 more rows</code></pre>
+</div>
+<div id="python-2" class="section level4" number="7.1.2.2">
+<h4><span class="header-section-number">7.1.2.2</span> Python</h4>
+<pre class="python"><code>pen_p.filter(regex = &#39;bill&#39;)</code></pre>
+<pre><code>##      bill_length_mm  bill_depth_mm
+## 0              39.1           18.7
+## 1              39.5           17.4
+## 2              40.3           18.0
+## 3               NaN            NaN
+## 4              36.7           19.3
+## ..              ...            ...
+## 339            55.8           19.8
+## 340            43.5           18.1
+## 341            49.6           18.2
+## 342            50.8           19.0
+## 343            50.2           18.7
+## 
+## [344 rows x 2 columns]</code></pre>
+</div>
+</div>
+</div>
+<div id="列名を変更する" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> 列名を変更する</h2>
+<div id="r-2" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> R</h3>
 <ul>
 <li>new = old</li>
 </ul>
@@ -1774,8 +1880,8 @@ names(pen_r)</code></pre>
 ## 5 Adelie   Torgersen           36.7          19.3               193        3450
 ## # … with 339 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-1" class="section level3" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Python</h3>
+<div id="python-3" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Python</h3>
 <ul>
 <li>‘old’:‘new’</li>
 </ul>
@@ -1797,10 +1903,10 @@ names(pen_r)</code></pre>
 ## [344 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="行を選ぶ" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> 行を選ぶ</h2>
-<div id="r-2" class="section level3" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> R</h3>
+<div id="行を選ぶ" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> 行を選ぶ</h2>
+<div id="r-3" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> R</h3>
 <pre class="r"><code>pen_r |&gt; 
   filter(bill_length_mm &gt; 55)</code></pre>
 <pre><code>## # A tibble: 5 × 8
@@ -1821,8 +1927,8 @@ names(pen_r)</code></pre>
 ## 2 Gentoo  Biscoe           55.9            17              228        5600 male 
 ## # … with 1 more variable: year &lt;int&gt;</code></pre>
 </div>
-<div id="python-2" class="section level3" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Python</h3>
+<div id="python-4" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Python</h3>
 <pre class="python bg-success"><code>pen_p[pen_p[&#39;bill_length_mm&#39;] &gt; 55]</code></pre>
 <pre><code>##        species  island  bill_length_mm  ...  body_mass_g     sex  year
 ## 185     Gentoo  Biscoe            59.6  ...       6050.0    male  2007
@@ -1840,10 +1946,10 @@ names(pen_r)</code></pre>
 ## [2 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="新たな列を作る" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> 新たな列を作る</h2>
-<div id="r-3" class="section level3" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> R</h3>
+<div id="新たな列を作る" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> 新たな列を作る</h2>
+<div id="r-4" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> R</h3>
 <pre class="r"><code>pen_r |&gt; 
   mutate(species2 = species,
          island2 = island) </code></pre>
@@ -1871,12 +1977,10 @@ pen_r |&gt;
 ## 5 Adelie  Adelie  
 ## # … with 339 more rows</code></pre>
 </div>
-<div id="python-3" class="section level3" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> Python</h3>
+<div id="python-5" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Python</h3>
 <pre class="python bg-success"><code>pen_p.assign(species2 = pen_p[&#39;species&#39;],
-              island2 = pen_p[&#39;island&#39;])
-
-# 列を選択してから</code></pre>
+              island2 = pen_p[&#39;island&#39;])</code></pre>
 <pre><code>##        species     island  bill_length_mm  ...  year   species2    island2
 ## 0       Adelie  Torgersen            39.1  ...  2007     Adelie  Torgersen
 ## 1       Adelie  Torgersen            39.5  ...  2007     Adelie  Torgersen
@@ -1891,7 +1995,8 @@ pen_r |&gt;
 ## 343  Chinstrap      Dream            50.2  ...  2009  Chinstrap      Dream
 ## 
 ## [344 rows x 10 columns]</code></pre>
-<pre class="python bg-success"><code>pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code></pre>
+<pre class="python bg-success"><code># 列を選択してから
+pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code></pre>
 <pre><code>##        species   species2
 ## 0       Adelie     Adelie
 ## 1       Adelie     Adelie
@@ -1908,12 +2013,12 @@ pen_r |&gt;
 ## [344 rows x 2 columns]</code></pre>
 </div>
 </div>
-<div id="要約値作成" class="section level2" number="5.8">
-<h2><span class="header-section-number">5.8</span> 要約値作成</h2>
-<div id="変数1つのみ" class="section level3" number="5.8.1">
-<h3><span class="header-section-number">5.8.1</span> 変数1つのみ</h3>
-<div id="r-4" class="section level4" number="5.8.1.1">
-<h4><span class="header-section-number">5.8.1.1</span> R</h4>
+<div id="要約値作成" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> 要約値作成</h2>
+<div id="変数1つのみ" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> 変数1つのみ</h3>
+<div id="r-5" class="section level4" number="7.5.1.1">
+<h4><span class="header-section-number">7.5.1.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(blm_mean = mean(bill_length_mm, 
                             na.rm = TRUE),
@@ -1925,8 +2030,8 @@ pen_r |&gt;
 ##      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1     43.9   5.46   342</code></pre>
 </div>
-<div id="python-4" class="section level4" number="5.8.1.2">
-<h4><span class="header-section-number">5.8.1.2</span> Python</h4>
+<div id="python-6" class="section level4" number="7.5.1.2">
+<h4><span class="header-section-number">7.5.1.2</span> Python</h4>
 <ul>
 <li>欠損値は自動で削除して計算されている</li>
 </ul>
@@ -1947,10 +2052,10 @@ pen_r |&gt;
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
 </div>
-<div id="変数複数" class="section level3" number="5.8.2">
-<h3><span class="header-section-number">5.8.2</span> 変数複数</h3>
-<div id="r-5" class="section level4" number="5.8.2.1">
-<h4><span class="header-section-number">5.8.2.1</span> R</h4>
+<div id="変数複数" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> 変数複数</h3>
+<div id="r-6" class="section level4" number="7.5.2.1">
+<h4><span class="header-section-number">7.5.2.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(across(c(bill_length_mm, bill_depth_mm),
                    list(mean = ~mean(., na.rm = TRUE),
@@ -1962,8 +2067,8 @@ pen_r |&gt;
 ## 1                43.9              5.46              342               17.2
 ## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
-<div id="python-5" class="section level4" number="5.8.2.2">
-<h4><span class="header-section-number">5.8.2.2</span> Python</h4>
+<div id="python-7" class="section level4" number="7.5.2.2">
+<h4><span class="header-section-number">7.5.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;],
             &#39;bill_depth_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;]})</code></pre>
 <pre><code>##        bill_length_mm  bill_depth_mm
@@ -1973,14 +2078,18 @@ pen_r |&gt;
 <ul>
 <li>先に列選択すれば関数繰り返さなくてもよい</li>
 </ul>
-<pre class="rpython bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
+<pre class="python bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
+<pre><code>##        bill_length_mm  bill_depth_mm
+## mean        43.921930      17.151170
+## std          5.459584       1.974793
+## count      342.000000     342.000000</code></pre>
 </div>
 </div>
-<div id="グループごとに集計" class="section level3" number="5.8.3">
-<h3><span class="header-section-number">5.8.3</span>
+<div id="グループごとに集計" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span>
 グループごとに集計</h3>
-<div id="r-6" class="section level4" number="5.8.3.1">
-<h4><span class="header-section-number">5.8.3.1</span> R</h4>
+<div id="r-7" class="section level4" number="7.5.3.1">
+<h4><span class="header-section-number">7.5.3.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   group_by(species) |&gt; 
   summarise(mean_blm = mean(bill_length_mm, 
@@ -1992,8 +2101,8 @@ pen_r |&gt;
 ## 2 Chinstrap     48.8
 ## 3 Gentoo        47.5</code></pre>
 </div>
-<div id="python-6" class="section level4" number="5.8.3.2">
-<h4><span class="header-section-number">5.8.3.2</span> Python</h4>
+<div id="python-8" class="section level4" number="7.5.3.2">
+<h4><span class="header-section-number">7.5.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.groupby(&#39;species&#39;).bill_length_mm.agg(&#39;mean&#39;)</code></pre>
 <pre><code>## species
 ## Adelie       38.791391
@@ -2002,11 +2111,11 @@ pen_r |&gt;
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
 </div>
-<div id="データフレーム全体" class="section level3" number="5.8.4">
-<h3><span class="header-section-number">5.8.4</span>
+<div id="データフレーム全体" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span>
 データフレーム全体</h3>
-<div id="r-7" class="section level4" number="5.8.4.1">
-<h4><span class="header-section-number">5.8.4.1</span> R</h4>
+<div id="r-8" class="section level4" number="7.5.4.1">
+<h4><span class="header-section-number">7.5.4.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(across(where(is.numeric),
     mean, na.rm = TRUE))</code></pre>
@@ -2015,8 +2124,8 @@ pen_r |&gt;
 ##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 ## 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div id="python-7" class="section level4" number="5.8.4.2">
-<h4><span class="header-section-number">5.8.4.2</span> Python</h4>
+<div id="python-9" class="section level4" number="7.5.4.2">
+<h4><span class="header-section-number">7.5.4.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.agg(&#39;mean&#39;)</code></pre>
 <pre><code>## bill_length_mm         43.921930
 ## bill_depth_mm          17.151170
@@ -2029,11 +2138,59 @@ pen_r |&gt;
 </div>
 </div>
 </div>
-<div id="データフレーム作成" class="section level2" number="5.9">
-<h2><span class="header-section-number">5.9</span>
+<div id="動詞をつなげる" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> 動詞をつなげる</h2>
+<div id="r-9" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> R</h3>
+<ul>
+<li><code>|&gt;</code>でつなげる</li>
+</ul>
+<pre class="r"><code>pen_r |&gt; 
+  select(species, bill_length_mm) |&gt; 
+  filter(species == &quot;Gentoo&quot;)</code></pre>
+<pre><code>## # A tibble: 124 × 2
+##   species bill_length_mm
+##   &lt;fct&gt;            &lt;dbl&gt;
+## 1 Gentoo            46.1
+## 2 Gentoo            50  
+## 3 Gentoo            48.7
+## 4 Gentoo            50  
+## 5 Gentoo            47.6
+## # … with 119 more rows</code></pre>
+</div>
+<div id="python-10" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Python</h3>
+<ul>
+<li><code>.</code>でつなげてコード全体を<code>( )</code>で囲む</li>
+</ul>
+<pre class="python bg-success"><code>
+(pen_p[[&#39;species&#39;, &#39;bill_length_mm&#39;]]
+      .query(&#39;species == &quot;Gentoo&quot;&#39;))</code></pre>
+<pre><code>##     species  bill_length_mm
+## 152  Gentoo            46.1
+## 153  Gentoo            50.0
+## 154  Gentoo            48.7
+## 155  Gentoo            50.0
+## 156  Gentoo            47.6
+## ..      ...             ...
+## 271  Gentoo             NaN
+## 272  Gentoo            46.8
+## 273  Gentoo            50.4
+## 274  Gentoo            45.2
+## 275  Gentoo            49.9
+## 
+## [124 rows x 2 columns]</code></pre>
+</div>
+</div>
+</div>
+<div id="データフレームの連結や構造変換" class="section level1" number="8">
+<h1><span class="header-section-number">8</span>
+データフレームの連結や構造変換</h1>
+<div id="データフレーム作成" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span>
 データフレーム作成</h2>
-<div id="r-8" class="section level3" number="5.9.1">
-<h3><span class="header-section-number">5.9.1</span> R</h3>
+<div id="r-10" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> R</h3>
 <pre class="r"><code>df_r_a &lt;- 
  tribble(
     ~id, ~x1, ~x2,
@@ -2065,8 +2222,8 @@ df_r_a</code></pre>
 ## 2     2    20    90
 ## 3     4    40   100</code></pre>
 </div>
-<div id="python-8" class="section level3" number="5.9.2">
-<h3><span class="header-section-number">5.9.2</span> Python</h3>
+<div id="python-11" class="section level3" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Python</h3>
 <pre class="python bg-success"><code>import pandas as pd
 df_py_a = pd.DataFrame([[1,10,50], 
                         [2,20,60], 
@@ -2101,17 +2258,17 @@ df_py_a</code></pre>
 ## 2   3  30  70</code></pre>
 </div>
 </div>
-<div id="キー変数を元にデータフレームを横に連結" class="section level2" number="5.10">
-<h2><span class="header-section-number">5.10</span>
-キー変数を元にデータフレームを横に連結</h2>
+<div id="キー変数を元に横に連結" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span>
+キー変数を元に横に連結</h2>
 <ul>
 <li><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">dplyr::join</a></li>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#">pandas.merge</a></li>
 </ul>
-<div id="左に連結" class="section level3" number="5.10.1">
-<h3><span class="header-section-number">5.10.1</span> 左に連結</h3>
-<div id="r-9" class="section level4" number="5.10.1.1">
-<h4><span class="header-section-number">5.10.1.1</span> R</h4>
+<div id="左に連結" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> 左に連結</h3>
+<div id="r-11" class="section level4" number="8.2.1.1">
+<h4><span class="header-section-number">8.2.1.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   left_join(df_r_b, by = &quot;id&quot;)</code></pre>
 <pre><code>## # A tibble: 3 × 5
@@ -2121,8 +2278,8 @@ df_py_a</code></pre>
 ## 2     2    20    60    20    90
 ## 3     3    30    70    NA    NA</code></pre>
 </div>
-<div id="python-9" class="section level4" number="5.10.1.2">
-<h4><span class="header-section-number">5.10.1.2</span> Python</h4>
+<div id="python-12" class="section level4" number="8.2.1.2">
+<h4><span class="header-section-number">8.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, on = &#39;id&#39;, how = &#39;left&#39;)</code></pre>
 <pre><code>##    id  x1_x  x2  x1_y    x3
 ## 0   1    10  50  10.0  80.0
@@ -2130,10 +2287,10 @@ df_py_a</code></pre>
 ## 2   3    30  70   NaN   NaN</code></pre>
 </div>
 </div>
-<div id="すべて連結" class="section level3" number="5.10.2">
-<h3><span class="header-section-number">5.10.2</span> すべて連結</h3>
-<div id="r-10" class="section level4" number="5.10.2.1">
-<h4><span class="header-section-number">5.10.2.1</span> R</h4>
+<div id="すべて連結" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> すべて連結</h3>
+<div id="r-12" class="section level4" number="8.2.2.1">
+<h4><span class="header-section-number">8.2.2.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   full_join(df_r_b)</code></pre>
 <pre><code>## # A tibble: 4 × 4
@@ -2144,8 +2301,8 @@ df_py_a</code></pre>
 ## 3     3    30    70    NA
 ## 4     4    40    NA   100</code></pre>
 </div>
-<div id="python-10" class="section level4" number="5.10.2.2">
-<h4><span class="header-section-number">5.10.2.2</span> Python</h4>
+<div id="python-13" class="section level4" number="8.2.2.2">
+<h4><span class="header-section-number">8.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;outer&#39;)</code></pre>
 <pre><code>##    id  x1    x2     x3
 ## 0   1  10  50.0   80.0
@@ -2154,11 +2311,11 @@ df_py_a</code></pre>
 ## 3   4  40   NaN  100.0</code></pre>
 </div>
 </div>
-<div id="共通するデータの連結" class="section level3" number="5.10.3">
-<h3><span class="header-section-number">5.10.3</span>
+<div id="共通するデータの連結" class="section level3" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span>
 共通するデータの連結</h3>
-<div id="r-11" class="section level4" number="5.10.3.1">
-<h4><span class="header-section-number">5.10.3.1</span> R</h4>
+<div id="r-13" class="section level4" number="8.2.3.1">
+<h4><span class="header-section-number">8.2.3.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   inner_join(df_r_b)</code></pre>
 <pre><code>## # A tibble: 2 × 4
@@ -2167,8 +2324,8 @@ df_py_a</code></pre>
 ## 1     1    10    50    80
 ## 2     2    20    60    90</code></pre>
 </div>
-<div id="python-11" class="section level4" number="5.10.3.2">
-<h4><span class="header-section-number">5.10.3.2</span> Python</h4>
+<div id="python-14" class="section level4" number="8.2.3.2">
+<h4><span class="header-section-number">8.2.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;inner&#39;)</code></pre>
 <pre><code>##    id  x1  x2  x3
 ## 0   1  10  50  80
@@ -2176,32 +2333,130 @@ df_py_a</code></pre>
 </div>
 </div>
 </div>
-<div id="縦に連結" class="section level2" number="5.11">
-<h2><span class="header-section-number">5.11</span> 縦に連結</h2>
-<div id="r-12" class="section level3" number="5.11.1">
-<h3><span class="header-section-number">5.11.1</span> R</h3>
+<div id="縦に連結" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> 縦に連結</h2>
+<div id="r-14" class="section level3" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> R</h3>
+<pre class="r"><code># 連結用データ作成
+df_r_b2 &lt;- 
+  tribble(
+    ~id, ~x1, ~x2, ~x3,
+    4,  40, 80,  110,
+    5,  50, 90,  120,
+    6,  60, 100, 130
+  )
+
+df_r_b2</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##      id    x1    x2    x3
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4    40    80   110
+## 2     5    50    90   120
+## 3     6    60   100   130</code></pre>
+<pre class="r"><code># 縦に連結
+df_r_a |&gt; 
+  bind_rows(df_r_b2)</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##      id    x1    x2    x3
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    10    50    NA
+## 2     2    20    60    NA
+## 3     3    30    70    NA
+## 4     4    40    80   110
+## 5     5    50    90   120
+## 6     6    60   100   130</code></pre>
 </div>
-<div id="python-12" class="section level3" number="5.11.2">
-<h3><span class="header-section-number">5.11.2</span> Python</h3>
+<div id="python-15" class="section level3" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Python</h3>
+<pre class="python bg-success"><code># 連結用データ作成
+df_py_b2 = pd.DataFrame([[4,40,80,110], 
+                         [5,50,90,120], 
+                         [6,60,100,130]],
+              columns = [&#39;id&#39;,&#39;x1&#39;,&#39;x2&#39;,&#39;x3&#39;])
+
+df_py_b2
+
+# 縦に連結</code></pre>
+<pre><code>##    id  x1   x2   x3
+## 0   4  40   80  110
+## 1   5  50   90  120
+## 2   6  60  100  130</code></pre>
+<pre class="python bg-success"><code>pd.concat([df_py_a, df_py_b2])</code></pre>
+<pre><code>##    id  x1   x2     x3
+## 0   1  10   50    NaN
+## 1   2  20   60    NaN
+## 2   3  30   70    NaN
+## 0   4  40   80  110.0
+## 1   5  50   90  120.0
+## 2   6  60  100  130.0</code></pre>
 </div>
 </div>
-<div id="データフレームの縦横構造の変換" class="section level2" number="5.12">
-<h2><span class="header-section-number">5.12</span>
-データフレームの縦横構造の変換</h2>
-<div id="r-13" class="section level3" number="5.12.1">
-<h3><span class="header-section-number">5.12.1</span> R</h3>
+<div id="縦横構造の変換" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> 縦横構造の変換</h2>
+<div id="long形式に" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> long形式に</h3>
+<div id="r-15" class="section level4" number="8.4.1.1">
+<h4><span class="header-section-number">8.4.1.1</span> R</h4>
+<pre class="r"><code>df_r_a_long &lt;- 
+df_r_a |&gt; 
+pivot_longer(!id,
+             names_to = &quot;変数&quot;,
+             values_to = &quot;得点&quot;)
+
+df_r_a_long</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##      id 変数   得点
+##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+## 1     1 x1       10
+## 2     1 x2       50
+## 3     2 x1       20
+## 4     2 x2       60
+## 5     3 x1       30
+## 6     3 x2       70</code></pre>
 </div>
-<div id="python-13" class="section level3" number="5.12.2">
-<h3><span class="header-section-number">5.12.2</span> Python</h3>
+<div id="python-16" class="section level4" number="8.4.1.2">
+<h4><span class="header-section-number">8.4.1.2</span> Python</h4>
+<pre class="python bg-success"><code>df_py_a_long = pd.melt(df_py_a, 
+                           id_vars = [&#39;id&#39;],
+                           var_name = &#39;変数&#39;,
+                           value_name = &#39;得点&#39;)
+          
+df_py_a_long          </code></pre>
+<pre><code>##    id  変数  得点
+## 0   1  x1  10
+## 1   2  x1  20
+## 2   3  x1  30
+## 3   1  x2  50
+## 4   2  x2  60
+## 5   3  x2  70</code></pre>
 </div>
 </div>
-<div id="section" class="section level2" number="5.13">
-<h2><span class="header-section-number">5.13</span> </h2>
-<div id="r-14" class="section level3" number="5.13.1">
-<h3><span class="header-section-number">5.13.1</span> R</h3>
+<div id="wide形式に" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> wide形式に</h3>
+<div id="r-16" class="section level4" number="8.4.2.1">
+<h4><span class="header-section-number">8.4.2.1</span> R</h4>
+<pre class="r"><code>df_r_a_long |&gt; 
+  pivot_wider(names_from = 変数,
+              values_from = 得点)</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##      id    x1    x2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    10    50
+## 2     2    20    60
+## 3     3    30    70</code></pre>
 </div>
-<div id="python-14" class="section level3" number="5.13.2">
-<h3><span class="header-section-number">5.13.2</span> Python</h3>
+<div id="python-17" class="section level4" number="8.4.2.2">
+<h4><span class="header-section-number">8.4.2.2</span> Python</h4>
+<pre class="python bg-success"><code>df_py_a_long.pivot(index = [&#39;id&#39;],
+                   columns = [&#39;変数&#39;],
+                   values  = [&#39;得点&#39;])</code></pre>
+<pre><code>##     得点    
+## 変数  x1  x2
+## id        
+## 1   10  50
+## 2   20  60
+## 3   30  70</code></pre>
+</div>
 </div>
 </div>
 </div>
