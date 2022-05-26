@@ -517,6 +517,25 @@ df_r_a |>
   bind_rows(df_r_b2)
 ```
 
+#### 連結元データを示すidを付与
+```{r}
+df_r_a |> 
+  bind_rows(df_r_b2, .id = "df_id")
+```
+
+* データフレーム名を付けたければ，一旦データフレームをリストに
+
+```{r}
+
+df_r_l <- list(df_r_a, df_r_b2) |> 
+  set_names("df_r_a", "df_r_b2")
+
+bind_rows(df_r_l, .id = "df_id")
+
+```
+
+
+
 ### Python
 ```{python class.source="bg-success"}
 # 連結用データ作成
@@ -532,6 +551,15 @@ df_py_b2
 pd.concat([df_py_a, df_py_b2])
 
 ```
+
+#### 連結元データを示すidを付与
+
+```{python}
+pd.concat([df_py_a, df_py_b2], 
+          keys = ['df_py_a', 'df_py_b2'])
+```
+
+
 
 ## 縦横構造の変換
 ### long形式に
