@@ -68,7 +68,7 @@ options(tibble_opt)
 
 -   以下，コマンドプロンプトから実行
 -   作成
-    -   `python -m venv パス名\myenv(名前は任意)`
+    -   `python -m venv パス名\myenv(名前は任意;この丸カッコ部分ごと不要)`
     -   該当フォルダがすでにカレントになっていればmyenvだけでOK
 -   仮想環境に入る
     -   `myenv\Scripts\activate`
@@ -135,28 +135,28 @@ pen_p
 
 ### リスト
 
-```{python}
+```{python class.source="bg-success"}
 py_l = [1,2,3]
 py_l
 ```
 
 ### 辞書型：dictionary
 
-```{python}
+```{python class.source="bg-success"}
 py_d = {'x':1, 'y':2}
 py_d
 ```
 
 ### タプル：tuple
 
-```{python}
+```{python class.source="bg-success"}
 py_t = (3,4,5)
 py_t
 ```
 
 ### np.array 配列
 
-```{python}
+```{python class.source="bg-success"}
 import numpy as np
 py_ndarray = np.array([1,2,3])
 py_ndarray
@@ -171,7 +171,7 @@ py_ndarray2
 
 <https://www.python.jp/train/string/method.html>
 
-```{python}
+```{python class.source="bg-success"}
 
 ```
 
@@ -261,11 +261,11 @@ pen_r |>
 
 <!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 
-```{python}
+```{python class.source="bg-success"}
 pen_p.filter(regex = 'bill')
 ```
 
-```{python}
+```{python class.source="bg-success"}
 pen_p.loc[:, pen_p.columns.str.match('bill')]
 
 ```
@@ -328,7 +328,7 @@ pen_p.query('bill_length_mm > 55 & bill_depth_mm == 17')
 
 pen_p.query('species == "Gentoo"')
 
-pen_p[pen_p.['species'].str.contains('Gen')] # match
+pen_p[pen_p['species'].str.contains('Gen')] # match
 pen_p.loc[pen_p.species.str.contains('Gen')] # match
 
 ```

@@ -1511,14 +1511,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">r with py</h1>
 <h4 class="author"></h4>
-<h4 class="date">2022/05/29</h4>
+<h4 class="date">2022/06/27</h4>
 
 </div>
 
 
-<div id="pythonインストール時" class="section level1" number="1">
+<div id="windowsでのpythonインストール" class="section level1" number="1">
 <h1><span class="header-section-number">1</span>
-Pythonインストール時</h1>
+WindowsでのPythonインストール</h1>
 <ul>
 <li><code>Add Python 3.x to PATH</code>にチェックを入れる
 <ul>
@@ -1533,6 +1533,8 @@ Pythonインストール時</h1>
 <li>以下，コマンドプロンプトから実行
 <ul>
 <li>Windowsでは，「ここに入力して検索」にcmdを入れて検索</li>
+<li>RStudioのTerminalからでもOK？カレントディレクトリが違うだけみたい</li>
+<li>仮想環境あるとできないぽい</li>
 </ul></li>
 <li>インストール済みパッケージの確認
 <ul>
@@ -1720,7 +1722,7 @@ py_ndarray2</code></pre>
 <h2><span class="header-section-number">6.2</span>
 RでPythonの変数を読む</h2>
 <ul>
-<li>cheatsheetより</li>
+<li>reticulate cheatsheetより</li>
 </ul>
 <table>
 <thead>
@@ -1909,7 +1911,23 @@ names(pen_r)</code></pre>
 </div>
 <div id="python-2" class="section level4" number="7.1.2.2">
 <h4><span class="header-section-number">7.1.2.2</span> Python</h4>
+<!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 <pre class="python"><code>pen_p.filter(regex = &#39;bill&#39;)</code></pre>
+<pre><code>##      bill_length_mm  bill_depth_mm
+## 0              39.1           18.7
+## 1              39.5           17.4
+## 2              40.3           18.0
+## 3               NaN            NaN
+## 4              36.7           19.3
+## ..              ...            ...
+## 339            55.8           19.8
+## 340            43.5           18.1
+## 341            49.6           18.2
+## 342            50.8           19.0
+## 343            50.2           18.7
+## 
+## [344 rows x 2 columns]</code></pre>
+<pre class="python"><code>pen_p.loc[:, pen_p.columns.str.match(&#39;bill&#39;)]</code></pre>
 <pre><code>##      bill_length_mm  bill_depth_mm
 ## 0              39.1           18.7
 ## 1              39.5           17.4
@@ -1993,9 +2011,33 @@ names(pen_r)</code></pre>
 ## 1 Gentoo  Biscoe           59.6            17              230        6050 male 
 ## 2 Gentoo  Biscoe           55.9            17              228        5600 male 
 ## # … with 1 more variable: year &lt;int&gt;</code></pre>
+<pre class="r"><code>pen_r |&gt; 
+  filter(species == &quot;Gentoo&quot;)</code></pre>
+<pre><code>## # A tibble: 124 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           46.1          13.2              211        4500 fema…
+## 2 Gentoo  Biscoe           50            16.3              230        5700 male 
+## 3 Gentoo  Biscoe           48.7          14.1              210        4450 fema…
+## 4 Gentoo  Biscoe           50            15.2              218        5700 male 
+## 5 Gentoo  Biscoe           47.6          14.5              215        5400 male 
+## # … with 119 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+<pre class="r"><code>pen_r |&gt; 
+  filter(str_detect(species, &quot;Gen&quot;))</code></pre>
+<pre><code>## # A tibble: 124 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           46.1          13.2              211        4500 fema…
+## 2 Gentoo  Biscoe           50            16.3              230        5700 male 
+## 3 Gentoo  Biscoe           48.7          14.1              210        4450 fema…
+## 4 Gentoo  Biscoe           50            15.2              218        5700 male 
+## 5 Gentoo  Biscoe           47.6          14.5              215        5400 male 
+## # … with 119 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
 </div>
 <div id="python-4" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Python</h3>
+<!-- https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values -->
+<!-- https://towardsdatascience.com/how-to-select-rows-from-pandas-dataframe-based-on-column-values-d3f5da421e93 -->
 <pre class="python bg-success"><code>pen_p[pen_p[&#39;bill_length_mm&#39;] &gt; 55]</code></pre>
 <pre><code>##        species  island  bill_length_mm  ...  body_mass_g     sex  year
 ## 185     Gentoo  Biscoe            59.6  ...       6050.0    male  2007
@@ -2011,6 +2053,51 @@ names(pen_r)</code></pre>
 ## 253  Gentoo  Biscoe            55.9  ...       5600.0  male  2009
 ## 
 ## [2 rows x 8 columns]</code></pre>
+<pre class="python bg-success"><code>pen_p.query(&#39;species == &quot;Gentoo&quot;&#39;)</code></pre>
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
+## 
+## [124 rows x 8 columns]</code></pre>
+<pre class="python bg-success"><code>pen_p[pen_p[&#39;species&#39;].str.contains(&#39;Gen&#39;)] # match</code></pre>
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
+## 
+## [124 rows x 8 columns]</code></pre>
+<pre class="python bg-success"><code>pen_p.loc[pen_p.species.str.contains(&#39;Gen&#39;)] # match</code></pre>
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
+## 
+## [124 rows x 8 columns]</code></pre>
 </div>
 </div>
 <div id="新たな列を作る" class="section level2" number="7.4">
@@ -2133,6 +2220,18 @@ pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code><
 ##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;              &lt;dbl&gt;
 ## 1                43.9              5.46              342               17.2
 ## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
+<pre class="r"><code># 列名格納版
+cols &lt;- c(&quot;bill_length_mm&quot;, &quot;bill_depth_mm&quot;)
+pen_r |&gt; 
+  summarise(across(all_of(cols),
+                   list(mean = ~mean(., na.rm = TRUE),
+                          sd =   ~sd(., na.rm = TRUE),
+                           n =  ~sum(!is.na(.)))))</code></pre>
+<pre><code>## # A tibble: 1 × 6
+##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_depth_mm_mean
+##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;              &lt;dbl&gt;
+## 1                43.9              5.46              342               17.2
+## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
 <div id="python-7" class="section level4" number="7.5.2.2">
 <h4><span class="header-section-number">7.5.2.2</span> Python</h4>
@@ -2145,7 +2244,15 @@ pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code><
 <ul>
 <li>先に列選択すれば関数繰り返さなくてもよい</li>
 </ul>
-<pre class="python bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
+<pre class="python bg-success"><code>pen_p[[&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])
+
+# 列名格納版</code></pre>
+<pre><code>##        bill_length_mm  bill_depth_mm
+## mean        43.921930      17.151170
+## std          5.459584       1.974793
+## count      342.000000     342.000000</code></pre>
+<pre class="python bg-success"><code>cols = [&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;]
+pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 <pre><code>##        bill_length_mm  bill_depth_mm
 ## mean        43.921930      17.151170
 ## std          5.459584       1.974793
