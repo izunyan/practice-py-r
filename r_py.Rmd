@@ -80,7 +80,8 @@ options(tibble_opt)
 ## RとPythonでデータフレームのやり取り
 
 -   緑チャンクがpython
-### Rでデータフレーム読み込み
+
+### ★Rでデータフレーム読み込み
 ```{r }
 library(reticulate)
 
@@ -104,7 +105,7 @@ head(py$df_py)
 
 ## ここまで作ったオブジェクトの整理
 
-### Rのデータフレーム名変更
+### ★Rのデータフレーム名変更
 
 ```{r}
 pen_r <- df
@@ -117,7 +118,7 @@ rm(df) # df削除
 del df_py
 ```
 
-## Pythonでもペンギン
+## ★Pythonでもペンギン
 
 -   ペンギンデータ for python
     -   <https://pypi.org/project/palmerpenguins/>
@@ -161,6 +162,7 @@ py_d
 py_t = (3,4,5)
 py_t
 ```
+
 
 ### np.array 配列
 
@@ -222,6 +224,9 @@ py$py_d
 ```{r}
 py$py_t
 ```
+
+``
+
 
 -   numpy.ndarray
 
@@ -349,8 +354,8 @@ pen_p.loc[pen_p.species.str.contains('Gen')] # match
 ```
 
 ## 新たな列を作る
-
-### R
+### 基本
+#### R
 
 ```{r}
 pen_r |> 
@@ -363,7 +368,7 @@ pen_r |>
   mutate(species2 = species) 
 ```
 
-### Python
+#### Python
 
 ```{python class.source="bg-success"}
 pen_p.assign(species2 = pen_p['species'],
@@ -376,6 +381,57 @@ pen_p.assign(species2 = pen_p['species'],
 pen_p[['species']].assign(species2 = pen_p['species'])  
 
 ```
+
+### 連続量のカテゴリ化列作成
+#### R
+
+```{r}
+hist(pen_r$bill_length_mm)
+
+pen_r <- 
+pen_r |> 
+  mutate(choices = case_when(bill_length_mm < 40 ~ "first",
+                             bill_length_mm >= 40 & bill_length_mm < 50 ~ "second",
+                             bill_length_mm >= 50 ~ "third")) 
+
+pen_r |> 
+  count(choices, bill_length_mm)
+```
+
+#### Python
+
+<!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
+<!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
+
+
+```{python class.source="bg-success"}
+## 分布確認
+# import matplotlib.pyplot as plt
+# pen_p[['bill_length_mm']].plt.hist()
+
+## 条件で変数作成
+import numpy as np
+
+conditions = [
+  (pen_p["bill_length_mm"].lt(40)),
+  (pen_p["bill_length_mm"].ge(40) & pen_p["bill_length_mm"].lt(50)),
+  (pen_p["bill_length_mm"].ge(50)),
+]
+
+choices = ["first", "second", "third"]
+
+pen_p["blmc"] = np.select(conditions, choices)
+
+# pen_p[["bill_length_mm", "blmc"]].head()
+
+
+```
+
+```{python class.source="bg-success"}
+
+```
+
+
 
 ## 要約値作成
 
@@ -483,6 +539,50 @@ pen_r |>
 ```{python class.source="bg-success"}
 pen_p.agg('mean')
 ```
+
+
+
+
+### 度数分布 
+#### R
+
+```{r}
+pen_r |> count(species)
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+pen_p.value_counts(['species'])
+
+```
+
+### 複数列のクロス表 
+#### R
+
+```{r}
+pen_r |> count(species, sex)
+```
+
+```{r}
+table(pen_r$species, pen_r$sex)
+```
+
+
+#### Python
+
+```{python class.source="bg-success"}
+pen_p.value_counts(['species', 'sex'])
+
+```
+
+
+```{python class.source="bg-success"}
+import pandas as pd
+pd.crosstab(pen_p['species'], pen_p['sex'])
+pd.crosstab(pen_p.species, pen_p.sex)
+```
+
 
 ## 動詞をつなげる
 
@@ -719,4 +819,17 @@ df_r_a_long |>
 df_py_a_long.pivot(index = ['id'],
                    columns = ['変数'],
                    values  = ['得点'])
+```
+
+### 
+#### R
+
+```{r}
+
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+
 ```
