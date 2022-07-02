@@ -38,14 +38,14 @@ options(tibble_opt)
 
 -   以下，コマンドプロンプトから実行
     -   Windowsでは，「ここに入力して検索」にcmdを入れて検索
-    -   RStudioのTerminalからでもOK？カレントディレクトリが違うだけみたい
-    -   仮想環境あるとできないぽい
+    -   RStudioのTerminalからでもできる？（カレントディレクトリが違うだけみたい）
+    -   ただし仮想環境あるとできないぽい？
 -   インストール済みパッケージの確認
     -   `pip list`
 -   パッケージインストール
     -   `pip install {ここにパッケージ名}`
 -   アップデートが必要なパッケージ一覧
-    -   `pip list -o`\
+    -   `pip list -o`
 -   パッケージのアップデート
     -   `pip install -U {ここにパッケージ名}`
 
@@ -53,7 +53,7 @@ options(tibble_opt)
 
 <!--   + pip install （どこからか忘れた…要確認） -->
 
-# コマンドプロンプトの操作
+# コマンドプロンプト or Terminalの操作
 
 -   ルートに移動
     -   `cd \`
@@ -75,68 +75,42 @@ options(tibble_opt)
 -   仮想環境から出る
     -   `deactivate`
 
-# Rとpythonの対応
-
-## RとPythonでデータフレームのやり取り
-
--   緑チャンクがpython
-
-### ★Rでデータフレーム読み込み
-```{r }
-library(reticulate)
-
-df <- 
-  palmerpenguins::penguins
-
-```
-
-### PythonでRのデータフレーム読み込みして列選択
-```{python class.source="bg-success"}
-r.df.head()
-
-df_py = r.df[['species',	'bill_length_mm']]
-
-```
-
-### RからPythonで加工したデータフレーム読み込み
-```{r }
-head(py$df_py)
-```
-
-## ここまで作ったオブジェクトの整理
-
-### ★Rのデータフレーム名変更
-
-```{r}
-pen_r <- df
-rm(df) # df削除
-```
-
-### pythonのオブジェクト削除
-
-```{python}
-del df_py
-```
-
-## ★Pythonでもペンギン
-
--   ペンギンデータ for python
-    -   <https://pypi.org/project/palmerpenguins/>
-
-```{python class.source="bg-success"}
-from palmerpenguins import load_penguins
-pen_p = load_penguins()
- 
-pen_p
-```
 
 # 基本用語
+
+## R
+### ベクトル
+```{r}
+r_vec <- c(1, 2, 3)
+r_vec
+```
+
+### 名前付きベクトル
+```{r}
+r_nvec <- c(a = 1, b = 2, c = 3)
+r_nvec
+```
+
+
+### リスト
+```{r}
+r_l <- list(1, 2, 3)
+r_l
+```
+
+### 名前付きリスト
+```{r}
+r_nl <- list(a = 1, b = 2, c = 3)
+r_nl
+```
+
 
 ## python
 
 -   <https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures>
 
 ### リスト
+
 
 ```{python class.source="bg-success"}
 py_l = [1,2,3]
@@ -185,6 +159,48 @@ py_ndarray2
 
 ```
 
+
+# Rとpythonで相互の読み込み
+
+## RとPythonでデータフレームのやり取り
+
+-   緑チャンクがpython
+
+### Rでデータフレーム読み込み
+```{r }
+library(reticulate)
+library(tidyverse)
+
+df_r <- palmerpenguins::penguins
+
+```
+
+### PythonでRのデータフレーム読み込みして列選択
+```{python class.source="bg-success"}
+r.df_r.head()
+
+df_py = r.df_r[['species',	'bill_length_mm']]
+
+
+```
+
+### RからPythonで加工したデータフレーム読み込み
+```{r }
+head(py$df_py)
+
+rm(df_r) # df削除
+```
+
+## ここまで作ったオブジェクトの整理
+
+### pythonのオブジェクト削除
+
+```{python class.source="bg-success"}
+del df_py
+```
+
+
+
 ## RでPythonの変数を読む
 
 -   reticulate cheatsheetより
@@ -225,8 +241,6 @@ py$py_d
 py$py_t
 ```
 
-``
-
 
 -   numpy.ndarray
 
@@ -236,20 +250,78 @@ py$py_ndarray2
 
 ```
 
+
+## PythonでRのオブジェクトを読む
+
+- ベクトル（R） → リスト（Python）
+
+```{python class.source="bg-success"}
+r.r_vec
+```
+
+- 名前付きベクトル（R） → リスト（Python）
+
+```{python class.source="bg-success"}
+r.r_nvec
+```
+
+- リスト（R） → リスト（Python）
+
+```{python class.source="bg-success"}
+r.r_l
+```
+
+- 名前付きリスト（R） → 辞書型（Python）
+
+```{python class.source="bg-success"}
+r.r_nl
+```
+
+
 # データフレーム操作の基本動詞
+
+## Pythonの資料
+
+* cheatsheet
+  - https://pandas.pydata.org/docs/whatsnew/v0.19.2.html
+
+* cookbook
+  - https://pandas.pydata.org/docs/user_guide/cookbook.html
+
+## ★データフレーム読み込み
+### R
+```{r}
+pen_r <-   palmerpenguins::penguins
+
+```
+
+### Pythonでもペンギン
+
+-   ペンギンデータ for python
+    -   <https://pypi.org/project/palmerpenguins/>
+
+```{python class.source="bg-success"}
+from palmerpenguins import load_penguins
+pen_p = load_penguins()
+ 
+pen_p
+```
 
 ## 列を選ぶ
 
-### 列名
+### 列名から
 
 #### R
 
 ```{r}
-library(tidyverse)
 
 
 names(pen_r)
 
+pen_r |> 
+  select(species)
+
+# 複数列
 pen_r |> 
   select(species, bill_length_mm)
 
@@ -260,15 +332,20 @@ pen_r |>
 #### Python
 
 ```{python class.source="bg-success"}
-pen_p.info()
+pen_p.columns
 
+pen_p['species']
+pen_p.species
+
+# 複数列
 pen_p[['species', 'bill_length_mm']]
+
 
 pen_p.loc[:, 'species':'bill_length_mm']
 
 ```
 
-### 列名を正規表現で
+### 列名を正規表現で選ぶ
 
 #### R
 
@@ -290,6 +367,32 @@ pen_p.loc[:, pen_p.columns.str.match('bill')]
 
 ```
 
+### 列を削除する 
+#### R
+
+```{r}
+pen_r |> select(!c(species, island))
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+pen_p.drop(columns = ['species', 'island'])
+```
+
+
+### 
+#### R
+
+```{r}
+
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+
+```
 
 ## 列名を変更する
 
@@ -313,9 +416,33 @@ pen_p.rename(columns = {'species':'species2',
 
 ```
 
-## 行を選ぶ
 
+## 列の値で並び変える
 ### R
+
+```{r}
+# 昇順
+pen_r |> arrange(bill_length_mm)
+
+# 降順
+pen_r |> arrange(desc(bill_length_mm))
+
+
+```
+
+### Python
+
+```{python class.source="bg-success"}
+# 昇順
+pen_p.sort_values('bill_length_mm')
+
+# 降順
+pen_p.sort_values('bill_length_mm', ascending = False)
+```
+
+## 行を選ぶ
+### 基本
+#### R
 
 ```{r}
 pen_r |> 
@@ -334,7 +461,7 @@ pen_r |>
 
 ```
 
-### Python
+#### Python
 
 <!-- https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values -->
 
@@ -344,6 +471,8 @@ pen_r |>
 
 ```{python class.source="bg-success"}
 pen_p[pen_p['bill_length_mm'] > 55]
+pen_p[pen_p.bill_length_mm > 55]
+
 pen_p.query('bill_length_mm > 55 & bill_depth_mm == 17')
 
 pen_p.query('species == "Gentoo"')
@@ -352,6 +481,31 @@ pen_p[pen_p['species'].str.contains('Gen')] # match
 pen_p.loc[pen_p.species.str.contains('Gen')] # match
 
 ```
+
+### 欠損のある行を落とす
+#### R
+
+```{r}
+pen_r |> 
+  drop_na(sex, bill_length_mm)
+
+# 確認
+pen_r |> 
+  drop_na(sex, bill_length_mm) |> 
+  count(sex)
+```
+
+#### Python
+
+* https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html
+
+```{python class.source="bg-success"}
+pen_p.dropna(subset = ['sex'])
+
+# 確認
+pen_p.dropna(subset = ['sex']).value_counts(['sex'])
+```
+
 
 ## 新たな列を作る
 ### 基本
@@ -362,7 +516,7 @@ pen_r |>
   mutate(species2 = species,
          island2 = island) 
 
-# 列を選択してから
+# 列を選択してから（表示のため）
 pen_r |> 
   select(species) |> 
   mutate(species2 = species) 
@@ -374,13 +528,11 @@ pen_r |>
 pen_p.assign(species2 = pen_p['species'],
               island2 = pen_p['island'])
 
-```
-
-```{python class.source="bg-success"}
-# 列を選択してから
+# 列を選択してから表示のため
 pen_p[['species']].assign(species2 = pen_p['species'])  
 
 ```
+
 
 ### 連続量のカテゴリ化列作成
 #### R
@@ -394,6 +546,7 @@ pen_r |>
                              bill_length_mm >= 40 & bill_length_mm < 50 ~ "second",
                              bill_length_mm >= 50 ~ "third")) 
 
+# 確認
 pen_r |> 
   count(choices, bill_length_mm)
 ```
@@ -422,14 +575,14 @@ choices = ["first", "second", "third"]
 
 pen_p["blmc"] = np.select(conditions, choices)
 
-# pen_p[["bill_length_mm", "blmc"]].head()
+
+# 確認
+pen_p.value_counts(['blmc', 'bill_length_mm'])
 
 
 ```
 
-```{python class.source="bg-success"}
 
-```
 
 
 
@@ -461,7 +614,7 @@ pen_p.bill_length_mm.count()
 -   [pandas.DataFrame.aggregate](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.aggregate.html#)
 -   短縮して`agg`で実行できる
 
-```{python}
+```{python class.source="bg-success"}
 pen_p.bill_length_mm.agg(['mean', 'std', 'count'])
 ```
 
@@ -557,17 +710,12 @@ pen_p.value_counts(['species'])
 
 ```
 
-### 複数列のクロス表 
+### 複数列の組み合わせの度数 
 #### R
 
 ```{r}
 pen_r |> count(species, sex)
 ```
-
-```{r}
-table(pen_r$species, pen_r$sex)
-```
-
 
 #### Python
 
@@ -577,15 +725,27 @@ pen_p.value_counts(['species', 'sex'])
 ```
 
 
+
+### クロス表 
+#### R
+
+
+```{r}
+table(pen_r$species, pen_r$sex)
+```
+
+
+#### Python
+
+
+
 ```{python class.source="bg-success"}
 import pandas as pd
 pd.crosstab(pen_p['species'], pen_p['sex'])
 pd.crosstab(pen_p.species, pen_p.sex)
 ```
 
-
 ## 動詞をつなげる
-
 ### R
 
 -   `|>`でつなげる
@@ -771,7 +931,7 @@ pd.concat([df_py_a, df_py_b2])
 
 #### 連結元データを示すidを付与
 
-```{python}
+```{python class.source="bg-success"}
 pd.concat([df_py_a, df_py_b2], 
           keys = ['df_py_a', 'df_py_b2'])
 ```
@@ -831,5 +991,5 @@ df_py_a_long.pivot(index = ['id'],
 #### Python
 
 ```{python class.source="bg-success"}
-
+pen_p.columns
 ```
