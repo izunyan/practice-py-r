@@ -169,7 +169,6 @@ py_ndarray2
 ### Rでデータフレーム読み込み
 ```{r }
 library(reticulate)
-library(tidyverse)
 
 df_r <- palmerpenguins::penguins
 
@@ -314,7 +313,7 @@ pen_p
 #### R
 
 ```{r}
-
+library(tidyverse)
 
 names(pen_r)
 
@@ -701,6 +700,8 @@ pen_p.agg('mean')
 
 ```{r}
 pen_r |> count(species)
+
+pen_r |> count(sex)
 ```
 
 #### Python
@@ -708,6 +709,7 @@ pen_r |> count(species)
 ```{python class.source="bg-success"}
 pen_p.value_counts(['species'])
 
+pen_p.value_counts(['sex'], dropna = False)
 ```
 
 ### 複数列の組み合わせの度数 
@@ -991,5 +993,53 @@ df_py_a_long.pivot(index = ['id'],
 #### Python
 
 ```{python class.source="bg-success"}
-pen_p.columns
+
+```
+
+# ファイルの読み込み
+## Excelファイル
+### R
+
+```{r}
+readxl::read_xlsx("data/ペンギン.xlsx")
+```
+
+### Python
+
+```{python class.source="bg-success"}
+pd.read_excel('data/ペンギン.xlsx')
+```
+
+## csvファイル
+### utf-8
+#### R
+
+```{r}
+penr_csv <- 
+read_csv("data/ペンギン（ひどい列名）ver_utf8.csv")
+
+penr_csv
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+penp_csv = pd.read_csv('data/ペンギン（ひどい列名）ver_utf8.csv')
+
+penp_csv
+```
+
+### shift-jis(cp932)
+#### R
+
+```{r}
+read_csv("data/ペンギン（ひどい列名）ver_cp932.csv",
+         locale = locale(encoding = "cp932"))
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+pd.read_csv('data/ペンギン（ひどい列名）ver_cp932.csv',
+             encoding = 'cp932')
 ```

@@ -1511,7 +1511,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">r with py</h1>
 <h4 class="author"></h4>
-<h4 class="date">2022/07/02</h4>
+<h4 class="date">2022/07/03</h4>
 
 </div>
 
@@ -1703,7 +1703,6 @@ RとPythonでデータフレームのやり取り</h2>
 <h3><span class="header-section-number">6.1.1</span>
 Rでデータフレーム読み込み</h3>
 <pre class="r"><code>library(reticulate)
-library(tidyverse)
 
 df_r &lt;- palmerpenguins::penguins</code></pre>
 </div>
@@ -1924,7 +1923,9 @@ pen_p</code></pre>
 <h3><span class="header-section-number">7.3.1</span> 列名から</h3>
 <div id="r-2" class="section level4" number="7.3.1.1">
 <h4><span class="header-section-number">7.3.1.1</span> R</h4>
-<pre class="r"><code>names(pen_r)</code></pre>
+<pre class="r"><code>library(tidyverse)
+
+names(pen_r)</code></pre>
 <pre><code>## [1] &quot;species&quot;           &quot;island&quot;            &quot;bill_length_mm&quot;   
 ## [4] &quot;bill_depth_mm&quot;     &quot;flipper_length_mm&quot; &quot;body_mass_g&quot;      
 ## [7] &quot;sex&quot;               &quot;year&quot;</code></pre>
@@ -2705,6 +2706,13 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## 1 Adelie      152
 ## 2 Chinstrap    68
 ## 3 Gentoo      124</code></pre>
+<pre class="r"><code>pen_r |&gt; count(sex)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   sex        n
+##   &lt;fct&gt;  &lt;int&gt;
+## 1 female   165
+## 2 male     168
+## 3 &lt;NA&gt;      11</code></pre>
 </div>
 <div id="python-15" class="section level4" number="7.8.5.2">
 <h4><span class="header-section-number">7.8.5.2</span> Python</h4>
@@ -2713,6 +2721,12 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## Adelie       152
 ## Gentoo       124
 ## Chinstrap     68
+## dtype: int64</code></pre>
+<pre class="python bg-success"><code>pen_p.value_counts([&#39;sex&#39;], dropna = False)</code></pre>
+<pre><code>## sex   
+## male      168
+## female    165
+## NaN        11
 ## dtype: int64</code></pre>
 </div>
 </div>
@@ -3147,10 +3161,124 @@ df_py_a_long          </code></pre>
 </div>
 <div id="python-26" class="section level4" number="8.4.3.2">
 <h4><span class="header-section-number">8.4.3.2</span> Python</h4>
-<pre class="python bg-success"><code>pen_p.columns</code></pre>
-<pre><code>## Index([&#39;species&#39;, &#39;island&#39;, &#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;,
-##        &#39;flipper_length_mm&#39;, &#39;body_mass_g&#39;, &#39;sex&#39;, &#39;year&#39;, &#39;blmc&#39;],
-##       dtype=&#39;object&#39;)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="ファイルの読み込み" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> ファイルの読み込み</h1>
+<div id="excelファイル" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Excelファイル</h2>
+<div id="r-28" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> R</h3>
+<pre class="r"><code>readxl::read_xlsx(&quot;data/ペンギン.xlsx&quot;)</code></pre>
+<pre><code>## # A tibble: 344 × 9
+##   species 種類  island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Adelie  アデ… Torge…           39.1          18.7              181        3750
+## 2 Adelie  アデ… Torge…           39.5          17.4              186        3800
+## 3 Adelie  アデ… Torge…           40.3          18                195        3250
+## 4 Adelie  アデ… Torge…           NA            NA                 NA          NA
+## 5 Adelie  アデ… Torge…           36.7          19.3              193        3450
+## # … with 339 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+<div id="python-27" class="section level3" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Python</h3>
+<pre class="python bg-success"><code>pd.read_excel(&#39;data/ペンギン.xlsx&#39;)</code></pre>
+<pre><code>##        species    種類     island  ...  body_mass_g     sex  year
+## 0       Adelie  アデリー  Torgersen  ...       3750.0    male  2007
+## 1       Adelie  アデリー  Torgersen  ...       3800.0  female  2007
+## 2       Adelie  アデリー  Torgersen  ...       3250.0  female  2007
+## 3       Adelie  アデリー  Torgersen  ...          NaN     NaN  2007
+## 4       Adelie  アデリー  Torgersen  ...       3450.0  female  2007
+## ..         ...   ...        ...  ...          ...     ...   ...
+## 339  Chinstrap    ヒゲ      Dream  ...       4000.0    male  2009
+## 340  Chinstrap    ヒゲ      Dream  ...       3400.0  female  2009
+## 341  Chinstrap    ヒゲ      Dream  ...       3775.0    male  2009
+## 342  Chinstrap    ヒゲ      Dream  ...       4100.0    male  2009
+## 343  Chinstrap    ヒゲ      Dream  ...       3775.0  female  2009
+## 
+## [344 rows x 9 columns]</code></pre>
+</div>
+</div>
+<div id="csvファイル" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> csvファイル</h2>
+<div id="utf-8" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> utf-8</h3>
+<div id="r-29" class="section level4" number="9.2.1.1">
+<h4><span class="header-section-number">9.2.1.1</span> R</h4>
+<pre class="r"><code>penr_csv &lt;- 
+read_csv(&quot;data/ペンギン（ひどい列名）ver_utf8.csv&quot;)
+
+penr_csv</code></pre>
+<pre><code>## # A tibble: 344 × 9
+##   Sｐｅｃｉｅｓ `種　類` `※島の名前` `①クチバシ　長さ（ｍｍ）` `②ｸﾁﾊﾞｼ＿大きさ…`
+##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt;
+## 1 Adelie        アデリー Torgersen                        39.1              18.7
+## 2 Adelie        アデリー Torgersen                        39.5              17.4
+## 3 Adelie        アデリー Torgersen                        40.3              18  
+## 4 Adelie        アデリー Torgersen                        NA                NA  
+## 5 Adelie        アデリー Torgersen                        36.7              19.3
+## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
+## #   `■体重　単位はｇ` &lt;dbl&gt;, `㊛㊚` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
+</div>
+<div id="python-28" class="section level4" number="9.2.1.2">
+<h4><span class="header-section-number">9.2.1.2</span> Python</h4>
+<pre class="python bg-success"><code>penp_csv = pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_utf8.csv&#39;)
+
+penp_csv</code></pre>
+<pre><code>##        Sｐｅｃｉｅｓ   種　類      ※島の名前  ...  ■体重　単位はｇ      ㊛㊚  ２００７～２００９
+## 0       Adelie  アデリー  Torgersen  ...    3750.0    male       2007
+## 1       Adelie  アデリー  Torgersen  ...    3800.0  female       2007
+## 2       Adelie  アデリー  Torgersen  ...    3250.0  female       2007
+## 3       Adelie  アデリー  Torgersen  ...       NaN     NaN       2007
+## 4       Adelie  アデリー  Torgersen  ...    3450.0  female       2007
+## ..         ...   ...        ...  ...       ...     ...        ...
+## 339  Chinstrap    ヒゲ      Dream  ...    4000.0    male       2009
+## 340  Chinstrap    ヒゲ      Dream  ...    3400.0  female       2009
+## 341  Chinstrap    ヒゲ      Dream  ...    3775.0    male       2009
+## 342  Chinstrap    ヒゲ      Dream  ...    4100.0    male       2009
+## 343  Chinstrap    ヒゲ      Dream  ...    3775.0  female       2009
+## 
+## [344 rows x 9 columns]</code></pre>
+</div>
+</div>
+<div id="shift-jiscp932" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span>
+shift-jis(cp932)</h3>
+<div id="r-30" class="section level4" number="9.2.2.1">
+<h4><span class="header-section-number">9.2.2.1</span> R</h4>
+<pre class="r"><code>read_csv(&quot;data/ペンギン（ひどい列名）ver_cp932.csv&quot;,
+         locale = locale(encoding = &quot;cp932&quot;))</code></pre>
+<pre><code>## # A tibble: 344 × 9
+##   Sｐｅｃｉｅｓ `種　類` `※島の名前` `①クチバシ　長さ（ｍｍ）` `②ｸﾁﾊﾞｼ＿大きさ…`
+##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt;
+## 1 Adelie        アデリー Torgersen                        39.1              18.7
+## 2 Adelie        アデリー Torgersen                        39.5              17.4
+## 3 Adelie        アデリー Torgersen                        40.3              18  
+## 4 Adelie        アデリー Torgersen                        NA                NA  
+## 5 Adelie        アデリー Torgersen                        36.7              19.3
+## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
+## #   `■体重　単位はｇ` &lt;dbl&gt;, `??` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
+</div>
+<div id="python-29" class="section level4" number="9.2.2.2">
+<h4><span class="header-section-number">9.2.2.2</span> Python</h4>
+<pre class="python bg-success"><code>pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_cp932.csv&#39;,
+             encoding = &#39;cp932&#39;)</code></pre>
+<pre><code>##        Sｐｅｃｉｅｓ   種　類      ※島の名前  ...  ■体重　単位はｇ      ??  ２００７～２００９
+## 0       Adelie  アデリー  Torgersen  ...    3750.0    male       2007
+## 1       Adelie  アデリー  Torgersen  ...    3800.0  female       2007
+## 2       Adelie  アデリー  Torgersen  ...    3250.0  female       2007
+## 3       Adelie  アデリー  Torgersen  ...       NaN     NaN       2007
+## 4       Adelie  アデリー  Torgersen  ...    3450.0  female       2007
+## ..         ...   ...        ...  ...       ...     ...        ...
+## 339  Chinstrap    ヒゲ      Dream  ...    4000.0    male       2009
+## 340  Chinstrap    ヒゲ      Dream  ...    3400.0  female       2009
+## 341  Chinstrap    ヒゲ      Dream  ...    3775.0    male       2009
+## 342  Chinstrap    ヒゲ      Dream  ...    4100.0    male       2009
+## 343  Chinstrap    ヒゲ      Dream  ...    3775.0  female       2009
+## 
+## [344 rows x 9 columns]</code></pre>
 </div>
 </div>
 </div>
