@@ -36,6 +36,17 @@ options(tibble_opt)
 
 # パッケージの管理（pip関連）
 
+<!-- 
+Using the RStudio Terminal in the RStudio IDE
+https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
+
+Installing and Configuring Python with RStudio
+https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio
+
+
+ -->
+
+
 -   以下，コマンドプロンプトから実行
     -   Windowsでは，「ここに入力して検索」にcmdを入れて検索
     -   RStudioのTerminalからでもできる？（カレントディレクトリが違うだけみたい）
@@ -312,15 +323,22 @@ pen_p
 
 #### R
 
+* 単一
+
 ```{r}
 library(tidyverse)
 
+# 列名確認
 names(pen_r)
 
 pen_r |> 
   select(species)
 
-# 複数列
+```
+
+* 複数列
+
+```{r}
 pen_r |> 
   select(species, bill_length_mm)
 
@@ -328,21 +346,44 @@ pen_r |>
   select(species:bill_length_mm)
 ```
 
+
+* 列の値（ベクトル）を取り出し
+
+```{r}
+pen_r |> pull(species)
+```
+
+
 #### Python
 
+* 単一
+
 ```{python class.source="bg-success"}
+# 列名確認
 pen_p.columns
 
-pen_p['species']
-pen_p.species
+pen_p[['species']]
 
-# 複数列
+
+```
+
+* 複数列
+
+```{python}
 pen_p[['species', 'bill_length_mm']]
 
 
 pen_p.loc[:, 'species':'bill_length_mm']
-
 ```
+
+
+* 列の値を取り出し？
+
+```{python class.source="bg-success"}
+pen_p['species']
+pen_p.species
+```
+
 
 ### 列名を正規表現で選ぶ
 
@@ -350,7 +391,14 @@ pen_p.loc[:, 'species':'bill_length_mm']
 
 ```{r}
 pen_r |> 
-  select(matches("bill"))
+  select(matches("^bill"))
+
+
+pen_r |> 
+  select(matches("mm$"))
+
+
+
 ```
 
 #### Python
@@ -358,11 +406,14 @@ pen_r |>
 <!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 
 ```{python class.source="bg-success"}
-pen_p.filter(regex = 'bill')
+pen_p.filter(regex = '^bill')
+
+pen_p.filter(regex = 'mm$')
+
 ```
 
 ```{python class.source="bg-success"}
-pen_p.loc[:, pen_p.columns.str.match('bill')]
+pen_p.loc[:, pen_p.columns.str.match('^bill')]
 
 ```
 
