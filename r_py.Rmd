@@ -391,11 +391,11 @@ pen_p.species
 
 ```{r}
 pen_r |> 
-  select(matches("^bill"))
+  select(matches("^bill")) # starts_with("bill")
 
 
 pen_r |> 
-  select(matches("mm$"))
+  select(matches("mm$")) # ends_with("mm")
 
 
 
@@ -1034,7 +1034,7 @@ df_py_a_long.pivot(index = ['id'],
                    values  = ['得点'])
 ```
 
-### 
+### ※テンプレ
 #### R
 
 ```{r}
@@ -1094,3 +1094,92 @@ read_csv("data/ペンギン（ひどい列名）ver_cp932.csv",
 pd.read_csv('data/ペンギン（ひどい列名）ver_cp932.csv',
              encoding = 'cp932')
 ```
+
+# ファイルの書き出し
+## Excelファイル
+
+### R
+
+* `library(writexl)`を読み込んでいれば，`writexl::`は不要
+
+```{r}
+pen_r |>
+  head(3) |> 
+  writexl::write_xlsx("out/pen_r_head.xlsx")
+
+```
+
+### Python
+
+```{python class.source="bg-success"}
+pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
+
+```
+
+
+## csvファイル
+
+### R
+```{r}
+pen_r |>
+  head(3) |> 
+  write_csv("out/pen_r_head.csv")
+```
+
+### Python
+
+```{python class.source="bg-success"}
+pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
+
+```
+
+# ※テンプレ
+## 
+### R
+
+```{r}
+
+```
+
+### Python
+
+```{python class.source="bg-success"}
+
+```
+
+# ※テンプレ
+## 
+### R
+
+```{r}
+
+```
+
+### Python
+
+```{python class.source="bg-success"}
+
+```
+
+
+
+# ※テンプレ
+## 
+### R
+
+```{r}
+
+```
+
+### Python
+
+```{python class.source="bg-success"}
+
+```
+
+# 参考情報
+
+<!-- https://book.pythontips.com/en/latest/index.html# -->
+<!-- https://cs.stanford.edu/people/nick/py/ -->
+<!-- https://python-course.eu/advanced-python/ -->
+<!-- https://rinatz.github.io/python-book/ -->
