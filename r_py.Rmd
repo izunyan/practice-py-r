@@ -1,6 +1,6 @@
 ---
-title: "r with py"
-author: ""
+title: "RとPythonは仲良し"
+author: "やわらかクジラ"
 date: "`r format(Sys.time(), '%Y/%m/%d')`"
 output:
   html_document: 
@@ -46,19 +46,32 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
  -->
 
+python Japan
+https://www.python.jp/install/windows/pip.html
 
--   以下，コマンドプロンプトから実行
-    -   Windowsでは，「ここに入力して検索」にcmdを入れて検索
-    -   RStudioのTerminalからでもできる？（カレントディレクトリが違うだけみたい）
-    -   ただし仮想環境あるとできないぽい？
+公式ドキュメント
+https://pip.pypa.io/en/stable/
+
+
+-   以下，RStudioのTerminalから実行コマンドプロンプトから実行
+    -  ただし仮想環境あるとできないぽい？
+    - Windowsでは，コマンドプロンプトからも実行できる
+          -  「ここに入力して検索」にcmdを入れて検索
+    
+-   pipが適用されるPythonのバージョン確認
+    -   `python -V`
+-   省略しても実行可能だが，`python -m`を最初につけることが推奨されている
 -   インストール済みパッケージの確認
-    -   `pip list`
+    -   `python -m pip list`
 -   パッケージインストール
-    -   `pip install {ここにパッケージ名}`
+    -   `python -m pip install ここにパッケージ名`
 -   アップデートが必要なパッケージ一覧
-    -   `pip list -o`
+    -   `python -m pip list -o`
 -   パッケージのアップデート
-    -   `pip install -U {ここにパッケージ名}`
+    -   `python -m pip install -U ここにパッケージ名`
+-   pip自体のアップデート
+    -   `python -m pip install --upgrade pip`
+
 
 <!-- * アップデートが必要なパッケージインストール -->
 
@@ -66,6 +79,8 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 # コマンドプロンプト or Terminalの操作
 
+-   現在のディレクトリ表示
+    -   `pwd`
 -   ルートに移動
     -   `cd \`
 -   ディレクトリに移動しカレントに
@@ -74,6 +89,13 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
     -   `mkdir フォルダ名`
 -   構造図式化
     -   `tree`
+
+# ブラウザからjupyter labを使う
+- 入ってなければインストール
+    - python -m install jupyterlab
+- terminalで次のコマンドを実行するとブラウザで開かれる
+    - jupyter lab
+    
 
 # 仮想環境:venv
 
@@ -1133,8 +1155,12 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 
 ```
 
-# ※テンプレ
-## 
+# 関数定義
+
+-  https://rstudio.github.io/reticulate/articles/python_primer.html
+
+
+## 関数
 ### R
 
 ```{r}
@@ -1147,8 +1173,7 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 
 ```
 
-# ※テンプレ
-## 
+## 無名関数
 ### R
 
 ```{r}
@@ -1158,7 +1183,7 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 ### Python
 
 ```{python class.source="bg-success"}
-
+#lambda
 ```
 
 
