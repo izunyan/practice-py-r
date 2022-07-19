@@ -30,6 +30,8 @@ options(tibble_opt)
 ```
 
 # WindowsでのPythonインストール
+-   公式サイトでダウンロード
+    - <https://www.python.org/downloads/>
 
 -   `Add Python 3.x to PATH`にチェックを入れる
     -   <https://www.python.jp/install/windows/install.html>
@@ -46,11 +48,11 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
  -->
 
-python Japan
-https://www.python.jp/install/windows/pip.html
+<!-- python Japan -->
+<!-- https://www.python.jp/install/windows/pip.html -->
 
-公式ドキュメント
-https://pip.pypa.io/en/stable/
+<!-- 公式ドキュメント -->
+<!-- https://pip.pypa.io/en/stable/ -->
 
 
 -   以下，RStudioのTerminalから実行コマンドプロンプトから実行
@@ -107,6 +109,41 @@ https://pip.pypa.io/en/stable/
     -   `myenv\Scripts\activate`
 -   仮想環境から出る
     -   `deactivate`
+
+
+# RStudioで初めてPythonを実行する際の注意
+
+-  minicondaのインストールにnoと回答
+
+# 実行環境
+
+## R
+```{r}
+sinfo <- 
+sessioninfo::session_info()
+
+sinfo$platform
+
+# xfun::session_info()
+```
+
+## RStudio version
+```{r}
+rsinfo <- 
+rstudioapi::versionInfo()
+
+rsinfo$version
+```
+
+## Python
+```{r include=FALSE}
+reticulate::repl_python()
+```
+
+```{r}
+reticulate::py_version()
+
+```
 
 
 # 基本用語
@@ -391,7 +428,7 @@ pen_p[['species']]
 
 * 複数列
 
-```{python}
+```{python class.source="bg-success"}
 pen_p[['species', 'bill_length_mm']]
 
 
@@ -613,14 +650,14 @@ pen_p[['species']].assign(species2 = pen_p['species'])
 hist(pen_r$bill_length_mm)
 
 pen_r <- 
-pen_r |> 
-  mutate(choices = case_when(bill_length_mm < 40 ~ "first",
-                             bill_length_mm >= 40 & bill_length_mm < 50 ~ "second",
-                             bill_length_mm >= 50 ~ "third")) 
+  pen_r |> 
+  mutate(blmc = case_when(bill_length_mm < 40 ~ "first",
+                          bill_length_mm >= 40 & bill_length_mm < 50 ~ "second",
+                          bill_length_mm >= 50 ~ "third")) 
 
 # 確認
 pen_r |> 
-  count(choices, bill_length_mm)
+  count(blmc, bill_length_mm)
 ```
 
 #### Python
@@ -689,6 +726,14 @@ pen_p.bill_length_mm.count()
 ```{python class.source="bg-success"}
 pen_p.bill_length_mm.agg(['mean', 'std', 'count'])
 ```
+
+```{python class.source="bg-success"}
+# 結果をデータフレームで返すには
+
+pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count']})
+```
+
+
 
 ### 変数複数
 
@@ -835,12 +880,15 @@ pen_r |>
 
 ### Python
 
--   `.`でつなげてコード全体を`( )`で囲む
+-   [pandasチートシート]<https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
+-   `.`(ドット，ピリオド)でつなげてコード全体を`( )`で囲む
 
 ```{python class.source="bg-success"}
 
-(pen_p[['species', 'bill_length_mm']]
-      .query('species == "Gentoo"'))
+(
+  pen_p[['species', 'bill_length_mm']]
+      .query('species == "Gentoo"')
+ )
 
 ```
 
@@ -1193,7 +1241,6 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 ### R
 
 ```{r}
-
 ```
 
 ### Python
