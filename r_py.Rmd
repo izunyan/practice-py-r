@@ -34,7 +34,7 @@ options(tibble_opt)
     - <https://www.python.org/downloads/>
 
 -   `Add Python 3.x to PATH`にチェックを入れる
-    -   <https://www.python.jp/install/windows/install.html>
+    -   参照：<https://www.python.jp/install/windows/install.html>
 
 # パッケージの管理（pip関連）
 
@@ -55,10 +55,10 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 <!-- https://pip.pypa.io/en/stable/ -->
 
 
--   以下，RStudioのTerminalから実行コマンドプロンプトから実行
+-   以下，RStudioのTerminalから実行
     -  ただし仮想環境あるとできないぽい？
     - Windowsでは，コマンドプロンプトからも実行できる
-          -  「ここに入力して検索」にcmdを入れて検索
+    - `Windowsキー＋R`，または，タスクバーにある「ここに入力して検索」に`cmd`と入れて検索
     
 -   pipが適用されるPythonのバージョン確認
     -   `python -V`
@@ -79,7 +79,7 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 <!--   + pip install （どこからか忘れた…要確認） -->
 
-# コマンドプロンプト or Terminalの操作
+# Terminal OR コマンドプロンプトの操作
 
 -   現在のディレクトリ表示
     -   `pwd`
@@ -94,9 +94,9 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 # ブラウザからjupyter labを使う
 - 入ってなければインストール
-    - python -m install jupyterlab
+    - `python -m install jupyterlab`
 - terminalで次のコマンドを実行するとブラウザで開かれる
-    - jupyter lab
+    - `jupyter lab`
     
 
 # 仮想環境:venv
@@ -113,7 +113,7 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 # RStudioで初めてPythonを実行する際の注意
 
--  minicondaのインストールにnoと回答
+-  コンソールでminicondaのインストールをきかれたらnと回答
 
 # 実行環境
 
@@ -124,8 +124,10 @@ sessioninfo::session_info()
 
 sinfo$platform
 
-# xfun::session_info()
 ```
+
+<!-- xfun::session_info() -->
+
 
 ## RStudio version
 ```{r}

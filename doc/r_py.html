@@ -1512,7 +1512,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2022/07/19</h4>
+<h4 class="date">2022/07/23</h4>
 
 </div>
 
@@ -1527,7 +1527,7 @@ WindowsでのPythonインストール</h1>
 </ul></li>
 <li><code>Add Python 3.x to PATH</code>にチェックを入れる
 <ul>
-<li><a href="https://www.python.jp/install/windows/install.html" class="uri">https://www.python.jp/install/windows/install.html</a></li>
+<li>参照：<a href="https://www.python.jp/install/windows/install.html" class="uri">https://www.python.jp/install/windows/install.html</a></li>
 </ul></li>
 </ul>
 </div>
@@ -1548,11 +1548,11 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 <!-- 公式ドキュメント -->
 <!-- https://pip.pypa.io/en/stable/ -->
 <ul>
-<li>以下，RStudioのTerminalから実行コマンドプロンプトから実行
+<li>以下，RStudioのTerminalから実行
 <ul>
 <li>ただし仮想環境あるとできないぽい？</li>
-<li>Windowsでは，コマンドプロンプトからも実行できる -
-「ここに入力して検索」にcmdを入れて検索</li>
+<li>Windowsでは，コマンドプロンプトからも実行できる</li>
+<li><code>Windowsキー＋R</code>，または，タスクバーにある「ここに入力して検索」に<code>cmd</code>と入れて検索</li>
 </ul></li>
 <li>pipが適用されるPythonのバージョン確認
 <ul>
@@ -1583,9 +1583,9 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 <!-- * アップデートが必要なパッケージインストール -->
 <!--   + pip install （どこからか忘れた…要確認） -->
 </div>
-<div id="コマンドプロンプト-or-terminalの操作" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> コマンドプロンプト or
-Terminalの操作</h1>
+<div id="terminal-or-コマンドプロンプトの操作" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Terminal OR
+コマンドプロンプトの操作</h1>
 <ul>
 <li>現在のディレクトリ表示
 <ul>
@@ -1615,11 +1615,11 @@ labを使う</h1>
 <ul>
 <li>入ってなければインストール
 <ul>
-<li>python -m install jupyterlab</li>
+<li><code>python -m install jupyterlab</code></li>
 </ul></li>
 <li>terminalで次のコマンドを実行するとブラウザで開かれる
 <ul>
-<li>jupyter lab</li>
+<li><code>jupyter lab</code></li>
 </ul></li>
 </ul>
 </div>
@@ -1647,7 +1647,7 @@ labを使う</h1>
 <h1><span class="header-section-number">6</span>
 RStudioで初めてPythonを実行する際の注意</h1>
 <ul>
-<li>minicondaのインストールにnoと回答</li>
+<li>コンソールでminicondaのインストールをきかれたらnと回答</li>
 </ul>
 </div>
 <div id="実行環境" class="section level1" number="7">
@@ -1667,9 +1667,9 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2022-07-19
+##  date     2022-07-23
 ##  pandoc   2.17.1.1 @ C:/Program Files/RStudio/bin/quarto/bin/ (via rmarkdown)</code></pre>
-<pre class="r"><code># xfun::session_info()</code></pre>
+<!-- xfun::session_info() -->
 </div>
 <div id="rstudio-version" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> RStudio version</h2>
@@ -1682,7 +1682,7 @@ rsinfo$version</code></pre>
 <div id="python" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Python</h2>
 <pre class="r"><code>reticulate::py_version()</code></pre>
-<pre><code>## [1] &#39;3.9&#39;</code></pre>
+<pre><code>## [1] &#39;3.10&#39;</code></pre>
 </div>
 </div>
 <div id="基本用語" class="section level1" number="8">
