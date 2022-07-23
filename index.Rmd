@@ -29,6 +29,8 @@ options(tibble_opt)
 
 ```
 
+- **このhtmlは常に更新され続けます**
+
 # WindowsでのPythonインストール
 -   公式サイトでダウンロード
     - <https://www.python.org/downloads/>
@@ -247,13 +249,16 @@ df_r <- palmerpenguins::penguins
 ```
 
 ### PythonでRのデータフレーム読み込みして列選択
+
+* 注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる
+* 対処法は検討中
+
 ```{python class.source="bg-success"}
 r.df_r.head()
 
 df_py = r.df_r[['species',	'bill_length_mm']]
-
-
 ```
+
 
 ### RからPythonで加工したデータフレーム読み込み
 ```{r }

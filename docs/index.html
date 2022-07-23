@@ -1517,6 +1517,9 @@ div.tocify {
 </div>
 
 
+<ul>
+<li><strong>このhtmlは常に更新され続けます</strong></li>
+</ul>
 <div id="windowsでのpythonインストール" class="section level1" number="1">
 <h1><span class="header-section-number">1</span>
 WindowsでのPythonインストール</h1>
@@ -1796,6 +1799,10 @@ df_r &lt;- palmerpenguins::penguins</code></pre>
 <div id="pythonでrのデータフレーム読み込みして列選択" class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span>
 PythonでRのデータフレーム読み込みして列選択</h3>
+<ul>
+<li>注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる</li>
+<li>対処法は検討中</li>
+</ul>
 <pre class="python bg-success"><code>r.df_r.head()</code></pre>
 <pre><code>##   species     island  bill_length_mm  ...  body_mass_g     sex  year
 ## 0  Adelie  Torgersen            39.1  ...         3750    male  2007
@@ -1805,8 +1812,7 @@ PythonでRのデータフレーム読み込みして列選択</h3>
 ## 4  Adelie  Torgersen            36.7  ...         3450  female  2007
 ## 
 ## [5 rows x 8 columns]</code></pre>
-<pre class="python bg-success"><code>df_py = r.df_r[[&#39;species&#39;,  &#39;bill_length_mm&#39;]]
-</code></pre>
+<pre class="python bg-success"><code>df_py = r.df_r[[&#39;species&#39;,  &#39;bill_length_mm&#39;]]</code></pre>
 </div>
 <div id="rからpythonで加工したデータフレーム読み込み" class="section level3" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span>
