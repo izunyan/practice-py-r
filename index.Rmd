@@ -29,7 +29,10 @@ options(tibble_opt)
 
 ```
 
-- **このhtmlは常に更新され続けます**
+# 本資料の説明
+- 第100回 Tokyo.Rでの発表に向けて自分のために作ったRとPython連携周りのメモ
+- 発表資料は[こちら](https://github.com/izunyan/practice_py_r/tree/main/pdf)
+- このhtmlは常に更新され続けます
 
 # WindowsでのPythonインストール
 -   公式サイトでダウンロード
