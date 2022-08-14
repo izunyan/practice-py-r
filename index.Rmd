@@ -668,6 +668,11 @@ pen_r <-
 # 確認
 pen_r |> 
   count(blmc, bill_length_mm)
+
+pen_r |> 
+  count(blmc)
+
+
 ```
 
 #### Python
@@ -675,7 +680,7 @@ pen_r |>
 <!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
 
-
+##### 方法1 np.select
 ```{python class.source="bg-success"}
 ## 分布確認
 # import matplotlib.pyplot as plt
@@ -684,26 +689,149 @@ pen_r |>
 ## 条件で変数作成
 import numpy as np
 
+## np.selectの中に入れる部分を作成
+
 conditions = [
-  (pen_p["bill_length_mm"].lt(40)),
-  (pen_p["bill_length_mm"].ge(40) & pen_p["bill_length_mm"].lt(50)),
-  (pen_p["bill_length_mm"].ge(50)),
+  (pen_p["bill_length_mm"] < 40),
+  (pen_p["bill_length_mm"] >= 40) & (pen_p["bill_length_mm"] < 50),
+  (pen_p["bill_length_mm"] >= 50)
 ]
+
+# または
+# conditions = [
+#   (pen_p["bill_length_mm"].lt(40)),
+#   (pen_p["bill_length_mm"].ge(40) & pen_p["bill_length_mm"].lt(50)),
+#   (pen_p["bill_length_mm"].ge(50))
+# ]
 
 choices = ["first", "second", "third"]
 
-pen_p["blmc"] = np.select(conditions, choices)
+## np.selectの実行
+(
+pen_p.assign(blmc = np.select(conditions, choices))
+     .value_counts(['blmc'])
+)
+
+# pen_p["blmc"] = np.select(conditions, choices)
 
 
 # 確認
-pen_p.value_counts(['blmc', 'bill_length_mm'])
+# pen_p.value_counts(['blmc', 'bill_length_mm'])
+# 
+# pen_p.value_counts(['blmc'])
+```
 
+
+<!-- https://stackoverflow.com/questions/57609780/pandas-using-assign-and-if-else-statement-in-method-chaining -->
+<!-- https://stackoverflow.com/questions/49762705/if-else-conditional-assignment-in-pandas -->
+
+
+
+##### 方法2 np.cut
+###### デフォルトでは区分点までが範囲となる
+```{python class.source="bg-success"}
+import pandas as pd
+
+(
+pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
+                                              bins=[0, 40, 50, 100]))
+     .value_counts(['blmc2'])
+
+)
+```
+
+###### 区分点未満までにするための引数
+```{python class.source="bg-success"}
+(
+pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
+                                              bins=[0, 40, 50, 100],
+                                              right = False))
+     .value_counts(['blmc2'])
+
+)
+
+```
+
+###### ラベル名付与
+```{python class.source="bg-success"}
+(
+pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
+                                              bins=[0, 40, 50, 100],
+                                              right = False,
+                                              labels=["first", "second", "third"]))
+     .value_counts(['blmc2'])
+)
 
 ```
 
 
+##### 方法3 np.where
+
+* ただし，thirdのカテゴリにNAが含まれてしまうため，工夫が必要
+
+<!-- https://stackoverflow.com/questions/39109045/numpy-where-with-multiple-conditions -->
 
 
+```{python class.source="bg-success"}
+
+(
+pen_p.assign(blmc3 = np.where(pen_p.bill_length_mm < 40, 'first',
+                   (np.where(pen_p.bill_length_mm < 50, 'second', 'third'))
+                   )
+                   )
+     .value_counts(['blmc3'])               
+)
+
+```
+
+* bill_length_mmがnanだった場合にblmc3をnanに変換
+
+```{python class.source="bg-success"}
+pen_p = (
+pen_p.assign(blmc3 = np.where(pen_p.bill_length_mm < 40, 'first',
+                   (np.where(pen_p.bill_length_mm < 50, 'second', 'third'))
+                   )
+                   )       
+)
+
+pen_p.loc[pen_p.bill_length_mm.isnull(), 'blmc3'] = np.nan
+
+pen_p.value_counts(['blmc3'])
+```
+
+
+### 条件で新しい列作成
+#### R
+
+```{r}
+pen_r |> 
+  mutate(species2 = if_else(species == "Adelie", 1,0)) |> 
+  count(species, species2)
+```
+
+#### Python
+
+<!-- 欠損値のあつかい -->
+<!-- https://stackoverflow.com/questions/66081445/from-r-to-python-ifelse-conditional-in-mutate-dataframe -->
+
+```{python class.source="bg-success"}
+(
+pen_p.assign(species2 = np.where(pen_p['species'].isin(['Adelie']), 1, 0))
+     .value_counts(['species', 'species2'])     
+)
+```
+
+### 
+#### R
+
+```{r}
+```
+
+#### Python
+
+```{python class.source="bg-success"}
+
+```
 
 ## 要約値作成
 
@@ -870,7 +998,6 @@ table(pen_r$species, pen_r$sex)
 
 
 ```{python class.source="bg-success"}
-import pandas as pd
 pd.crosstab(pen_p['species'], pen_p['sex'])
 pd.crosstab(pen_p.species, pen_p.sex)
 ```
@@ -932,7 +1059,6 @@ df_r_b
 ### Python
 
 ```{python class.source="bg-success"}
-import pandas as pd
 df_py_a = pd.DataFrame([[1,10,50], 
                         [2,20,60], 
                         [3,30,70]],
