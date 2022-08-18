@@ -1512,7 +1512,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2022/08/14</h4>
+<h4 class="date">2022/08/19</h4>
 
 </div>
 
@@ -1526,9 +1526,12 @@ Tokyo.Rでの発表に向けて自分のために作ったRとPython連携周り
 <li>このhtmlは常に更新され続けます</li>
 </ul>
 </div>
-<div id="windowsでのpythonインストール" class="section level1" number="2">
+<div id="インストールから環境設定周り" class="section level1" number="2">
 <h1><span class="header-section-number">2</span>
-WindowsでのPythonインストール</h1>
+インストールから環境設定周り</h1>
+<div id="windowsでのpythonインストール" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span>
+WindowsでのPythonインストール</h2>
 <ul>
 <li>公式サイトでダウンロード
 <ul>
@@ -1540,9 +1543,9 @@ WindowsでのPythonインストール</h1>
 </ul></li>
 </ul>
 </div>
-<div id="パッケージの管理pip関連" class="section level1" number="3">
-<h1><span class="header-section-number">3</span>
-パッケージの管理（pip関連）</h1>
+<div id="パッケージの管理pip関連" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span>
+パッケージの管理（pip関連）</h2>
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
 https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
@@ -1592,9 +1595,9 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 <!-- * アップデートが必要なパッケージインストール -->
 <!--   + pip install （どこからか忘れた…要確認） -->
 </div>
-<div id="terminal-or-コマンドプロンプトの操作" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Terminal OR
-コマンドプロンプトの操作</h1>
+<div id="terminal-or-コマンドプロンプトの操作" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Terminal OR
+コマンドプロンプトの操作</h2>
 <ul>
 <li>現在のディレクトリ表示
 <ul>
@@ -1618,9 +1621,9 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 </ul></li>
 </ul>
 </div>
-<div id="ブラウザからjupyter-labを使う" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> ブラウザからjupyter
-labを使う</h1>
+<div id="ブラウザからjupyter-labを使う" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> ブラウザからjupyter
+labを使う</h2>
 <ul>
 <li>入ってなければインストール
 <ul>
@@ -1632,8 +1635,8 @@ labを使う</h1>
 </ul></li>
 </ul>
 </div>
-<div id="仮想環境venv" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> 仮想環境:venv</h1>
+<div id="仮想環境venv" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> 仮想環境:venv</h2>
 <ul>
 <li>以下，コマンドプロンプトまたはRStudioのTerminalから実行</li>
 <li>作成
@@ -1652,17 +1655,17 @@ labを使う</h1>
 </ul></li>
 </ul>
 </div>
-<div id="rstudioで初めてpythonを実行する際の注意" class="section level1" number="7">
-<h1><span class="header-section-number">7</span>
-RStudioで初めてPythonを実行する際の注意</h1>
+<div id="rstudioで初めてpythonを実行する際の注意" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span>
+RStudioで初めてPythonを実行する際の注意</h2>
 <ul>
-<li>コンソールでminicondaのインストールをきかれたらnと回答</li>
+<li>コンソールでminicondaのインストールをきかれたらNo(n)と回答</li>
 </ul>
 </div>
-<div id="実行環境" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> 実行環境</h1>
-<div id="r" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> R</h2>
+<div id="実行環境" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> 実行環境</h2>
+<div id="r" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> R</h3>
 <pre class="r"><code>sinfo &lt;- 
 sessioninfo::session_info()
 
@@ -1676,44 +1679,46 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2022-08-14
+##  date     2022-08-19
 ##  pandoc   2.17.1.1 @ C:/Program Files/RStudio/bin/quarto/bin/ (via rmarkdown)</code></pre>
 <!-- xfun::session_info() -->
 </div>
-<div id="rstudio-version" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> RStudio version</h2>
+<div id="rstudio-version" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> RStudio
+version</h3>
 <pre class="r"><code>rsinfo &lt;- 
 rstudioapi::versionInfo()
 
 rsinfo$version</code></pre>
 <pre><code>## [1] &#39;2022.2.1.461&#39;</code></pre>
 </div>
-<div id="python" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Python</h2>
+<div id="python" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Python</h3>
 <pre class="r"><code>reticulate::py_version()</code></pre>
 <pre><code>## [1] &#39;3.10&#39;</code></pre>
 </div>
 </div>
-<div id="基本用語" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> 基本用語</h1>
-<div id="r-1" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> R</h2>
-<div id="ベクトル" class="section level3" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> ベクトル</h3>
+</div>
+<div id="基本用語" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 基本用語</h1>
+<div id="r-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> R</h2>
+<div id="ベクトル" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> ベクトル</h3>
 <pre class="r"><code>r_vec &lt;- c(1, 2, 3)
 r_vec</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
 </div>
-<div id="名前付きベクトル" class="section level3" number="9.1.2">
-<h3><span class="header-section-number">9.1.2</span>
+<div id="名前付きベクトル" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span>
 名前付きベクトル</h3>
 <pre class="r"><code>r_nvec &lt;- c(a = 1, b = 2, c = 3)
 r_nvec</code></pre>
 <pre><code>## a b c 
 ## 1 2 3</code></pre>
 </div>
-<div id="リスト" class="section level3" number="9.1.3">
-<h3><span class="header-section-number">9.1.3</span> リスト</h3>
+<div id="リスト" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> リスト</h3>
 <pre class="r"><code>r_l &lt;- list(1, 2, 3)
 r_l</code></pre>
 <pre><code>## [[1]]
@@ -1725,8 +1730,8 @@ r_l</code></pre>
 ## [[3]]
 ## [1] 3</code></pre>
 </div>
-<div id="名前付きリスト" class="section level3" number="9.1.4">
-<h3><span class="header-section-number">9.1.4</span> 名前付きリスト</h3>
+<div id="名前付きリスト" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> 名前付きリスト</h3>
 <pre class="r"><code>r_nl &lt;- list(a = 1, b = 2, c = 3)
 r_nl</code></pre>
 <pre><code>## $a
@@ -1739,13 +1744,13 @@ r_nl</code></pre>
 ## [1] 3</code></pre>
 </div>
 </div>
-<div id="python-1" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> python</h2>
+<div id="python-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> python</h2>
 <ul>
 <li><a href="https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures" class="uri">https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures</a></li>
 </ul>
-<div id="リスト-1" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> リスト</h3>
+<div id="リスト-1" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> リスト</h3>
 <pre class="python bg-success"><code>py_l = [1,2,3]
 py_l</code></pre>
 <pre><code>## [1, 2, 3]</code></pre>
@@ -1753,21 +1758,21 @@ py_l</code></pre>
 py_l2</code></pre>
 <pre><code>## [1, &#39;a&#39;, 3]</code></pre>
 </div>
-<div id="辞書型dictionary" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span>
+<div id="辞書型dictionary" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span>
 辞書型：dictionary</h3>
 <pre class="python bg-success"><code>py_d = {&#39;x&#39;:1, &#39;y&#39;:2}
 py_d</code></pre>
 <pre><code>## {&#39;x&#39;: 1, &#39;y&#39;: 2}</code></pre>
 </div>
-<div id="タプルtuple" class="section level3" number="9.2.3">
-<h3><span class="header-section-number">9.2.3</span> タプル：tuple</h3>
+<div id="タプルtuple" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> タプル：tuple</h3>
 <pre class="python bg-success"><code>py_t = (3,4,5)
 py_t</code></pre>
 <pre><code>## (3, 4, 5)</code></pre>
 </div>
-<div id="np.array-配列" class="section level3" number="9.2.4">
-<h3><span class="header-section-number">9.2.4</span> np.array 配列</h3>
+<div id="np.array-配列" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> np.array 配列</h3>
 <pre class="python bg-success"><code>import numpy as np
 py_ndarray = np.array([1,2,3])
 py_ndarray</code></pre>
@@ -1777,8 +1782,8 @@ py_ndarray2</code></pre>
 <pre><code>## array([[1, 2, 3],
 ##        [4, 5, 6]])</code></pre>
 </div>
-<div id="メソッド" class="section level3" number="9.2.5">
-<h3><span class="header-section-number">9.2.5</span> メソッド</h3>
+<div id="メソッド" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> メソッド</h3>
 <ul>
 <li>データに結びついた関数</li>
 </ul>
@@ -1786,24 +1791,24 @@ py_ndarray2</code></pre>
 </div>
 </div>
 </div>
-<div id="rとpythonで相互の読み込み" class="section level1" number="10">
-<h1><span class="header-section-number">10</span>
+<div id="rとpythonで相互の読み込み" class="section level1" number="4">
+<h1><span class="header-section-number">4</span>
 Rとpythonで相互の読み込み</h1>
-<div id="rとpythonでデータフレームのやり取り" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span>
+<div id="rとpythonでデータフレームのやり取り" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span>
 RとPythonでデータフレームのやり取り</h2>
 <ul>
 <li>緑チャンクがpython</li>
 </ul>
-<div id="rでデータフレーム読み込み" class="section level3" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span>
+<div id="rでデータフレーム読み込み" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span>
 Rでデータフレーム読み込み</h3>
 <pre class="r"><code>library(reticulate)
 
 df_r &lt;- palmerpenguins::penguins</code></pre>
 </div>
-<div id="pythonでrのデータフレーム読み込みして列選択" class="section level3" number="10.1.2">
-<h3><span class="header-section-number">10.1.2</span>
+<div id="pythonでrのデータフレーム読み込みして列選択" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span>
 PythonでRのデータフレーム読み込みして列選択</h3>
 <ul>
 <li>注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる</li>
@@ -1820,8 +1825,8 @@ PythonでRのデータフレーム読み込みして列選択</h3>
 ## [5 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code>df_py = r.df_r[[&#39;species&#39;,  &#39;bill_length_mm&#39;]]</code></pre>
 </div>
-<div id="rからpythonで加工したデータフレーム読み込み" class="section level3" number="10.1.3">
-<h3><span class="header-section-number">10.1.3</span>
+<div id="rからpythonで加工したデータフレーム読み込み" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span>
 RからPythonで加工したデータフレーム読み込み</h3>
 <pre class="r"><code>head(py$df_py)</code></pre>
 <pre><code>##   species bill_length_mm
@@ -1834,17 +1839,17 @@ RからPythonで加工したデータフレーム読み込み</h3>
 <pre class="r"><code>rm(df_r) # df削除</code></pre>
 </div>
 </div>
-<div id="ここまで作ったオブジェクトの整理" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span>
+<div id="ここまで作ったオブジェクトの整理" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span>
 ここまで作ったオブジェクトの整理</h2>
-<div id="pythonのオブジェクト削除" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span>
+<div id="pythonのオブジェクト削除" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span>
 pythonのオブジェクト削除</h3>
 <pre class="python bg-success"><code>del df_py</code></pre>
 </div>
 </div>
-<div id="rでpythonの変数を読む" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span>
+<div id="rでpythonの変数を読む" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span>
 RでPythonの変数を読む</h2>
 <ul>
 <li>reticulate cheatsheetより</li>
@@ -1939,8 +1944,8 @@ RでPythonの変数を読む</h2>
 ## [1,]    1    2    3
 ## [2,]    4    5    6</code></pre>
 </div>
-<div id="pythonでrのオブジェクトを読む" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span>
+<div id="pythonでrのオブジェクトを読む" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span>
 PythonでRのオブジェクトを読む</h2>
 <ul>
 <li>ベクトル（R） → リスト（Python）</li>
@@ -1964,11 +1969,11 @@ PythonでRのオブジェクトを読む</h2>
 <pre><code>## {&#39;a&#39;: 1.0, &#39;b&#39;: 2.0, &#39;c&#39;: 3.0}</code></pre>
 </div>
 </div>
-<div id="データフレーム操作の基本動詞" class="section level1" number="11">
-<h1><span class="header-section-number">11</span>
+<div id="データフレーム操作の基本動詞" class="section level1" number="5">
+<h1><span class="header-section-number">5</span>
 データフレーム操作の基本動詞</h1>
-<div id="pythonの資料" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Pythonの資料</h2>
+<div id="pythonの資料" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Pythonの資料</h2>
 <ul>
 <li>cheatsheet
 <ul>
@@ -1980,15 +1985,15 @@ PythonでRのオブジェクトを読む</h2>
 </ul></li>
 </ul>
 </div>
-<div id="データフレーム読み込み" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span>
+<div id="データフレーム読み込み" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span>
 ★データフレーム読み込み</h2>
-<div id="r-2" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> R</h3>
+<div id="r-2" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> R</h3>
 <pre class="r"><code>pen_r &lt;-   palmerpenguins::penguins</code></pre>
 </div>
-<div id="pythonでもペンギン" class="section level3" number="11.2.2">
-<h3><span class="header-section-number">11.2.2</span>
+<div id="pythonでもペンギン" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span>
 Pythonでもペンギン</h3>
 <ul>
 <li>ペンギンデータ for python
@@ -2016,12 +2021,12 @@ pen_p</code></pre>
 ## [344 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="列を選ぶ" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> 列を選ぶ</h2>
-<div id="列名から" class="section level3" number="11.3.1">
-<h3><span class="header-section-number">11.3.1</span> 列名から</h3>
-<div id="r-3" class="section level4" number="11.3.1.1">
-<h4><span class="header-section-number">11.3.1.1</span> R</h4>
+<div id="列を選ぶ" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> 列を選ぶ</h2>
+<div id="列名から" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> 列名から</h3>
+<div id="r-3" class="section level4" number="5.3.1.1">
+<h4><span class="header-section-number">5.3.1.1</span> R</h4>
 <ul>
 <li>単一</li>
 </ul>
@@ -2124,8 +2129,8 @@ names(pen_r)</code></pre>
 ## [344] Chinstrap
 ## Levels: Adelie Chinstrap Gentoo</code></pre>
 </div>
-<div id="python-2" class="section level4" number="11.3.1.2">
-<h4><span class="header-section-number">11.3.1.2</span> Python</h4>
+<div id="python-2" class="section level4" number="5.3.1.2">
+<h4><span class="header-section-number">5.3.1.2</span> Python</h4>
 <ul>
 <li>単一</li>
 </ul>
@@ -2215,11 +2220,11 @@ pen_p.columns</code></pre>
 ## Name: species, Length: 344, dtype: object</code></pre>
 </div>
 </div>
-<div id="列名を正規表現で選ぶ" class="section level3" number="11.3.2">
-<h3><span class="header-section-number">11.3.2</span>
+<div id="列名を正規表現で選ぶ" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span>
 列名を正規表現で選ぶ</h3>
-<div id="r-4" class="section level4" number="11.3.2.1">
-<h4><span class="header-section-number">11.3.2.1</span> R</h4>
+<div id="r-4" class="section level4" number="5.3.2.1">
+<h4><span class="header-section-number">5.3.2.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   select(matches(&quot;^bill&quot;)) # starts_with(&quot;bill&quot;)</code></pre>
 <pre><code>## # A tibble: 344 × 2
@@ -2243,8 +2248,8 @@ pen_p.columns</code></pre>
 ## 5           36.7          19.3               193
 ## # … with 339 more rows</code></pre>
 </div>
-<div id="python-3" class="section level4" number="11.3.2.2">
-<h4><span class="header-section-number">11.3.2.2</span> Python</h4>
+<div id="python-3" class="section level4" number="5.3.2.2">
+<h4><span class="header-section-number">5.3.2.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 <pre class="python bg-success"><code>pen_p.filter(regex = &#39;^bill&#39;)</code></pre>
 <pre><code>##      bill_length_mm  bill_depth_mm
@@ -2293,10 +2298,10 @@ pen_p.columns</code></pre>
 ## [344 rows x 2 columns]</code></pre>
 </div>
 </div>
-<div id="列を削除する" class="section level3" number="11.3.3">
-<h3><span class="header-section-number">11.3.3</span> 列を削除する</h3>
-<div id="r-5" class="section level4" number="11.3.3.1">
-<h4><span class="header-section-number">11.3.3.1</span> R</h4>
+<div id="列を削除する" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> 列を削除する</h3>
+<div id="r-5" class="section level4" number="5.3.3.1">
+<h4><span class="header-section-number">5.3.3.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; select(!c(species, island))</code></pre>
 <pre><code>## # A tibble: 344 × 6
 ##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
@@ -2308,8 +2313,8 @@ pen_p.columns</code></pre>
 ## 5           36.7          19.3               193        3450 female  2007
 ## # … with 339 more rows</code></pre>
 </div>
-<div id="python-4" class="section level4" number="11.3.3.2">
-<h4><span class="header-section-number">11.3.3.2</span> Python</h4>
+<div id="python-4" class="section level4" number="5.3.3.2">
+<h4><span class="header-section-number">5.3.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.drop(columns = [&#39;species&#39;, &#39;island&#39;])</code></pre>
 <pre><code>##      bill_length_mm  bill_depth_mm  ...     sex  year
 ## 0              39.1           18.7  ...    male  2007
@@ -2327,20 +2332,20 @@ pen_p.columns</code></pre>
 ## [344 rows x 6 columns]</code></pre>
 </div>
 </div>
-<div id="section" class="section level3" number="11.3.4">
-<h3><span class="header-section-number">11.3.4</span> </h3>
-<div id="r-6" class="section level4" number="11.3.4.1">
-<h4><span class="header-section-number">11.3.4.1</span> R</h4>
+<div id="section" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> </h3>
+<div id="r-6" class="section level4" number="5.3.4.1">
+<h4><span class="header-section-number">5.3.4.1</span> R</h4>
 </div>
-<div id="python-5" class="section level4" number="11.3.4.2">
-<h4><span class="header-section-number">11.3.4.2</span> Python</h4>
+<div id="python-5" class="section level4" number="5.3.4.2">
+<h4><span class="header-section-number">5.3.4.2</span> Python</h4>
 </div>
 </div>
 </div>
-<div id="列名を変更する" class="section level2" number="11.4">
-<h2><span class="header-section-number">11.4</span> 列名を変更する</h2>
-<div id="r-7" class="section level3" number="11.4.1">
-<h3><span class="header-section-number">11.4.1</span> R</h3>
+<div id="列名を変更する" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> 列名を変更する</h2>
+<div id="r-7" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> R</h3>
 <ul>
 <li>new = old</li>
 </ul>
@@ -2357,8 +2362,8 @@ pen_p.columns</code></pre>
 ## 5 Adelie   Torgersen           36.7          19.3               193        3450
 ## # … with 339 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-6" class="section level3" number="11.4.2">
-<h3><span class="header-section-number">11.4.2</span> Python</h3>
+<div id="python-6" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Python</h3>
 <ul>
 <li>‘old’:‘new’</li>
 </ul>
@@ -2380,11 +2385,11 @@ pen_p.columns</code></pre>
 ## [344 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="列の値で並び変える" class="section level2" number="11.5">
-<h2><span class="header-section-number">11.5</span>
+<div id="列の値で並び変える" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span>
 列の値で並び変える</h2>
-<div id="r-8" class="section level3" number="11.5.1">
-<h3><span class="header-section-number">11.5.1</span> R</h3>
+<div id="r-8" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> R</h3>
 <pre class="r"><code># 昇順
 pen_r |&gt; arrange(bill_length_mm)</code></pre>
 <pre><code>## # A tibble: 344 × 8
@@ -2408,8 +2413,8 @@ pen_r |&gt; arrange(desc(bill_length_mm))</code></pre>
 ## 5 Gentoo  Biscoe           55.1          16                230        5850 male 
 ## # … with 339 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
 </div>
-<div id="python-7" class="section level3" number="11.5.2">
-<h3><span class="header-section-number">11.5.2</span> Python</h3>
+<div id="python-7" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Python</h3>
 <pre class="python bg-success"><code># 昇順
 pen_p.sort_values(&#39;bill_length_mm&#39;)
 
@@ -2445,12 +2450,12 @@ pen_p.sort_values(&#39;bill_length_mm&#39;)
 ## [344 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="行を選ぶ" class="section level2" number="11.6">
-<h2><span class="header-section-number">11.6</span> 行を選ぶ</h2>
-<div id="基本" class="section level3" number="11.6.1">
-<h3><span class="header-section-number">11.6.1</span> 基本</h3>
-<div id="r-9" class="section level4" number="11.6.1.1">
-<h4><span class="header-section-number">11.6.1.1</span> R</h4>
+<div id="行を選ぶ" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> 行を選ぶ</h2>
+<div id="基本" class="section level3" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> 基本</h3>
+<div id="r-9" class="section level4" number="5.6.1.1">
+<h4><span class="header-section-number">5.6.1.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   filter(bill_length_mm &gt; 55)</code></pre>
 <pre><code>## # A tibble: 5 × 8
@@ -2493,8 +2498,8 @@ pen_p.sort_values(&#39;bill_length_mm&#39;)
 ## 5 Gentoo  Biscoe           47.6          14.5              215        5400 male 
 ## # … with 119 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
 </div>
-<div id="python-8" class="section level4" number="11.6.1.2">
-<h4><span class="header-section-number">11.6.1.2</span> Python</h4>
+<div id="python-8" class="section level4" number="5.6.1.2">
+<h4><span class="header-section-number">5.6.1.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values -->
 <!-- https://towardsdatascience.com/how-to-select-rows-from-pandas-dataframe-based-on-column-values-d3f5da421e93 -->
 <pre class="python bg-success"><code>pen_p[pen_p[&#39;bill_length_mm&#39;] &gt; 55]</code></pre>
@@ -2568,11 +2573,11 @@ pen_p.sort_values(&#39;bill_length_mm&#39;)
 ## [124 rows x 8 columns]</code></pre>
 </div>
 </div>
-<div id="欠損のある行を落とす" class="section level3" number="11.6.2">
-<h3><span class="header-section-number">11.6.2</span>
+<div id="欠損のある行を落とす" class="section level3" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span>
 欠損のある行を落とす</h3>
-<div id="r-10" class="section level4" number="11.6.2.1">
-<h4><span class="header-section-number">11.6.2.1</span> R</h4>
+<div id="r-10" class="section level4" number="5.6.2.1">
+<h4><span class="header-section-number">5.6.2.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   drop_na(sex, bill_length_mm)</code></pre>
 <pre><code>## # A tibble: 333 × 8
@@ -2594,8 +2599,8 @@ pen_r |&gt;
 ## 1 female   165
 ## 2 male     168</code></pre>
 </div>
-<div id="python-9" class="section level4" number="11.6.2.2">
-<h4><span class="header-section-number">11.6.2.2</span> Python</h4>
+<div id="python-9" class="section level4" number="5.6.2.2">
+<h4><span class="header-section-number">5.6.2.2</span> Python</h4>
 <ul>
 <li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html" class="uri">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html</a></li>
 </ul>
@@ -2624,12 +2629,12 @@ pen_r |&gt;
 </div>
 </div>
 </div>
-<div id="新たな列を作る" class="section level2" number="11.7">
-<h2><span class="header-section-number">11.7</span> 新たな列を作る</h2>
-<div id="基本-1" class="section level3" number="11.7.1">
-<h3><span class="header-section-number">11.7.1</span> 基本</h3>
-<div id="r-11" class="section level4" number="11.7.1.1">
-<h4><span class="header-section-number">11.7.1.1</span> R</h4>
+<div id="新たな列を作る" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> 新たな列を作る</h2>
+<div id="基本-1" class="section level3" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> 基本</h3>
+<div id="r-11" class="section level4" number="5.7.1.1">
+<h4><span class="header-section-number">5.7.1.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   mutate(species2 = species,
          island2 = island) </code></pre>
@@ -2657,8 +2662,8 @@ pen_r |&gt;
 ## 5 Adelie  Adelie  
 ## # … with 339 more rows</code></pre>
 </div>
-<div id="python-10" class="section level4" number="11.7.1.2">
-<h4><span class="header-section-number">11.7.1.2</span> Python</h4>
+<div id="python-10" class="section level4" number="5.7.1.2">
+<h4><span class="header-section-number">5.7.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.assign(species2 = pen_p[&#39;species&#39;],
               island2 = pen_p[&#39;island&#39;])
 
@@ -2694,11 +2699,11 @@ pen_r |&gt;
 ## [344 rows x 2 columns]</code></pre>
 </div>
 </div>
-<div id="連続量のカテゴリ化列作成" class="section level3" number="11.7.2">
-<h3><span class="header-section-number">11.7.2</span>
+<div id="連続量のカテゴリ化列作成" class="section level3" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span>
 連続量のカテゴリ化列作成</h3>
-<div id="r-12" class="section level4" number="11.7.2.1">
-<h4><span class="header-section-number">11.7.2.1</span> R</h4>
+<div id="r-12" class="section level4" number="5.7.2.1">
+<h4><span class="header-section-number">5.7.2.1</span> R</h4>
 <pre class="r"><code>hist(pen_r$bill_length_mm)</code></pre>
 <p><img src="data:image/png;base64,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giURZBgkWFKNAp0+bZrtJ+wXTXPL52w8AlUMEiyJIMMgwZJqFOjs4ebO8/W+rzmlhL/FNc37awGgDII9dV0QKACUTrCnrkvKp/CT7auWfJ/CAwAok07dpzu2bF8WvZ3seAAAxqQT6MfjmUFfO1+4nPlz50EpAECxJHzx4Lx9bWJy8sNZy0+LK+m9rmICAJAm5auvb463XumdPE54NAAAY5Kevpq+dBU6ecQJJACoidTn/6fvzl6enJw8OnuFPQGgMqRvqAwAoAwCBQAIBIECAASCQAEAAkGgAACBIFAAgEAQKABAIAgUACAQBAoAEAgCBQAIBIECAASCQAEAAkGgAACBIFAAgEAQaAhGHzUIAKPIp4JsRy6X3JsFADbJJ4NsRy6XjO26BmVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMduVzK3GVlVk3ZplC296GzHblcytxlZVZN2aZQtvehsx25XMrcZWVWTdmmULb3obMdGQCgcBAoAEAgCBQAIBAECgAQCAIFAAgEgQIABIJAAQACQaAAAIEgUACAQBAoAEAgCBQAIBAECgAQCAIFAAgEgQIABIJAAQACQaAAAIEgUACAQBAoAEAgCBQAIBAECgAQCAIFAAgEgQIABIJAAQACQaAAAIEgUACAQBAoAEAgCBQAIBAEOo633zZNc/PRh+Xfp0+bFU9yFnY1H4+dCi+fHTfN5P7rjPWMxCm7iMXuK7KA1d4tu4jVnpX55u6swLuPVyOZZ7UR6BhWe2qy3FGfvylil31ZVLqq8M1x93v8KWdJY3DLLmKxe4osYbV3yy5itdv/vi44+qX7Sp7VRqAj6Plv8kVTwi5rOXUqvCil6L1l69a9W2QRqz1Ytm7dK382za3FY9BMq41AR3A++89a++z9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" width="672" /></p>
 <pre class="r"><code>pen_r &lt;- 
@@ -2729,12 +2734,12 @@ pen_r |&gt;
 ## 3 third     57
 ## 4 &lt;NA&gt;       2</code></pre>
 </div>
-<div id="python-11" class="section level4" number="11.7.2.2">
-<h4><span class="header-section-number">11.7.2.2</span> Python</h4>
+<div id="python-11" class="section level4" number="5.7.2.2">
+<h4><span class="header-section-number">5.7.2.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
-<div id="方法1-np.select" class="section level5" number="11.7.2.2.1">
-<h5><span class="header-section-number">11.7.2.2.1</span> 方法1
+<div id="方法1-np.select" class="section level5" number="5.7.2.2.1">
+<h5><span class="header-section-number">5.7.2.2.1</span> 方法1
 np.select</h5>
 <pre class="python bg-success"><code>## 分布確認
 # import matplotlib.pyplot as plt
@@ -2782,11 +2787,11 @@ pen_p.assign(blmc = np.select(conditions, choices))
 <!-- https://stackoverflow.com/questions/57609780/pandas-using-assign-and-if-else-statement-in-method-chaining -->
 <!-- https://stackoverflow.com/questions/49762705/if-else-conditional-assignment-in-pandas -->
 </div>
-<div id="方法2-np.cut" class="section level5" number="11.7.2.2.2">
-<h5><span class="header-section-number">11.7.2.2.2</span> 方法2
+<div id="方法2-np.cut" class="section level5" number="5.7.2.2.2">
+<h5><span class="header-section-number">5.7.2.2.2</span> 方法2
 np.cut</h5>
-<div id="デフォルトでは区分点までが範囲となる" class="section level6" number="11.7.2.2.2.1">
-<h6><span class="header-section-number">11.7.2.2.2.1</span>
+<div id="デフォルトでは区分点までが範囲となる" class="section level6" number="5.7.2.2.2.1">
+<h6><span class="header-section-number">5.7.2.2.2.1</span>
 デフォルトでは区分点までが範囲となる</h6>
 <pre class="python bg-success"><code>import pandas as pd
 
@@ -2802,8 +2807,8 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x[&#39;bill_length_mm&#39;],
 ## (50, 100]     52
 ## dtype: int64</code></pre>
 </div>
-<div id="区分点未満までにするための引数" class="section level6" number="11.7.2.2.2.2">
-<h6><span class="header-section-number">11.7.2.2.2.2</span>
+<div id="区分点未満までにするための引数" class="section level6" number="5.7.2.2.2.2">
+<h6><span class="header-section-number">5.7.2.2.2.2</span>
 区分点未満までにするための引数</h6>
 <pre class="python bg-success"><code>(
 pen_p.assign(blmc2 = lambda x: pd.cut(x[&#39;bill_length_mm&#39;], 
@@ -2818,8 +2823,8 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x[&#39;bill_length_mm&#39;],
 ## [50, 100)     57
 ## dtype: int64</code></pre>
 </div>
-<div id="ラベル名付与" class="section level6" number="11.7.2.2.2.3">
-<h6><span class="header-section-number">11.7.2.2.2.3</span>
+<div id="ラベル名付与" class="section level6" number="5.7.2.2.2.3">
+<h6><span class="header-section-number">5.7.2.2.2.3</span>
 ラベル名付与</h6>
 <pre class="python bg-success"><code>(
 pen_p.assign(blmc2 = lambda x: pd.cut(x[&#39;bill_length_mm&#39;], 
@@ -2835,8 +2840,8 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x[&#39;bill_length_mm&#39;],
 ## dtype: int64</code></pre>
 </div>
 </div>
-<div id="方法3-np.where" class="section level5" number="11.7.2.2.3">
-<h5><span class="header-section-number">11.7.2.2.3</span> 方法3
+<div id="方法3-np.where" class="section level5" number="5.7.2.2.3">
+<h5><span class="header-section-number">5.7.2.2.3</span> 方法3
 np.where</h5>
 <ul>
 <li>ただし，thirdのカテゴリにNAが含まれてしまうため，工夫が必要</li>
@@ -2876,11 +2881,11 @@ pen_p.value_counts([&#39;blmc3&#39;])</code></pre>
 </div>
 </div>
 </div>
-<div id="条件で新しい列作成" class="section level3" number="11.7.3">
-<h3><span class="header-section-number">11.7.3</span>
+<div id="条件で新しい列作成" class="section level3" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span>
 条件で新しい列作成</h3>
-<div id="r-13" class="section level4" number="11.7.3.1">
-<h4><span class="header-section-number">11.7.3.1</span> R</h4>
+<div id="r-13" class="section level4" number="5.7.3.1">
+<h4><span class="header-section-number">5.7.3.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   mutate(species2 = if_else(species == &quot;Adelie&quot;, 1,0)) |&gt; 
   count(species, species2)</code></pre>
@@ -2891,8 +2896,8 @@ pen_p.value_counts([&#39;blmc3&#39;])</code></pre>
 ## 2 Chinstrap        0    68
 ## 3 Gentoo           0   124</code></pre>
 </div>
-<div id="python-12" class="section level4" number="11.7.3.2">
-<h4><span class="header-section-number">11.7.3.2</span> Python</h4>
+<div id="python-12" class="section level4" number="5.7.3.2">
+<h4><span class="header-section-number">5.7.3.2</span> Python</h4>
 <!-- 欠損値のあつかい -->
 <!-- https://stackoverflow.com/questions/66081445/from-r-to-python-ifelse-conditional-in-mutate-dataframe -->
 <pre class="python bg-success"><code>(
@@ -2906,22 +2911,22 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 ## dtype: int64</code></pre>
 </div>
 </div>
-<div id="section-1" class="section level3" number="11.7.4">
-<h3><span class="header-section-number">11.7.4</span> </h3>
-<div id="r-14" class="section level4" number="11.7.4.1">
-<h4><span class="header-section-number">11.7.4.1</span> R</h4>
+<div id="section-1" class="section level3" number="5.7.4">
+<h3><span class="header-section-number">5.7.4</span> </h3>
+<div id="r-14" class="section level4" number="5.7.4.1">
+<h4><span class="header-section-number">5.7.4.1</span> R</h4>
 </div>
-<div id="python-13" class="section level4" number="11.7.4.2">
-<h4><span class="header-section-number">11.7.4.2</span> Python</h4>
+<div id="python-13" class="section level4" number="5.7.4.2">
+<h4><span class="header-section-number">5.7.4.2</span> Python</h4>
 </div>
 </div>
 </div>
-<div id="要約値作成" class="section level2" number="11.8">
-<h2><span class="header-section-number">11.8</span> 要約値作成</h2>
-<div id="変数1つのみ" class="section level3" number="11.8.1">
-<h3><span class="header-section-number">11.8.1</span> 変数1つのみ</h3>
-<div id="r-15" class="section level4" number="11.8.1.1">
-<h4><span class="header-section-number">11.8.1.1</span> R</h4>
+<div id="要約値作成" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> 要約値作成</h2>
+<div id="変数1つのみ" class="section level3" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> 変数1つのみ</h3>
+<div id="r-15" class="section level4" number="5.8.1.1">
+<h4><span class="header-section-number">5.8.1.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(blm_mean = mean(bill_length_mm, 
                             na.rm = TRUE),
@@ -2933,8 +2938,8 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 ##      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1     43.9   5.46   342</code></pre>
 </div>
-<div id="python-14" class="section level4" number="11.8.1.2">
-<h4><span class="header-section-number">11.8.1.2</span> Python</h4>
+<div id="python-14" class="section level4" number="5.8.1.2">
+<h4><span class="header-section-number">5.8.1.2</span> Python</h4>
 <ul>
 <li>欠損値は自動で削除して計算されている</li>
 </ul>
@@ -2962,10 +2967,10 @@ pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count
 ## count      342.000000</code></pre>
 </div>
 </div>
-<div id="変数複数" class="section level3" number="11.8.2">
-<h3><span class="header-section-number">11.8.2</span> 変数複数</h3>
-<div id="r-16" class="section level4" number="11.8.2.1">
-<h4><span class="header-section-number">11.8.2.1</span> R</h4>
+<div id="変数複数" class="section level3" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> 変数複数</h3>
+<div id="r-16" class="section level4" number="5.8.2.1">
+<h4><span class="header-section-number">5.8.2.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(across(c(bill_length_mm, bill_depth_mm),
                    list(mean = ~mean(., na.rm = TRUE),
@@ -2989,8 +2994,8 @@ pen_r |&gt;
 ## 1                43.9              5.46              342               17.2
 ## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
-<div id="python-15" class="section level4" number="11.8.2.2">
-<h4><span class="header-section-number">11.8.2.2</span> Python</h4>
+<div id="python-15" class="section level4" number="5.8.2.2">
+<h4><span class="header-section-number">5.8.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;],
             &#39;bill_depth_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;]})</code></pre>
 <pre><code>##        bill_length_mm  bill_depth_mm
@@ -3015,11 +3020,11 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## count      342.000000     342.000000</code></pre>
 </div>
 </div>
-<div id="グループごとに集計" class="section level3" number="11.8.3">
-<h3><span class="header-section-number">11.8.3</span>
+<div id="グループごとに集計" class="section level3" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span>
 グループごとに集計</h3>
-<div id="r-17" class="section level4" number="11.8.3.1">
-<h4><span class="header-section-number">11.8.3.1</span> R</h4>
+<div id="r-17" class="section level4" number="5.8.3.1">
+<h4><span class="header-section-number">5.8.3.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   group_by(species) |&gt; 
   summarise(mean_blm = mean(bill_length_mm, 
@@ -3031,8 +3036,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## 2 Chinstrap     48.8
 ## 3 Gentoo        47.5</code></pre>
 </div>
-<div id="python-16" class="section level4" number="11.8.3.2">
-<h4><span class="header-section-number">11.8.3.2</span> Python</h4>
+<div id="python-16" class="section level4" number="5.8.3.2">
+<h4><span class="header-section-number">5.8.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.groupby(&#39;species&#39;).bill_length_mm.agg(&#39;mean&#39;)</code></pre>
 <pre><code>## species
 ## Adelie       38.791391
@@ -3041,11 +3046,11 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
 </div>
-<div id="データフレーム全体" class="section level3" number="11.8.4">
-<h3><span class="header-section-number">11.8.4</span>
+<div id="データフレーム全体" class="section level3" number="5.8.4">
+<h3><span class="header-section-number">5.8.4</span>
 データフレーム全体</h3>
-<div id="r-18" class="section level4" number="11.8.4.1">
-<h4><span class="header-section-number">11.8.4.1</span> R</h4>
+<div id="r-18" class="section level4" number="5.8.4.1">
+<h4><span class="header-section-number">5.8.4.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; 
   summarise(across(where(is.numeric),
     mean, na.rm = TRUE))</code></pre>
@@ -3054,8 +3059,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 ## 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div id="python-17" class="section level4" number="11.8.4.2">
-<h4><span class="header-section-number">11.8.4.2</span> Python</h4>
+<div id="python-17" class="section level4" number="5.8.4.2">
+<h4><span class="header-section-number">5.8.4.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.agg(&#39;mean&#39;)</code></pre>
 <pre><code>## bill_length_mm         43.921930
 ## bill_depth_mm          17.151170
@@ -3067,10 +3072,10 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## &lt;string&gt;:1: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with &#39;numeric_only=None&#39;) is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.</code></pre>
 </div>
 </div>
-<div id="度数分布" class="section level3" number="11.8.5">
-<h3><span class="header-section-number">11.8.5</span> 度数分布</h3>
-<div id="r-19" class="section level4" number="11.8.5.1">
-<h4><span class="header-section-number">11.8.5.1</span> R</h4>
+<div id="度数分布" class="section level3" number="5.8.5">
+<h3><span class="header-section-number">5.8.5</span> 度数分布</h3>
+<div id="r-19" class="section level4" number="5.8.5.1">
+<h4><span class="header-section-number">5.8.5.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; count(species)</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   species       n
@@ -3086,8 +3091,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## 2 male     168
 ## 3 &lt;NA&gt;      11</code></pre>
 </div>
-<div id="python-18" class="section level4" number="11.8.5.2">
-<h4><span class="header-section-number">11.8.5.2</span> Python</h4>
+<div id="python-18" class="section level4" number="5.8.5.2">
+<h4><span class="header-section-number">5.8.5.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.value_counts([&#39;species&#39;])</code></pre>
 <pre><code>## species  
 ## Adelie       152
@@ -3102,11 +3107,11 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## dtype: int64</code></pre>
 </div>
 </div>
-<div id="複数列の組み合わせの度数" class="section level3" number="11.8.6">
-<h3><span class="header-section-number">11.8.6</span>
+<div id="複数列の組み合わせの度数" class="section level3" number="5.8.6">
+<h3><span class="header-section-number">5.8.6</span>
 複数列の組み合わせの度数</h3>
-<div id="r-20" class="section level4" number="11.8.6.1">
-<h4><span class="header-section-number">11.8.6.1</span> R</h4>
+<div id="r-20" class="section level4" number="5.8.6.1">
+<h4><span class="header-section-number">5.8.6.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt; count(species, sex)</code></pre>
 <pre><code>## # A tibble: 8 × 3
 ##   species   sex        n
@@ -3120,8 +3125,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## 7 Gentoo    male      61
 ## 8 Gentoo    &lt;NA&gt;       5</code></pre>
 </div>
-<div id="python-19" class="section level4" number="11.8.6.2">
-<h4><span class="header-section-number">11.8.6.2</span> Python</h4>
+<div id="python-19" class="section level4" number="5.8.6.2">
+<h4><span class="header-section-number">5.8.6.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.value_counts([&#39;species&#39;, &#39;sex&#39;])</code></pre>
 <pre><code>## species    sex   
 ## Adelie     female    73
@@ -3133,10 +3138,10 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## dtype: int64</code></pre>
 </div>
 </div>
-<div id="クロス表" class="section level3" number="11.8.7">
-<h3><span class="header-section-number">11.8.7</span> クロス表</h3>
-<div id="r-21" class="section level4" number="11.8.7.1">
-<h4><span class="header-section-number">11.8.7.1</span> R</h4>
+<div id="クロス表" class="section level3" number="5.8.7">
+<h3><span class="header-section-number">5.8.7</span> クロス表</h3>
+<div id="r-21" class="section level4" number="5.8.7.1">
+<h4><span class="header-section-number">5.8.7.1</span> R</h4>
 <pre class="r"><code>table(pen_r$species, pen_r$sex)</code></pre>
 <pre><code>##            
 ##             female male
@@ -3144,8 +3149,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ##   Chinstrap     34   34
 ##   Gentoo        58   61</code></pre>
 </div>
-<div id="python-20" class="section level4" number="11.8.7.2">
-<h4><span class="header-section-number">11.8.7.2</span> Python</h4>
+<div id="python-20" class="section level4" number="5.8.7.2">
+<h4><span class="header-section-number">5.8.7.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.crosstab(pen_p[&#39;species&#39;], pen_p[&#39;sex&#39;])</code></pre>
 <pre><code>## sex        female  male
 ## species                
@@ -3161,10 +3166,10 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 </div>
 </div>
 </div>
-<div id="動詞をつなげる" class="section level2" number="11.9">
-<h2><span class="header-section-number">11.9</span> 動詞をつなげる</h2>
-<div id="r-22" class="section level3" number="11.9.1">
-<h3><span class="header-section-number">11.9.1</span> R</h3>
+<div id="動詞をつなげる" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> 動詞をつなげる</h2>
+<div id="r-22" class="section level3" number="5.9.1">
+<h3><span class="header-section-number">5.9.1</span> R</h3>
 <ul>
 <li><code>|&gt;</code>でつなげる</li>
 </ul>
@@ -3181,8 +3186,8 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## 5 Gentoo            47.6
 ## # … with 119 more rows</code></pre>
 </div>
-<div id="python-21" class="section level3" number="11.9.2">
-<h3><span class="header-section-number">11.9.2</span> Python</h3>
+<div id="python-21" class="section level3" number="5.9.2">
+<h3><span class="header-section-number">5.9.2</span> Python</h3>
 <ul>
 <li>[pandasチートシート]&lt;<a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" class="uri">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a></li>
 <li><code>.</code>(ドット，ピリオド)でつなげてコード全体を<code>( )</code>で囲む</li>
@@ -3209,14 +3214,14 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 </div>
 </div>
 </div>
-<div id="データフレームの連結や構造変換" class="section level1" number="12">
-<h1><span class="header-section-number">12</span>
+<div id="データフレームの連結や構造変換" class="section level1" number="6">
+<h1><span class="header-section-number">6</span>
 データフレームの連結や構造変換</h1>
-<div id="データフレーム作成" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span>
+<div id="データフレーム作成" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span>
 データフレーム作成</h2>
-<div id="r-23" class="section level3" number="12.1.1">
-<h3><span class="header-section-number">12.1.1</span> R</h3>
+<div id="r-23" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> R</h3>
 <pre class="r"><code>df_r_a &lt;- 
  tribble(
     ~id, ~x1, ~x2,
@@ -3248,8 +3253,8 @@ df_r_a</code></pre>
 ## 2     2    20    90
 ## 3     4    40   100</code></pre>
 </div>
-<div id="python-22" class="section level3" number="12.1.2">
-<h3><span class="header-section-number">12.1.2</span> Python</h3>
+<div id="python-22" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Python</h3>
 <pre class="python bg-success"><code>df_py_a = pd.DataFrame([[1,10,50], 
                         [2,20,60], 
                         [3,30,70]],
@@ -3283,17 +3288,17 @@ df_py_a</code></pre>
 ## 2   3  30  70</code></pre>
 </div>
 </div>
-<div id="キー変数を元に横に連結" class="section level2" number="12.2">
-<h2><span class="header-section-number">12.2</span>
+<div id="キー変数を元に横に連結" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span>
 キー変数を元に横に連結</h2>
 <ul>
 <li><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">dplyr::join</a></li>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#">pandas.merge</a></li>
 </ul>
-<div id="左に連結" class="section level3" number="12.2.1">
-<h3><span class="header-section-number">12.2.1</span> 左に連結</h3>
-<div id="r-24" class="section level4" number="12.2.1.1">
-<h4><span class="header-section-number">12.2.1.1</span> R</h4>
+<div id="左に連結" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> 左に連結</h3>
+<div id="r-24" class="section level4" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   left_join(df_r_b, by = &quot;id&quot;)</code></pre>
 <pre><code>## # A tibble: 3 × 5
@@ -3303,8 +3308,8 @@ df_py_a</code></pre>
 ## 2     2    20    60    20    90
 ## 3     3    30    70    NA    NA</code></pre>
 </div>
-<div id="python-23" class="section level4" number="12.2.1.2">
-<h4><span class="header-section-number">12.2.1.2</span> Python</h4>
+<div id="python-23" class="section level4" number="6.2.1.2">
+<h4><span class="header-section-number">6.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, on = &#39;id&#39;, how = &#39;left&#39;)</code></pre>
 <pre><code>##    id  x1_x  x2  x1_y    x3
 ## 0   1    10  50  10.0  80.0
@@ -3312,10 +3317,10 @@ df_py_a</code></pre>
 ## 2   3    30  70   NaN   NaN</code></pre>
 </div>
 </div>
-<div id="すべて連結" class="section level3" number="12.2.2">
-<h3><span class="header-section-number">12.2.2</span> すべて連結</h3>
-<div id="r-25" class="section level4" number="12.2.2.1">
-<h4><span class="header-section-number">12.2.2.1</span> R</h4>
+<div id="すべて連結" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> すべて連結</h3>
+<div id="r-25" class="section level4" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   full_join(df_r_b)</code></pre>
 <pre><code>## # A tibble: 4 × 4
@@ -3326,8 +3331,8 @@ df_py_a</code></pre>
 ## 3     3    30    70    NA
 ## 4     4    40    NA   100</code></pre>
 </div>
-<div id="python-24" class="section level4" number="12.2.2.2">
-<h4><span class="header-section-number">12.2.2.2</span> Python</h4>
+<div id="python-24" class="section level4" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;outer&#39;)</code></pre>
 <pre><code>##    id  x1    x2     x3
 ## 0   1  10  50.0   80.0
@@ -3336,11 +3341,11 @@ df_py_a</code></pre>
 ## 3   4  40   NaN  100.0</code></pre>
 </div>
 </div>
-<div id="共通するデータの連結" class="section level3" number="12.2.3">
-<h3><span class="header-section-number">12.2.3</span>
+<div id="共通するデータの連結" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span>
 共通するデータの連結</h3>
-<div id="r-26" class="section level4" number="12.2.3.1">
-<h4><span class="header-section-number">12.2.3.1</span> R</h4>
+<div id="r-26" class="section level4" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> R</h4>
 <pre class="r"><code>df_r_a |&gt; 
   inner_join(df_r_b)</code></pre>
 <pre><code>## # A tibble: 2 × 4
@@ -3349,8 +3354,8 @@ df_py_a</code></pre>
 ## 1     1    10    50    80
 ## 2     2    20    60    90</code></pre>
 </div>
-<div id="python-25" class="section level4" number="12.2.3.2">
-<h4><span class="header-section-number">12.2.3.2</span> Python</h4>
+<div id="python-25" class="section level4" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;inner&#39;)</code></pre>
 <pre><code>##    id  x1  x2  x3
 ## 0   1  10  50  80
@@ -3358,10 +3363,10 @@ df_py_a</code></pre>
 </div>
 </div>
 </div>
-<div id="縦に連結" class="section level2" number="12.3">
-<h2><span class="header-section-number">12.3</span> 縦に連結</h2>
-<div id="r-27" class="section level3" number="12.3.1">
-<h3><span class="header-section-number">12.3.1</span> R</h3>
+<div id="縦に連結" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> 縦に連結</h2>
+<div id="r-27" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> R</h3>
 <pre class="r"><code># 連結用データ作成
 df_r_b2 &lt;- 
   tribble(
@@ -3390,8 +3395,8 @@ df_r_a |&gt;
 ## 4     4    40    80   110
 ## 5     5    50    90   120
 ## 6     6    60   100   130</code></pre>
-<div id="連結元データを示すidを付与" class="section level4" number="12.3.1.1">
-<h4><span class="header-section-number">12.3.1.1</span>
+<div id="連結元データを示すidを付与" class="section level4" number="6.3.1.1">
+<h4><span class="header-section-number">6.3.1.1</span>
 連結元データを示すidを付与</h4>
 <pre class="r"><code>df_r_a |&gt; 
   bind_rows(df_r_b2, .id = &quot;df_id&quot;)</code></pre>
@@ -3422,8 +3427,8 @@ bind_rows(df_r_l, .id = &quot;df_id&quot;)</code></pre>
 ## 6 df_r_b2     6    60   100   130</code></pre>
 </div>
 </div>
-<div id="python-26" class="section level3" number="12.3.2">
-<h3><span class="header-section-number">12.3.2</span> Python</h3>
+<div id="python-26" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Python</h3>
 <pre class="python bg-success"><code># 連結用データ作成
 df_py_b2 = pd.DataFrame([[4,40,80,110], 
                          [5,50,90,120], 
@@ -3445,8 +3450,8 @@ df_py_b2
 ## 0   4  40   80  110.0
 ## 1   5  50   90  120.0
 ## 2   6  60  100  130.0</code></pre>
-<div id="連結元データを示すidを付与-1" class="section level4" number="12.3.2.1">
-<h4><span class="header-section-number">12.3.2.1</span>
+<div id="連結元データを示すidを付与-1" class="section level4" number="6.3.2.1">
+<h4><span class="header-section-number">6.3.2.1</span>
 連結元データを示すidを付与</h4>
 <pre class="python bg-success"><code>pd.concat([df_py_a, df_py_b2], 
           keys = [&#39;df_py_a&#39;, &#39;df_py_b2&#39;])</code></pre>
@@ -3460,12 +3465,12 @@ df_py_b2
 </div>
 </div>
 </div>
-<div id="縦横構造の変換" class="section level2" number="12.4">
-<h2><span class="header-section-number">12.4</span> 縦横構造の変換</h2>
-<div id="long形式に" class="section level3" number="12.4.1">
-<h3><span class="header-section-number">12.4.1</span> long形式に</h3>
-<div id="r-28" class="section level4" number="12.4.1.1">
-<h4><span class="header-section-number">12.4.1.1</span> R</h4>
+<div id="縦横構造の変換" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> 縦横構造の変換</h2>
+<div id="long形式に" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> long形式に</h3>
+<div id="r-28" class="section level4" number="6.4.1.1">
+<h4><span class="header-section-number">6.4.1.1</span> R</h4>
 <pre class="r"><code>df_r_a_long &lt;- 
 df_r_a |&gt; 
 pivot_longer(!id,
@@ -3483,8 +3488,8 @@ df_r_a_long</code></pre>
 ## 5     3 x1       30
 ## 6     3 x2       70</code></pre>
 </div>
-<div id="python-27" class="section level4" number="12.4.1.2">
-<h4><span class="header-section-number">12.4.1.2</span> Python</h4>
+<div id="python-27" class="section level4" number="6.4.1.2">
+<h4><span class="header-section-number">6.4.1.2</span> Python</h4>
 <pre class="python bg-success"><code>df_py_a_long = pd.melt(df_py_a, 
                            id_vars = [&#39;id&#39;],
                            var_name = &#39;変数&#39;,
@@ -3500,10 +3505,10 @@ df_py_a_long          </code></pre>
 ## 5   3  x2  70</code></pre>
 </div>
 </div>
-<div id="wide形式に" class="section level3" number="12.4.2">
-<h3><span class="header-section-number">12.4.2</span> wide形式に</h3>
-<div id="r-29" class="section level4" number="12.4.2.1">
-<h4><span class="header-section-number">12.4.2.1</span> R</h4>
+<div id="wide形式に" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> wide形式に</h3>
+<div id="r-29" class="section level4" number="6.4.2.1">
+<h4><span class="header-section-number">6.4.2.1</span> R</h4>
 <pre class="r"><code>df_r_a_long |&gt; 
   pivot_wider(names_from = 変数,
               values_from = 得点)</code></pre>
@@ -3514,8 +3519,8 @@ df_py_a_long          </code></pre>
 ## 2     2    20    60
 ## 3     3    30    70</code></pre>
 </div>
-<div id="python-28" class="section level4" number="12.4.2.2">
-<h4><span class="header-section-number">12.4.2.2</span> Python</h4>
+<div id="python-28" class="section level4" number="6.4.2.2">
+<h4><span class="header-section-number">6.4.2.2</span> Python</h4>
 <pre class="python bg-success"><code>df_py_a_long.pivot(index = [&#39;id&#39;],
                    columns = [&#39;変数&#39;],
                    values  = [&#39;得点&#39;])</code></pre>
@@ -3527,24 +3532,26 @@ df_py_a_long          </code></pre>
 ## 3   30  70</code></pre>
 </div>
 </div>
-<div id="テンプレ" class="section level3" number="12.4.3">
-<h3><span class="header-section-number">12.4.3</span> ※テンプレ</h3>
-<div id="r-30" class="section level4" number="12.4.3.1">
-<h4><span class="header-section-number">12.4.3.1</span> R</h4>
+<div id="テンプレ" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> ※テンプレ</h3>
+<div id="r-30" class="section level4" number="6.4.3.1">
+<h4><span class="header-section-number">6.4.3.1</span> R</h4>
 </div>
-<div id="python-29" class="section level4" number="12.4.3.2">
-<h4><span class="header-section-number">12.4.3.2</span> Python</h4>
-</div>
-</div>
+<div id="python-29" class="section level4" number="6.4.3.2">
+<h4><span class="header-section-number">6.4.3.2</span> Python</h4>
 </div>
 </div>
-<div id="ファイルの読み込み" class="section level1" number="13">
-<h1><span class="header-section-number">13</span>
-ファイルの読み込み</h1>
-<div id="excelファイル" class="section level2" number="13.1">
-<h2><span class="header-section-number">13.1</span> Excelファイル</h2>
-<div id="r-31" class="section level3" number="13.1.1">
-<h3><span class="header-section-number">13.1.1</span> R</h3>
+</div>
+</div>
+<div id="ファイルの読み書き" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> ファイルの読み書き</h1>
+<div id="ファイルの読み込み" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span>
+ファイルの読み込み</h2>
+<div id="excelファイル" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Excelファイル</h3>
+<div id="r-31" class="section level4" number="7.1.1.1">
+<h4><span class="header-section-number">7.1.1.1</span> R</h4>
 <pre class="r"><code>readxl::read_xlsx(&quot;data/ペンギン.xlsx&quot;)</code></pre>
 <pre><code>## # A tibble: 344 × 9
 ##   species 種類  island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
@@ -3556,8 +3563,8 @@ df_py_a_long          </code></pre>
 ## 5 Adelie  アデ… Torge…           36.7          19.3              193        3450
 ## # … with 339 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-30" class="section level3" number="13.1.2">
-<h3><span class="header-section-number">13.1.2</span> Python</h3>
+<div id="python-30" class="section level4" number="7.1.1.2">
+<h4><span class="header-section-number">7.1.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.read_excel(&#39;data/ペンギン.xlsx&#39;)</code></pre>
 <pre><code>##        species    種類     island  ...  body_mass_g     sex  year
 ## 0       Adelie  アデリー  Torgersen  ...       3750.0    male  2007
@@ -3575,12 +3582,12 @@ df_py_a_long          </code></pre>
 ## [344 rows x 9 columns]</code></pre>
 </div>
 </div>
-<div id="csvファイル" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> csvファイル</h2>
-<div id="utf-8" class="section level3" number="13.2.1">
-<h3><span class="header-section-number">13.2.1</span> utf-8</h3>
-<div id="r-32" class="section level4" number="13.2.1.1">
-<h4><span class="header-section-number">13.2.1.1</span> R</h4>
+<div id="csvファイル" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> csvファイル</h3>
+<div id="utf-8" class="section level4" number="7.1.2.1">
+<h4><span class="header-section-number">7.1.2.1</span> utf-8</h4>
+<div id="r-32" class="section level5" number="7.1.2.1.1">
+<h5><span class="header-section-number">7.1.2.1.1</span> R</h5>
 <pre class="r"><code>penr_csv &lt;- 
 read_csv(&quot;data/ペンギン（ひどい列名）ver_utf8.csv&quot;)
 
@@ -3596,8 +3603,8 @@ penr_csv</code></pre>
 ## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `㊛㊚` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-31" class="section level4" number="13.2.1.2">
-<h4><span class="header-section-number">13.2.1.2</span> Python</h4>
+<div id="python-31" class="section level5" number="7.1.2.1.2">
+<h5><span class="header-section-number">7.1.2.1.2</span> Python</h5>
 <pre class="python bg-success"><code>penp_csv = pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_utf8.csv&#39;)
 
 penp_csv</code></pre>
@@ -3617,11 +3624,11 @@ penp_csv</code></pre>
 ## [344 rows x 9 columns]</code></pre>
 </div>
 </div>
-<div id="shift-jiscp932" class="section level3" number="13.2.2">
-<h3><span class="header-section-number">13.2.2</span>
-shift-jis(cp932)</h3>
-<div id="r-33" class="section level4" number="13.2.2.1">
-<h4><span class="header-section-number">13.2.2.1</span> R</h4>
+<div id="shift-jiscp932" class="section level4" number="7.1.2.2">
+<h4><span class="header-section-number">7.1.2.2</span>
+shift-jis(cp932)</h4>
+<div id="r-33" class="section level5" number="7.1.2.2.1">
+<h5><span class="header-section-number">7.1.2.2.1</span> R</h5>
 <pre class="r"><code>read_csv(&quot;data/ペンギン（ひどい列名）ver_cp932.csv&quot;,
          locale = locale(encoding = &quot;cp932&quot;))</code></pre>
 <pre><code>## # A tibble: 344 × 9
@@ -3635,8 +3642,8 @@ shift-jis(cp932)</h3>
 ## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `??` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-32" class="section level4" number="13.2.2.2">
-<h4><span class="header-section-number">13.2.2.2</span> Python</h4>
+<div id="python-32" class="section level5" number="7.1.2.2.2">
+<h5><span class="header-section-number">7.1.2.2.2</span> Python</h5>
 <pre class="python bg-success"><code>pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_cp932.csv&#39;,
              encoding = &#39;cp932&#39;)</code></pre>
 <pre><code>##        Sｐｅｃｉｅｓ   種　類      ※島の名前  ...  ■体重　単位はｇ      ??  ２００７～２００９
@@ -3657,13 +3664,13 @@ shift-jis(cp932)</h3>
 </div>
 </div>
 </div>
-<div id="ファイルの書き出し" class="section level1" number="14">
-<h1><span class="header-section-number">14</span>
-ファイルの書き出し</h1>
-<div id="excelファイル-1" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> Excelファイル</h2>
-<div id="r-34" class="section level3" number="14.1.1">
-<h3><span class="header-section-number">14.1.1</span> R</h3>
+<div id="ファイルの書き出し" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span>
+ファイルの書き出し</h2>
+<div id="excelファイル-1" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Excelファイル</h3>
+<div id="r-34" class="section level4" number="7.2.1.1">
+<h4><span class="header-section-number">7.2.1.1</span> R</h4>
 <ul>
 <li><code>library(writexl)</code>を読み込んでいれば，<code>writexl::</code>は不要</li>
 </ul>
@@ -3671,64 +3678,65 @@ shift-jis(cp932)</h3>
   head(3) |&gt; 
   writexl::write_xlsx(&quot;out/pen_r_head.xlsx&quot;)</code></pre>
 </div>
-<div id="python-33" class="section level3" number="14.1.2">
-<h3><span class="header-section-number">14.1.2</span> Python</h3>
+<div id="python-33" class="section level4" number="7.2.1.2">
+<h4><span class="header-section-number">7.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_excel(&quot;out/pen_p_head.xlsx&quot;, index = False)</code></pre>
 </div>
 </div>
-<div id="csvファイル-1" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> csvファイル</h2>
-<div id="r-35" class="section level3" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> R</h3>
+<div id="csvファイル-1" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> csvファイル</h3>
+<div id="r-35" class="section level4" number="7.2.2.1">
+<h4><span class="header-section-number">7.2.2.1</span> R</h4>
 <pre class="r"><code>pen_r |&gt;
   head(3) |&gt; 
   write_csv(&quot;out/pen_r_head.csv&quot;)</code></pre>
 </div>
-<div id="python-34" class="section level3" number="14.2.2">
-<h3><span class="header-section-number">14.2.2</span> Python</h3>
+<div id="python-34" class="section level4" number="7.2.2.2">
+<h4><span class="header-section-number">7.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_csv(&quot;out/pen_p_head.csv&quot;, index = False)</code></pre>
 </div>
 </div>
 </div>
-<div id="関数定義" class="section level1" number="15">
-<h1><span class="header-section-number">15</span> 関数定義</h1>
+</div>
+<div id="関数定義" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> 関数定義</h1>
 <ul>
 <li><a href="https://rstudio.github.io/reticulate/articles/python_primer.html" class="uri">https://rstudio.github.io/reticulate/articles/python_primer.html</a></li>
 </ul>
-<div id="関数" class="section level2" number="15.1">
-<h2><span class="header-section-number">15.1</span> 関数</h2>
-<div id="r-36" class="section level3" number="15.1.1">
-<h3><span class="header-section-number">15.1.1</span> R</h3>
+<div id="関数" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> 関数</h2>
+<div id="r-36" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> R</h3>
 </div>
-<div id="python-35" class="section level3" number="15.1.2">
-<h3><span class="header-section-number">15.1.2</span> Python</h3>
+<div id="python-35" class="section level3" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Python</h3>
 </div>
 </div>
-<div id="無名関数" class="section level2" number="15.2">
-<h2><span class="header-section-number">15.2</span> 無名関数</h2>
-<div id="r-37" class="section level3" number="15.2.1">
-<h3><span class="header-section-number">15.2.1</span> R</h3>
+<div id="無名関数" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> 無名関数</h2>
+<div id="r-37" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> R</h3>
 </div>
-<div id="python-36" class="section level3" number="15.2.2">
-<h3><span class="header-section-number">15.2.2</span> Python</h3>
+<div id="python-36" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Python</h3>
 <pre class="python bg-success"><code>#lambda</code></pre>
 </div>
 </div>
 </div>
-<div id="テンプレ-1" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> ※テンプレ</h1>
-<div id="section-2" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> </h2>
-<div id="r-38" class="section level3" number="16.1.1">
-<h3><span class="header-section-number">16.1.1</span> R</h3>
+<div id="テンプレ-1" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> ※テンプレ</h1>
+<div id="section-2" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> </h2>
+<div id="r-38" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> R</h3>
 </div>
-<div id="python-37" class="section level3" number="16.1.2">
-<h3><span class="header-section-number">16.1.2</span> Python</h3>
+<div id="python-37" class="section level3" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Python</h3>
 </div>
 </div>
 </div>
-<div id="参考情報" class="section level1" number="17">
-<h1><span class="header-section-number">17</span> 参考情報</h1>
+<div id="参考情報" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> 参考情報</h1>
 <!-- https://book.pythontips.com/en/latest/index.html# -->
 <!-- https://cs.stanford.edu/people/nick/py/ -->
 <!-- https://python-course.eu/advanced-python/ -->

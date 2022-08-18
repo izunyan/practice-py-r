@@ -30,18 +30,20 @@ options(tibble_opt)
 ```
 
 # 本資料の説明
+
 - 第100回 Tokyo.Rでの発表に向けて自分のために作ったRとPython連携周りのメモ
 - 発表資料は[こちら](https://github.com/izunyan/practice_py_r/tree/main/pdf)
 - このhtmlは常に更新され続けます
 
-# WindowsでのPythonインストール
+# インストールから環境設定周り
+## WindowsでのPythonインストール
 -   公式サイトでダウンロード
     - <https://www.python.org/downloads/>
 
 -   `Add Python 3.x to PATH`にチェックを入れる
     -   参照：<https://www.python.jp/install/windows/install.html>
 
-# パッケージの管理（pip関連）
+## パッケージの管理（pip関連）
 
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
@@ -84,7 +86,7 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 <!--   + pip install （どこからか忘れた…要確認） -->
 
-# Terminal OR コマンドプロンプトの操作
+## Terminal OR コマンドプロンプトの操作
 
 -   現在のディレクトリ表示
     -   `pwd`
@@ -97,14 +99,14 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 -   構造図式化
     -   `tree`
 
-# ブラウザからjupyter labを使う
+## ブラウザからjupyter labを使う
 - 入ってなければインストール
     - `python -m install jupyterlab`
 - terminalで次のコマンドを実行するとブラウザで開かれる
     - `jupyter lab`
     
 
-# 仮想環境:venv
+## 仮想環境:venv
 
 -   以下，コマンドプロンプトまたはRStudioのTerminalから実行
 -   作成
@@ -116,13 +118,13 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
     -   `deactivate`
 
 
-# RStudioで初めてPythonを実行する際の注意
+## RStudioで初めてPythonを実行する際の注意
 
--  コンソールでminicondaのインストールをきかれたらnと回答
+-  コンソールでminicondaのインストールをきかれたらNo(n)と回答
 
-# 実行環境
+## 実行環境
 
-## R
+### R
 ```{r}
 sinfo <- 
 sessioninfo::session_info()
@@ -134,7 +136,7 @@ sinfo$platform
 <!-- xfun::session_info() -->
 
 
-## RStudio version
+### RStudio version
 ```{r}
 rsinfo <- 
 rstudioapi::versionInfo()
@@ -142,7 +144,7 @@ rstudioapi::versionInfo()
 rsinfo$version
 ```
 
-## Python
+### Python
 ```{r include=FALSE}
 reticulate::repl_python()
 ```
@@ -1253,23 +1255,24 @@ df_py_a_long.pivot(index = ['id'],
 
 ```
 
-# ファイルの読み込み
-## Excelファイル
-### R
+# ファイルの読み書き
+## ファイルの読み込み
+### Excelファイル
+#### R
 
 ```{r}
 readxl::read_xlsx("data/ペンギン.xlsx")
 ```
 
-### Python
+#### Python
 
 ```{python class.source="bg-success"}
 pd.read_excel('data/ペンギン.xlsx')
 ```
 
-## csvファイル
-### utf-8
-#### R
+### csvファイル
+#### utf-8
+##### R
 
 ```{r}
 penr_csv <- 
@@ -1278,7 +1281,7 @@ read_csv("data/ペンギン（ひどい列名）ver_utf8.csv")
 penr_csv
 ```
 
-#### Python
+##### Python
 
 ```{python class.source="bg-success"}
 penp_csv = pd.read_csv('data/ペンギン（ひどい列名）ver_utf8.csv')
@@ -1286,25 +1289,25 @@ penp_csv = pd.read_csv('data/ペンギン（ひどい列名）ver_utf8.csv')
 penp_csv
 ```
 
-### shift-jis(cp932)
-#### R
+#### shift-jis(cp932)
+##### R
 
 ```{r}
 read_csv("data/ペンギン（ひどい列名）ver_cp932.csv",
          locale = locale(encoding = "cp932"))
 ```
 
-#### Python
+##### Python
 
 ```{python class.source="bg-success"}
 pd.read_csv('data/ペンギン（ひどい列名）ver_cp932.csv',
              encoding = 'cp932')
 ```
 
-# ファイルの書き出し
-## Excelファイル
+## ファイルの書き出し
+### Excelファイル
 
-### R
+#### R
 
 * `library(writexl)`を読み込んでいれば，`writexl::`は不要
 
@@ -1315,7 +1318,7 @@ pen_r |>
 
 ```
 
-### Python
+#### Python
 
 ```{python class.source="bg-success"}
 pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
@@ -1323,16 +1326,16 @@ pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
 ```
 
 
-## csvファイル
+### csvファイル
 
-### R
+#### R
 ```{r}
 pen_r |>
   head(3) |> 
   write_csv("out/pen_r_head.csv")
 ```
 
-### Python
+#### Python
 
 ```{python class.source="bg-success"}
 pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
