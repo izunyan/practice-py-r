@@ -35,7 +35,7 @@ options(tibble_opt)
 - 発表資料は[こちら](https://github.com/izunyan/practice_py_r/tree/main/pdf)
 - このhtmlは常に更新され続けます
 
-# インストールから環境設定周り
+# 🐍インストールから環境設定周り
 ## WindowsでのPythonインストール
 -   公式サイトでダウンロード
     - <https://www.python.org/downloads/>
@@ -359,7 +359,10 @@ r.r_nl
 ```
 
 
-# データフレーム操作の基本動詞
+# 🌌🐼データフレーム操作の基本動詞
+
+* Rのtidyverseのイメージ  :🌌
+* Pythonのpandasのイメージ:🐼
 
 ## Pythonの資料
 
