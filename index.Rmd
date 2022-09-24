@@ -1350,30 +1350,47 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 -  https://rstudio.github.io/reticulate/articles/python_primer.html
 
 
-## 関数
+## 関数定義
+
+* https://rstudio.github.io/reticulate/articles/python_primer.html#defining-functions-with-def
+
 ### R
 
 ```{r}
+fn_r <- \(x){
+  x + 1
+} 
 
+fn_r(1)
 ```
 
 ### Python
 
 ```{python class.source="bg-success"}
-
+def fn_p(x):
+  return x + 1
+  
+fn_p(1)  
 ```
 
 ## 無名関数
 ### R
 
 ```{r}
-
+(function(x) x + 1)(1)
+(\(x) x + 1)(1)
 ```
 
 ### Python
 
+* https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html
+
 ```{python class.source="bg-success"}
-#lambda
+
+(lambda x: x + 1)(1)
+
+
+
 ```
 
 
