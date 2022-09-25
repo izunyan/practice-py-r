@@ -1314,7 +1314,7 @@ pd.read_csv('data/ペンギン（ひどい列名）ver_cp932.csv',
 
 * `library(writexl)`を読み込んでいれば，`writexl::`は不要
 
-```{r}
+```{r eval = FALSE}
 pen_r |>
   head(3) |> 
   writexl::write_xlsx("out/pen_r_head.xlsx")
@@ -1323,7 +1323,7 @@ pen_r |>
 
 #### Python
 
-```{python class.source="bg-success"}
+```{python  eval = FALSE, class.source="bg-success"}
 pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
 
 ```
@@ -1332,7 +1332,7 @@ pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
 ### csvファイル
 
 #### R
-```{r}
+```{r eval = FALSE}
 pen_r |>
   head(3) |> 
   write_csv("out/pen_r_head.csv")
@@ -1340,20 +1340,18 @@ pen_r |>
 
 #### Python
 
-```{python class.source="bg-success"}
+```{python  eval = FALSE, class.source="bg-success"}
 pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 
 ```
 
+
+
 # 関数定義
-
--  https://rstudio.github.io/reticulate/articles/python_primer.html
-
-
-## 関数定義
 
 * https://rstudio.github.io/reticulate/articles/python_primer.html#defining-functions-with-def
 
+## 基本
 ### R
 
 ```{r}
