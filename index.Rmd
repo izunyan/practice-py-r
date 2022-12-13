@@ -31,20 +31,29 @@ options(tibble_opt)
 
 # 本資料の説明
 
-- 第100回 Tokyo.Rでの発表に向けて自分のために作ったRとPython連携周りのメモ
-- 発表資料は[こちら](https://github.com/izunyan/practice_py_r/tree/main/pdf)
-- このhtmlは常に更新され続けます
+-   第100回 Tokyo.Rでの発表に向けて自分のために作ったRとPython連携周りのメモ
+-   発表資料は[こちら](https://github.com/izunyan/practice_py_r/tree/main/pdf)
+-   このhtmlは常に更新され続けます
 
 # 🐍インストールから環境設定周り
-## WindowsでのPythonインストール
--   公式サイトでダウンロード
-    - <https://www.python.org/downloads/>
 
+## Python使用環境について
+
+-   詳しくは上記発表資料のスライド「Pythonを始める方法（用途：基本的なデータ分析）」参照
+- Python直インストールで必要なライブラリは都度入れていくスタイルで進める
+
+![](image/start_python.png)
+
+## WindowsでのPythonインストール
+
+-   公式サイトでダウンロード
+    -   <https://www.python.org/downloads/>
 -   `Add Python 3.x to PATH`にチェックを入れる
     -   参照：<https://www.python.jp/install/windows/install.html>
 
 ## パッケージの管理（pip関連）
 
+```{=html}
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
 https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
@@ -54,19 +63,19 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 
  -->
-
+```
 <!-- python Japan -->
+
 <!-- https://www.python.jp/install/windows/pip.html -->
 
 <!-- 公式ドキュメント -->
+
 <!-- https://pip.pypa.io/en/stable/ -->
 
-
 -   以下，RStudioのTerminalから実行
-    -  ただし仮想環境あるとできないぽい？
-    - Windowsでは，コマンドプロンプトからも実行できる
-    - `Windowsキー＋R`，または，タスクバーにある「ここに入力して検索」に`cmd`と入れて検索
-    
+    -   ただし仮想環境あるとできないぽい？
+    -   Windowsでは，コマンドプロンプトからも実行できる
+    -   `Windowsキー＋R`，または，タスクバーにある「ここに入力して検索」に`cmd`と入れて検索
 -   pipが適用されるPythonのバージョン確認
     -   `python -V`
 -   省略しても実行可能だが，`python -m`を最初につけることが推奨されている
@@ -81,12 +90,11 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 -   pip自体のアップデート
     -   `python -m pip install --upgrade pip`
 
-
 <!-- * アップデートが必要なパッケージインストール -->
 
 <!--   + pip install （どこからか忘れた…要確認） -->
 
-## Terminal OR コマンドプロンプトの操作
+### 【参考】Terminal OR コマンドプロンプトの操作
 
 -   現在のディレクトリ表示
     -   `pwd`
@@ -99,14 +107,21 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 -   構造図式化
     -   `tree`
 
-## ブラウザからjupyter labを使う
-- 入ってなければインストール
-    - `python -m install jupyterlab`
-- terminalで次のコマンドを実行するとブラウザで開かれる
-    - `jupyter lab`
-    
+## Pythonコードの実行
+-   RとPythonで実行結果をやり取りするためにRマークダウンを使用
 
-## 仮想環境:venv
+![](image/Python_rstudio.png)
+
+
+## その他
+### ブラウザからjupyter labを使うこともできる
+
+-   入ってなければインストール
+    -   `python -m install jupyterlab`
+-   terminalで次のコマンドを実行するとブラウザで開かれる
+    -   `jupyter lab`
+
+### (本記事では扱わないが参考のためメモ)仮想環境:venv
 
 -   以下，コマンドプロンプトまたはRStudioのTerminalから実行
 -   作成
@@ -117,14 +132,14 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 -   仮想環境から出る
     -   `deactivate`
 
+### RStudioで初めてPythonを実行する際の注意
 
-## RStudioで初めてPythonを実行する際の注意
-
--  コンソールでminicondaのインストールをきかれたらNo(n)と回答
+-   コンソールでminicondaのインストールをきかれたらNo(n)と回答
 
 ## 実行環境
 
 ### R
+
 ```{r}
 sinfo <- 
 sessioninfo::session_info()
@@ -135,8 +150,8 @@ sinfo$platform
 
 <!-- xfun::session_info() -->
 
-
 ### RStudio version
+
 ```{r}
 rsinfo <- 
 rstudioapi::versionInfo()
@@ -145,6 +160,7 @@ rsinfo$version
 ```
 
 ### Python
+
 ```{r include=FALSE}
 reticulate::repl_python()
 ```
@@ -154,42 +170,43 @@ reticulate::py_version()
 
 ```
 
-
 # 基本用語
 
 ## R
+
 ### ベクトル
+
 ```{r}
 r_vec <- c(1, 2, 3)
 r_vec
 ```
 
 ### 名前付きベクトル
+
 ```{r}
 r_nvec <- c(a = 1, b = 2, c = 3)
 r_nvec
 ```
 
-
 ### リスト
+
 ```{r}
 r_l <- list(1, 2, 3)
 r_l
 ```
 
 ### 名前付きリスト
+
 ```{r}
 r_nl <- list(a = 1, b = 2, c = 3)
 r_nl
 ```
-
 
 ## python
 
 -   <https://docs.python.org/ja/3/tutorial/datastructures.html#data-structures>
 
 ### リスト
-
 
 ```{python class.source="bg-success"}
 py_l = [1,2,3]
@@ -200,7 +217,6 @@ py_l
 py_l2 = [1,'a',3]
 py_l2
 ```
-
 
 ### 辞書型：dictionary
 
@@ -215,7 +231,6 @@ py_d
 py_t = (3,4,5)
 py_t
 ```
-
 
 ### np.array 配列
 
@@ -238,7 +253,6 @@ py_ndarray2
 
 ```
 
-
 # 📙Rとpythonで相互の読み込み
 
 ## RとPythonでデータフレームのやり取り
@@ -246,6 +260,7 @@ py_ndarray2
 -   緑チャンクがpython
 
 ### Rでデータフレーム読み込み
+
 ```{r }
 library(reticulate)
 
@@ -255,8 +270,8 @@ df_r <- palmerpenguins::penguins
 
 ### PythonでRのデータフレーム読み込みして列選択
 
-* 注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる
-* 対処法は検討中
+-   注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる
+-   対処法は検討中
 
 ```{python class.source="bg-success"}
 r.df_r.head()
@@ -264,8 +279,8 @@ r.df_r.head()
 df_py = r.df_r[['species',	'bill_length_mm']]
 ```
 
-
 ### RからPythonで加工したデータフレーム読み込み
+
 ```{r }
 head(py$df_py)
 
@@ -279,8 +294,6 @@ rm(df_r) # df削除
 ```{python class.source="bg-success"}
 del df_py
 ```
-
-
 
 ## RでPythonの変数を読む
 
@@ -309,7 +322,6 @@ py$py_l
 py$py_l2
 ```
 
-
 -   辞書型（Python）　→　名前付きリスト（R）
 
 ```{r}
@@ -322,7 +334,6 @@ py$py_d
 py$py_t
 ```
 
-
 -   numpy.ndarray
 
 ```{r}
@@ -331,49 +342,48 @@ py$py_ndarray2
 
 ```
 
-
 ## PythonでRのオブジェクトを読む
 
-- ベクトル（R） → リスト（Python）
+-   ベクトル（R） → リスト（Python）
 
 ```{python class.source="bg-success"}
 r.r_vec
 ```
 
-- 名前付きベクトル（R） → リスト（Python）
+-   名前付きベクトル（R） → リスト（Python）
 
 ```{python class.source="bg-success"}
 r.r_nvec
 ```
 
-- リスト（R） → リスト（Python）
+-   リスト（R） → リスト（Python）
 
 ```{python class.source="bg-success"}
 r.r_l
 ```
 
-- 名前付きリスト（R） → 辞書型（Python）
+-   名前付きリスト（R） → 辞書型（Python）
 
 ```{python class.source="bg-success"}
 r.r_nl
 ```
 
-
 # 🌌🐼データフレーム操作の基本動詞
 
-* Rのtidyverseのイメージ  :🌌
-* Pythonのpandasのイメージ:🐼
+-   Rのtidyverseのイメージ :🌌
+-   Pythonのpandasのイメージ:🐼
 
 ## Pythonの資料
 
-* cheatsheet
-  - https://pandas.pydata.org/docs/whatsnew/v0.19.2.html
-
-* cookbook
-  - https://pandas.pydata.org/docs/user_guide/cookbook.html
+-   cheatsheet
+    -   <https://pandas.pydata.org/docs/whatsnew/v0.19.2.html>
+-   cookbook
+    -   <https://pandas.pydata.org/docs/user_guide/cookbook.html>
 
 ## ★データフレーム読み込み
+
 ### R
+
 ```{r}
 pen_r <-   palmerpenguins::penguins
 
@@ -397,7 +407,7 @@ pen_p
 
 #### R
 
-* 単一
+-   単一
 
 ```{r}
 library(tidyverse)
@@ -410,7 +420,7 @@ pen_r |>
 
 ```
 
-* 複数列
+-   複数列
 
 ```{r}
 pen_r |> 
@@ -420,17 +430,15 @@ pen_r |>
   select(species:bill_length_mm)
 ```
 
-
-* 列の値（ベクトル）を取り出し
+-   列の値（ベクトル）を取り出し
 
 ```{r}
 pen_r |> pull(species)
 ```
 
-
 #### Python
 
-* 単一
+-   単一
 
 ```{python class.source="bg-success"}
 # 列名確認
@@ -441,7 +449,7 @@ pen_p[['species']]
 
 ```
 
-* 複数列
+-   複数列
 
 ```{python class.source="bg-success"}
 pen_p[['species', 'bill_length_mm']]
@@ -450,14 +458,14 @@ pen_p[['species', 'bill_length_mm']]
 pen_p.loc[:, 'species':'bill_length_mm']
 ```
 
-
-* 列の値を取り出し？
+-   Seriesとして選択
+    -   1列のみのデータフレームみたいなもの
+    -   <https://pandas.pydata.org/docs/reference/api/pandas.Series.html>
 
 ```{python class.source="bg-success"}
 pen_p['species']
 pen_p.species
 ```
-
 
 ### 列名を正規表現で選ぶ
 
@@ -491,7 +499,8 @@ pen_p.loc[:, pen_p.columns.str.match('^bill')]
 
 ```
 
-### 列を削除する 
+### 列を削除する
+
 #### R
 
 ```{r}
@@ -504,8 +513,8 @@ pen_r |> select(!c(species, island))
 pen_p.drop(columns = ['species', 'island'])
 ```
 
-
 ### 
+
 #### R
 
 ```{r}
@@ -540,8 +549,8 @@ pen_p.rename(columns = {'species':'species2',
 
 ```
 
-
 ## 列の値で並び変える
+
 ### R
 
 ```{r}
@@ -565,7 +574,9 @@ pen_p.sort_values('bill_length_mm', ascending = False)
 ```
 
 ## 行を選ぶ
+
 ### 基本
+
 #### R
 
 ```{r}
@@ -591,8 +602,6 @@ pen_r |>
 
 <!-- https://towardsdatascience.com/how-to-select-rows-from-pandas-dataframe-based-on-column-values-d3f5da421e93 -->
 
-
-
 ```{python class.source="bg-success"}
 pen_p[pen_p['bill_length_mm'] > 55]
 pen_p[pen_p.bill_length_mm > 55]
@@ -607,6 +616,7 @@ pen_p.loc[pen_p.species.str.contains('Gen')] # match
 ```
 
 ### 欠損のある行を落とす
+
 #### R
 
 ```{r}
@@ -621,7 +631,7 @@ pen_r |>
 
 #### Python
 
-* https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html
+-   <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html>
 
 ```{python class.source="bg-success"}
 pen_p.dropna(subset = ['sex'])
@@ -630,9 +640,10 @@ pen_p.dropna(subset = ['sex'])
 pen_p.dropna(subset = ['sex']).value_counts(['sex'])
 ```
 
-
 ## 新たな列を作る
+
 ### 基本
+
 #### R
 
 ```{r}
@@ -657,8 +668,8 @@ pen_p[['species']].assign(species2 = pen_p['species'])
 
 ```
 
-
 ### 連続量のカテゴリ化列作成
+
 #### R
 
 ```{r}
@@ -683,9 +694,11 @@ pen_r |>
 #### Python
 
 <!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
+
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
 
 ##### 方法1 np.select
+
 ```{python class.source="bg-success"}
 ## 分布確認
 # import matplotlib.pyplot as plt
@@ -726,14 +739,14 @@ pen_p.assign(blmc = np.select(conditions, choices))
 # pen_p.value_counts(['blmc'])
 ```
 
-
 <!-- https://stackoverflow.com/questions/57609780/pandas-using-assign-and-if-else-statement-in-method-chaining -->
+
 <!-- https://stackoverflow.com/questions/49762705/if-else-conditional-assignment-in-pandas -->
 
-
-
 ##### 方法2 np.cut
+
 ###### デフォルトでは区分点までが範囲となる
+
 ```{python class.source="bg-success"}
 import pandas as pd
 
@@ -746,6 +759,7 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'],
 ```
 
 ###### 区分点未満までにするための引数
+
 ```{python class.source="bg-success"}
 (
 pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
@@ -758,6 +772,7 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'],
 ```
 
 ###### ラベル名付与
+
 ```{python class.source="bg-success"}
 (
 pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
@@ -769,13 +784,11 @@ pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'],
 
 ```
 
-
 ##### 方法3 np.where
 
-* ただし，thirdのカテゴリにNAが含まれてしまうため，工夫が必要
+-   ただし，thirdのカテゴリにNAが含まれてしまうため，工夫が必要
 
 <!-- https://stackoverflow.com/questions/39109045/numpy-where-with-multiple-conditions -->
-
 
 ```{python class.source="bg-success"}
 
@@ -789,7 +802,7 @@ pen_p.assign(blmc3 = np.where(pen_p.bill_length_mm < 40, 'first',
 
 ```
 
-* bill_length_mmがnanだった場合にblmc3をnanに変換
+-   bill_length_mmがnanだった場合にblmc3をnanに変換
 
 ```{python class.source="bg-success"}
 pen_p = (
@@ -804,8 +817,8 @@ pen_p.loc[pen_p.bill_length_mm.isnull(), 'blmc3'] = np.nan
 pen_p.value_counts(['blmc3'])
 ```
 
-
 ### 条件で新しい列作成
+
 #### R
 
 ```{r}
@@ -817,6 +830,7 @@ pen_r |>
 #### Python
 
 <!-- 欠損値のあつかい -->
+
 <!-- https://stackoverflow.com/questions/66081445/from-r-to-python-ifelse-conditional-in-mutate-dataframe -->
 
 ```{python class.source="bg-success"}
@@ -827,6 +841,7 @@ pen_p.assign(species2 = np.where(pen_p['species'].isin(['Adelie']), 1, 0))
 ```
 
 ### 
+
 #### R
 
 ```{r}
@@ -875,8 +890,6 @@ pen_p.bill_length_mm.agg(['mean', 'std', 'count'])
 
 pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count']})
 ```
-
-
 
 ### 変数複数
 
@@ -953,10 +966,8 @@ pen_r |>
 pen_p.agg('mean')
 ```
 
+### 度数分布
 
-
-
-### 度数分布 
 #### R
 
 ```{r}
@@ -973,7 +984,8 @@ pen_p.value_counts(['species'])
 pen_p.value_counts(['sex'], dropna = False)
 ```
 
-### 複数列の組み合わせの度数 
+### 複数列の組み合わせの度数
+
 #### R
 
 ```{r}
@@ -987,20 +999,15 @@ pen_p.value_counts(['species', 'sex'])
 
 ```
 
+### クロス表
 
-
-### クロス表 
 #### R
-
 
 ```{r}
 table(pen_r$species, pen_r$sex)
 ```
 
-
 #### Python
-
-
 
 ```{python class.source="bg-success"}
 pd.crosstab(pen_p['species'], pen_p['sex'])
@@ -1008,6 +1015,7 @@ pd.crosstab(pen_p.species, pen_p.sex)
 ```
 
 ## 動詞をつなげる
+
 ### R
 
 -   `|>`でつなげる
@@ -1022,7 +1030,7 @@ pen_r |>
 
 ### Python
 
--   [pandasチートシート]<https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
+-   [pandasチートシート]\<<https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf>
 -   `.`(ドット，ピリオド)でつなげてコード全体を`( )`で囲む
 
 ```{python class.source="bg-success"}
@@ -1239,6 +1247,8 @@ df_r_a_long |>
 
 #### Python
 
+* id列を示したい場合は，引数`index =`に列名を指定することで，indexとしてなら示せる
+
 ```{python class.source="bg-success"}
 df_py_a_long.pivot(index = ['id'],
                    columns = ['変数'],
@@ -1246,6 +1256,7 @@ df_py_a_long.pivot(index = ['id'],
 ```
 
 ### ※テンプレ
+
 #### R
 
 ```{r}
@@ -1259,8 +1270,11 @@ df_py_a_long.pivot(index = ['id'],
 ```
 
 # ファイルの読み書き
+
 ## ファイルの読み込み
+
 ### Excelファイル
+
 #### R
 
 ```{r}
@@ -1274,7 +1288,9 @@ pd.read_excel('data/ペンギン.xlsx')
 ```
 
 ### csvファイル
+
 #### utf-8
+
 ##### R
 
 ```{r}
@@ -1293,6 +1309,7 @@ penp_csv
 ```
 
 #### shift-jis(cp932)
+
 ##### R
 
 ```{r}
@@ -1308,11 +1325,12 @@ pd.read_csv('data/ペンギン（ひどい列名）ver_cp932.csv',
 ```
 
 ## ファイルの書き出し
+
 ### Excelファイル
 
 #### R
 
-* `library(writexl)`を読み込んでいれば，`writexl::`は不要
+-   `library(writexl)`を読み込んでいれば，`writexl::`は不要
 
 ```{r eval = FALSE}
 pen_r |>
@@ -1328,10 +1346,10 @@ pen_p.head(3).to_excel("out/pen_p_head.xlsx", index = False)
 
 ```
 
-
 ### csvファイル
 
 #### R
+
 ```{r eval = FALSE}
 pen_r |>
   head(3) |> 
@@ -1345,13 +1363,12 @@ pen_p.head(3).to_csv("out/pen_p_head.csv", index = False)
 
 ```
 
-
-
 # 関数定義
 
-* https://rstudio.github.io/reticulate/articles/python_primer.html#defining-functions-with-def
+-   <https://rstudio.github.io/reticulate/articles/python_primer.html#defining-functions-with-def>
 
 ## 基本
+
 ### R
 
 ```{r}
@@ -1372,6 +1389,7 @@ fn_p(1)
 ```
 
 ## 無名関数
+
 ### R
 
 ```{r}
@@ -1381,7 +1399,7 @@ fn_p(1)
 
 ### Python
 
-* https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html
+-   <https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html>
 
 ```{python class.source="bg-success"}
 
@@ -1391,10 +1409,10 @@ fn_p(1)
 
 ```
 
-
-
 # ※テンプレ
+
 ## 
+
 ### R
 
 ```{r}
@@ -1409,6 +1427,9 @@ fn_p(1)
 # 参考情報
 
 <!-- https://book.pythontips.com/en/latest/index.html# -->
+
 <!-- https://cs.stanford.edu/people/nick/py/ -->
+
 <!-- https://python-course.eu/advanced-python/ -->
+
 <!-- https://rinatz.github.io/python-book/ -->
