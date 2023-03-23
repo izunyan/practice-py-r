@@ -373,7 +373,7 @@ r.r_nl
 -   Rのtidyverseのイメージ :🌌
 -   Pythonのpandasのイメージ:🐼
 
-## Pythonの資料
+## Pandasの資料
 
 -   cheatsheet
     -   <https://pandas.pydata.org/docs/whatsnew/v0.19.2.html>
@@ -1425,6 +1425,9 @@ fn_p(1)
 ```
 
 # 参考情報
+
+- [Python for Data Analysis, 3E](https://wesmckinney.com/book/)
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
 
 <!-- https://book.pythontips.com/en/latest/index.html# -->
 
