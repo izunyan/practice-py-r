@@ -1374,8 +1374,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -1383,16 +1383,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -1512,7 +1505,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2022/12/13</h4>
+<h4 class="date">2023/03/31</h4>
 
 </div>
 
@@ -1700,7 +1693,7 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2022-12-13
+##  date     2023-03-31
 ##  pandoc   2.17.1.1 @ C:/Program Files/RStudio/bin/quarto/bin/ (via rmarkdown)</code></pre>
 <!-- xfun::session_info() -->
 </div>
@@ -1997,8 +1990,8 @@ PythonでRのオブジェクトを読む</h2>
 <li>Rのtidyverseのイメージ :🌌</li>
 <li>Pythonのpandasのイメージ:🐼</li>
 </ul>
-<div id="pythonの資料" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Pythonの資料</h2>
+<div id="pandasの資料" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Pandasの資料</h2>
 <ul>
 <li>cheatsheet
 <ul>
@@ -2382,14 +2375,15 @@ pen_p.columns</code></pre>
   rename(species2 = species,
          island2  = island)</code></pre>
 <pre><code>## # A tibble: 344 × 8
-##   species2 island2   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   &lt;fct&gt;    &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-## 1 Adelie   Torgersen           39.1          18.7               181        3750
-## 2 Adelie   Torgersen           39.5          17.4               186        3800
-## 3 Adelie   Torgersen           40.3          18                 195        3250
-## 4 Adelie   Torgersen           NA            NA                  NA          NA
-## 5 Adelie   Torgersen           36.7          19.3               193        3450
-## # … with 339 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+##   species2 island2   bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+##   &lt;fct&gt;    &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Adelie   Torgersen           39.1          18.7        181    3750 male   2007
+## 2 Adelie   Torgersen           39.5          17.4        186    3800 fema…  2007
+## 3 Adelie   Torgersen           40.3          18          195    3250 fema…  2007
+## 4 Adelie   Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
+## 5 Adelie   Torgersen           36.7          19.3        193    3450 fema…  2007
+## # … with 339 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 </div>
 <div id="python-6" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Python</h3>
@@ -2422,25 +2416,27 @@ pen_p.columns</code></pre>
 <pre class="r"><code># 昇順
 pen_r |&gt; arrange(bill_length_mm)</code></pre>
 <pre><code>## # A tibble: 344 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Adelie  Dream            32.1          15.5              188        3050 fema…
-## 2 Adelie  Dream            33.1          16.1              178        2900 fema…
-## 3 Adelie  Torge…           33.5          19                190        3600 fema…
-## 4 Adelie  Dream            34            17.1              185        3400 fema…
-## 5 Adelie  Torge…           34.1          18.1              193        3475 &lt;NA&gt; 
-## # … with 339 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+##   species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Adelie  Dream               32.1          15.5         188    3050 fema…  2009
+## 2 Adelie  Dream               33.1          16.1         178    2900 fema…  2008
+## 3 Adelie  Torgersen           33.5          19           190    3600 fema…  2008
+## 4 Adelie  Dream               34            17.1         185    3400 fema…  2008
+## 5 Adelie  Torgersen           34.1          18.1         193    3475 &lt;NA&gt;   2007
+## # … with 339 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 <pre class="r"><code># 降順
 pen_r |&gt; arrange(desc(bill_length_mm))</code></pre>
 <pre><code>## # A tibble: 344 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Gentoo  Biscoe           59.6          17                230        6050 male 
-## 2 Chinst… Dream            58            17.8              181        3700 fema…
-## 3 Gentoo  Biscoe           55.9          17                228        5600 male 
-## 4 Chinst… Dream            55.8          19.8              207        4000 male 
-## 5 Gentoo  Biscoe           55.1          16                230        5850 male 
-## # … with 339 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+##   species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;        &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Gentoo    Biscoe           59.6          17            230    6050 male   2007
+## 2 Chinstrap Dream            58            17.8          181    3700 fema…  2007
+## 3 Gentoo    Biscoe           55.9          17            228    5600 male   2009
+## 4 Chinstrap Dream            55.8          19.8          207    4000 male   2009
+## 5 Gentoo    Biscoe           55.1          16            230    5850 male   2009
+## # … with 339 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 </div>
 <div id="python-7" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Python</h3>
@@ -2488,44 +2484,46 @@ pen_p.sort_values(&#39;bill_length_mm&#39;)
 <pre class="r"><code>pen_r |&gt; 
   filter(bill_length_mm &gt; 55)</code></pre>
 <pre><code>## # A tibble: 5 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Gentoo  Biscoe           59.6          17                230        6050 male 
-## 2 Gentoo  Biscoe           55.9          17                228        5600 male 
-## 3 Gentoo  Biscoe           55.1          16                230        5850 male 
-## 4 Chinst… Dream            58            17.8              181        3700 fema…
-## 5 Chinst… Dream            55.8          19.8              207        4000 male 
-## # … with 1 more variable: year &lt;int&gt;</code></pre>
+##   species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;        &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Gentoo    Biscoe           59.6          17            230    6050 male   2007
+## 2 Gentoo    Biscoe           55.9          17            228    5600 male   2009
+## 3 Gentoo    Biscoe           55.1          16            230    5850 male   2009
+## 4 Chinstrap Dream            58            17.8          181    3700 fema…  2007
+## 5 Chinstrap Dream            55.8          19.8          207    4000 male   2009
+## # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
 <pre class="r"><code>pen_r |&gt; 
   filter(bill_length_mm &gt; 55 &amp; bill_depth_mm == 17)</code></pre>
 <pre><code>## # A tibble: 2 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Gentoo  Biscoe           59.6            17              230        6050 male 
-## 2 Gentoo  Biscoe           55.9            17              228        5600 male 
-## # … with 1 more variable: year &lt;int&gt;</code></pre>
+##   species island bill_length_mm bill_depth_mm flipper_leng…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;          &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Gentoo  Biscoe           59.6            17            230    6050 male   2007
+## 2 Gentoo  Biscoe           55.9            17            228    5600 male   2009
+## # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
 <pre class="r"><code>pen_r |&gt; 
   filter(species == &quot;Gentoo&quot;)</code></pre>
 <pre><code>## # A tibble: 124 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Gentoo  Biscoe           46.1          13.2              211        4500 fema…
-## 2 Gentoo  Biscoe           50            16.3              230        5700 male 
-## 3 Gentoo  Biscoe           48.7          14.1              210        4450 fema…
-## 4 Gentoo  Biscoe           50            15.2              218        5700 male 
-## 5 Gentoo  Biscoe           47.6          14.5              215        5400 male 
-## # … with 119 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+##   species island bill_length_mm bill_depth_mm flipper_leng…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;          &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Gentoo  Biscoe           46.1          13.2            211    4500 fema…  2007
+## 2 Gentoo  Biscoe           50            16.3            230    5700 male   2007
+## 3 Gentoo  Biscoe           48.7          14.1            210    4450 fema…  2007
+## 4 Gentoo  Biscoe           50            15.2            218    5700 male   2007
+## 5 Gentoo  Biscoe           47.6          14.5            215    5400 male   2007
+## # … with 119 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 <pre class="r"><code>pen_r |&gt; 
   filter(str_detect(species, &quot;Gen&quot;))</code></pre>
 <pre><code>## # A tibble: 124 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Gentoo  Biscoe           46.1          13.2              211        4500 fema…
-## 2 Gentoo  Biscoe           50            16.3              230        5700 male 
-## 3 Gentoo  Biscoe           48.7          14.1              210        4450 fema…
-## 4 Gentoo  Biscoe           50            15.2              218        5700 male 
-## 5 Gentoo  Biscoe           47.6          14.5              215        5400 male 
-## # … with 119 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+##   species island bill_length_mm bill_depth_mm flipper_leng…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;          &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Gentoo  Biscoe           46.1          13.2            211    4500 fema…  2007
+## 2 Gentoo  Biscoe           50            16.3            230    5700 male   2007
+## 3 Gentoo  Biscoe           48.7          14.1            210    4450 fema…  2007
+## 4 Gentoo  Biscoe           50            15.2            218    5700 male   2007
+## 5 Gentoo  Biscoe           47.6          14.5            215    5400 male   2007
+## # … with 119 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 </div>
 <div id="python-8" class="section level4" number="5.6.1.2">
 <h4><span class="header-section-number">5.6.1.2</span> Python</h4>
@@ -2610,14 +2608,15 @@ pen_p.sort_values(&#39;bill_length_mm&#39;)
 <pre class="r"><code>pen_r |&gt; 
   drop_na(sex, bill_length_mm)</code></pre>
 <pre><code>## # A tibble: 333 × 8
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
-## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
-## 3 Adelie  Torge…           40.3          18                195        3250 fema…
-## 4 Adelie  Torge…           36.7          19.3              193        3450 fema…
-## 5 Adelie  Torge…           39.3          20.6              190        3650 male 
-## # … with 328 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+##   species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
+## 2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
+## 3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
+## 4 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
+## 5 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+## # … with 328 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g</code></pre>
 <pre class="r"><code># 確認
 pen_r |&gt; 
   drop_na(sex, bill_length_mm) |&gt; 
@@ -2668,15 +2667,15 @@ pen_r |&gt;
   mutate(species2 = species,
          island2 = island) </code></pre>
 <pre><code>## # A tibble: 344 × 10
-##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
-## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
-## 3 Adelie  Torge…           40.3          18                195        3250 fema…
-## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
-## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
-## # … with 339 more rows, and 3 more variables: year &lt;int&gt;, species2 &lt;fct&gt;,
-## #   island2 &lt;fct&gt;</code></pre>
+##   species island    bill_l…¹ bill_…² flipp…³ body_…⁴ sex    year speci…⁵ island2
+##   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;  
+## 1 Adelie  Torgersen     39.1    18.7     181    3750 male   2007 Adelie  Torger…
+## 2 Adelie  Torgersen     39.5    17.4     186    3800 fema…  2007 Adelie  Torger…
+## 3 Adelie  Torgersen     40.3    18       195    3250 fema…  2007 Adelie  Torger…
+## 4 Adelie  Torgersen     NA      NA        NA      NA &lt;NA&gt;   2007 Adelie  Torger…
+## 5 Adelie  Torgersen     36.7    19.3     193    3450 fema…  2007 Adelie  Torger…
+## # … with 339 more rows, and abbreviated variable names ¹​bill_length_mm,
+## #   ²​bill_depth_mm, ³​flipper_length_mm, ⁴​body_mass_g, ⁵​species2</code></pre>
 <pre class="r"><code># 列を選択してから（表示のため）
 pen_r |&gt; 
   select(species) |&gt; 
@@ -3006,10 +3005,11 @@ pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count
                           sd =   ~sd(., na.rm = TRUE),
                            n =  ~sum(!is.na(.)))))</code></pre>
 <pre><code>## # A tibble: 1 × 6
-##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_depth_mm_mean
-##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;              &lt;dbl&gt;
-## 1                43.9              5.46              342               17.2
-## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
+##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_…¹ bill_…² bill_…³
+##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+## 1                43.9              5.46              342    17.2    1.97     342
+## # … with abbreviated variable names ¹​bill_depth_mm_mean, ²​bill_depth_mm_sd,
+## #   ³​bill_depth_mm_n</code></pre>
 <pre class="r"><code># 列名格納版
 cols &lt;- c(&quot;bill_length_mm&quot;, &quot;bill_depth_mm&quot;)
 pen_r |&gt; 
@@ -3018,10 +3018,11 @@ pen_r |&gt;
                           sd =   ~sd(., na.rm = TRUE),
                            n =  ~sum(!is.na(.)))))</code></pre>
 <pre><code>## # A tibble: 1 × 6
-##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_depth_mm_mean
-##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;              &lt;dbl&gt;
-## 1                43.9              5.46              342               17.2
-## # … with 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
+##   bill_length_mm_mean bill_length_mm_sd bill_length_mm_n bill_…¹ bill_…² bill_…³
+##                 &lt;dbl&gt;             &lt;dbl&gt;            &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+## 1                43.9              5.46              342    17.2    1.97     342
+## # … with abbreviated variable names ¹​bill_depth_mm_mean, ²​bill_depth_mm_sd,
+## #   ³​bill_depth_mm_n</code></pre>
 </div>
 <div id="python-15" class="section level4" number="5.8.2.2">
 <h4><span class="header-section-number">5.8.2.2</span> Python</h4>
@@ -3586,14 +3587,15 @@ df_py_a_long          </code></pre>
 <h4><span class="header-section-number">7.1.1.1</span> R</h4>
 <pre class="r"><code>readxl::read_xlsx(&quot;data/ペンギン.xlsx&quot;)</code></pre>
 <pre><code>## # A tibble: 344 × 9
-##   species 種類  island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;
-## 1 Adelie  アデ… Torge…           39.1          18.7              181        3750
-## 2 Adelie  アデ… Torge…           39.5          17.4              186        3800
-## 3 Adelie  アデ… Torge…           40.3          18                195        3250
-## 4 Adelie  アデ… Torge…           NA            NA                 NA          NA
-## 5 Adelie  アデ… Torge…           36.7          19.3              193        3450
-## # … with 339 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+##   species 種類     island    bill_length_mm bill_d…¹ flipp…² body_…³ sex    year
+##   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+## 1 Adelie  アデリー Torgersen           39.1     18.7     181    3750 male   2007
+## 2 Adelie  アデリー Torgersen           39.5     17.4     186    3800 fema…  2007
+## 3 Adelie  アデリー Torgersen           40.3     18       195    3250 fema…  2007
+## 4 Adelie  アデリー Torgersen           NA       NA        NA      NA &lt;NA&gt;   2007
+## 5 Adelie  アデリー Torgersen           36.7     19.3     193    3450 fema…  2007
+## # … with 339 more rows, and abbreviated variable names ¹​bill_depth_mm,
+## #   ²​flipper_length_mm, ³​body_mass_g</code></pre>
 </div>
 <div id="python-30" class="section level4" number="7.1.1.2">
 <h4><span class="header-section-number">7.1.1.2</span> Python</h4>
@@ -3625,15 +3627,16 @@ read_csv(&quot;data/ペンギン（ひどい列名）ver_utf8.csv&quot;)
 
 penr_csv</code></pre>
 <pre><code>## # A tibble: 344 × 9
-##   Sｐｅｃｉｅｓ `種　類` `※島の名前` `①クチバシ　長さ（ｍｍ）` `②ｸﾁﾊﾞｼ＿大きさ…`
-##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt;
-## 1 Adelie        アデリー Torgersen                        39.1              18.7
-## 2 Adelie        アデリー Torgersen                        39.5              17.4
-## 3 Adelie        アデリー Torgersen                        40.3              18  
-## 4 Adelie        アデリー Torgersen                        NA                NA  
-## 5 Adelie        アデリー Torgersen                        36.7              19.3
-## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
-## #   `■体重　単位はｇ` &lt;dbl&gt;, `㊛㊚` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
+##   Sｐｅｃｉｅｓ `種　類` ※島の…¹  ①クチ…² ②ｸﾁﾊﾞ…³ 翼：…⁴ ■体重…⁵ `㊛㊚` ２００…⁶
+##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1 Adelie        アデリー Torgers…    39.1    18.7    181    3750 male       2007
+## 2 Adelie        アデリー Torgers…    39.5    17.4    186    3800 female     2007
+## 3 Adelie        アデリー Torgers…    40.3    18      195    3250 female     2007
+## 4 Adelie        アデリー Torgers…    NA      NA       NA      NA &lt;NA&gt;       2007
+## 5 Adelie        アデリー Torgers…    36.7    19.3    193    3450 female     2007
+## # … with 339 more rows, and abbreviated variable names ¹​`※島の名前`,
+## #   ²​`①クチバシ　長さ（ｍｍ）`, ³​`②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）`, ⁴​`翼：長さ(mm)`,
+## #   ⁵​`■体重　単位はｇ`, ⁶​`２００７～２００９`</code></pre>
 </div>
 <div id="python-31" class="section level5" number="7.1.2.1.2">
 <h5><span class="header-section-number">7.1.2.1.2</span> Python</h5>
@@ -3664,15 +3667,16 @@ shift-jis(cp932)</h4>
 <pre class="r"><code>read_csv(&quot;data/ペンギン（ひどい列名）ver_cp932.csv&quot;,
          locale = locale(encoding = &quot;cp932&quot;))</code></pre>
 <pre><code>## # A tibble: 344 × 9
-##   Sｐｅｃｉｅｓ `種　類` `※島の名前` `①クチバシ　長さ（ｍｍ）` `②ｸﾁﾊﾞｼ＿大きさ…`
-##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt;
-## 1 Adelie        アデリー Torgersen                        39.1              18.7
-## 2 Adelie        アデリー Torgersen                        39.5              17.4
-## 3 Adelie        アデリー Torgersen                        40.3              18  
-## 4 Adelie        アデリー Torgersen                        NA                NA  
-## 5 Adelie        アデリー Torgersen                        36.7              19.3
-## # … with 339 more rows, and 4 more variables: `翼：長さ(mm)` &lt;dbl&gt;,
-## #   `■体重　単位はｇ` &lt;dbl&gt;, `??` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
+##   Sｐｅｃｉｅｓ `種　類` ※島の…¹   ①クチ…² ②ｸﾁﾊﾞ…³ 翼：…⁴ ■体重…⁵ `??`   ２０…⁶
+##   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 Adelie        アデリー Torgersen    39.1    18.7    181    3750 male     2007
+## 2 Adelie        アデリー Torgersen    39.5    17.4    186    3800 female   2007
+## 3 Adelie        アデリー Torgersen    40.3    18      195    3250 female   2007
+## 4 Adelie        アデリー Torgersen    NA      NA       NA      NA &lt;NA&gt;     2007
+## 5 Adelie        アデリー Torgersen    36.7    19.3    193    3450 female   2007
+## # … with 339 more rows, and abbreviated variable names ¹​`※島の名前`,
+## #   ²​`①クチバシ　長さ（ｍｍ）`, ³​`②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）`, ⁴​`翼：長さ(mm)`,
+## #   ⁵​`■体重　単位はｇ`, ⁶​`２００７～２００９`</code></pre>
 </div>
 <div id="python-32" class="section level5" number="7.1.2.2.2">
 <h5><span class="header-section-number">7.1.2.2.2</span> Python</h5>
@@ -3790,6 +3794,12 @@ fn_p(1)  </code></pre>
 </div>
 <div id="参考情報" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> 参考情報</h1>
+<ul>
+<li><a href="https://wesmckinney.com/book/">Python for Data Analysis,
+3E</a></li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data
+Science Handbook</a></li>
+</ul>
 <!-- https://book.pythontips.com/en/latest/index.html# -->
 <!-- https://cs.stanford.edu/people/nick/py/ -->
 <!-- https://python-course.eu/advanced-python/ -->
