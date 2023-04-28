@@ -113,6 +113,10 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 ![](image/Python_rstudio.png)
 
 
+- Minicondaのインストールを求められても'n'を入力
+![](image/miniconda.png)
+
+
 ## その他
 ### ブラウザからjupyter labを使うこともできる
 
@@ -649,12 +653,16 @@ pen_p.dropna(subset = ['sex']).value_counts(['sex'])
 ```{r}
 pen_r |> 
   mutate(species2 = species,
-         island2 = island) 
+         island2 = island,
+         .keep = "used")   # 使用した列のみに 
+
+
+
 
 # 列を選択してから（表示のため）
-pen_r |> 
-  select(species) |> 
-  mutate(species2 = species) 
+# pen_r |> 
+#   select(species) |> 
+#   mutate(species2 = species) 
 ```
 
 #### Python
@@ -667,6 +675,32 @@ pen_p.assign(species2 = pen_p['species'],
 pen_p[['species']].assign(species2 = pen_p['species'])  
 
 ```
+
+### 平均値列作成
+#### R
+```{r}
+pen_r |> 
+  mutate(blmm_mean = mean(bill_length_mm, na.rm = TRUE),
+         .keep = "used")
+
+pen_r |> 
+  group_by(species) |> 
+  mutate(blmm_mean = mean(bill_length_mm, na.rm = TRUE),
+         .keep = "used") |> 
+  slice(1:2)                # speciesごとに最初の2行ずつ表示
+```
+
+#### python
+```{python class.source="bg-success"}
+pen_p.assign(blmm_mean = pen_p['bill_length_mm'].mean())
+
+# できない？
+# pen_p.groupby('species').assign(blmm_mean = pen_p['bill_length_mm'].mean())
+
+
+
+```
+
 
 ### 連続量のカテゴリ化列作成
 
@@ -743,7 +777,7 @@ pen_p.assign(blmc = np.select(conditions, choices))
 
 <!-- https://stackoverflow.com/questions/49762705/if-else-conditional-assignment-in-pandas -->
 
-##### 方法2 np.cut
+##### 方法2 pd.cut
 
 ###### デフォルトでは区分点までが範囲となる
 
