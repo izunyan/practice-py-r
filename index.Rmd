@@ -376,13 +376,47 @@ r.r_nl
 
 -   Rのtidyverseのイメージ :🌌
 -   Pythonのpandasのイメージ:🐼
+-   PythonのPolarsのイメージ:️
 
-## Pandasの資料
+## 資料
+### Python
 
+
+
+### pandas
+-   公式ドキュメント
+    -   <https://pandas.pydata.org/>
 -   cheatsheet
     -   <https://pandas.pydata.org/docs/whatsnew/v0.19.2.html>
 -   cookbook
     -   <https://pandas.pydata.org/docs/user_guide/cookbook.html>
+
+### polars
+-   公式ドキュメント
+    -   <https://www.pola.rs/>
+-   cheatsheet
+    -   <https://github.com/FranzDiebold/polars-cheat-sheet>
+
+-   Modern Polars 
+    -   polarsとpandasの比較
+    -   <https://kevinheavey.github.io/modern-polars/>
+
+## ★パッケージ読み込み
+
+### R
+```{r}
+library(tidyverse)
+
+```
+
+
+### Python
+```{python class.source="bg-success"}
+import pandas as pd
+import polars as pl
+
+
+```
 
 ## ★データフレーム読み込み
 
@@ -390,7 +424,7 @@ r.r_nl
 
 ```{r}
 pen_r <-   palmerpenguins::penguins
-
+pen_r
 ```
 
 ### Pythonでもペンギン
@@ -405,6 +439,15 @@ pen_p = load_penguins()
 pen_p
 ```
 
+### Python(polarsでcsvファイルから)
+
+- 日本語の列を1つ追加しているため，列数が9となる
+
+```{python class.source="bg-success"}
+pen_pl = pl.read_csv("data/ペンギン_utf8.csv")
+pen_pl
+```
+
 ## 列を選ぶ
 
 ### 列名から
@@ -414,7 +457,6 @@ pen_p
 -   単一
 
 ```{r}
-library(tidyverse)
 
 # 列名確認
 names(pen_r)
@@ -442,6 +484,8 @@ pen_r |> pull(species)
 
 #### Python
 
+##### pandas
+
 -   単一
 
 ```{python class.source="bg-success"}
@@ -459,6 +503,11 @@ pen_p[['species']]
 pen_p[['species', 'bill_length_mm']]
 
 
+```
+
+
+```{python class.source="bg-success"}
+
 pen_p.loc[:, 'species':'bill_length_mm']
 ```
 
@@ -470,6 +519,24 @@ pen_p.loc[:, 'species':'bill_length_mm']
 pen_p['species']
 pen_p.species
 ```
+
+##### polars
+
+-   単一
+
+```{python class.source="bg-success"}
+# 列名確認
+pen_pl.columns
+pen_pl.select("species")
+```
+
+-   複数列
+
+```{python class.source="bg-success"}
+pen_pl.select(["species", "sex"])
+
+```
+
 
 ### 列名を正規表現で選ぶ
 
@@ -488,6 +555,7 @@ pen_r |>
 ```
 
 #### Python
+##### pandas
 
 <!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 
@@ -503,6 +571,18 @@ pen_p.loc[:, pen_p.columns.str.match('^bill')]
 
 ```
 
+##### polars
+
+- 検索したい文字列に加え`".*$"`の指定が必要
+    - `polars.col`: https://pola-rs.github.io/polars/py-polars/html/reference/expressions/api/polars.col.html#polars.col
+    
+  
+```{python class.source="bg-success"}
+pen_pl.select(pl.col("^bill.*$"))
+
+```
+
+
 ### 列を削除する
 
 #### R
@@ -512,24 +592,31 @@ pen_r |> select(!c(species, island))
 ```
 
 #### Python
-
+##### pandas
 ```{python class.source="bg-success"}
 pen_p.drop(columns = ['species', 'island'])
 ```
 
-### 
 
-#### R
-
-```{r}
-
-```
-
-#### Python
-
+##### polars
 ```{python class.source="bg-success"}
-
+pen_pl.drop(["species", "island"])
 ```
+
+
+<!-- ###  -->
+
+<!-- #### R -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- #### Python -->
+
+<!-- ```{python class.source="bg-success"} -->
+
+<!-- ``` -->
 
 ## 列名を変更する
 
@@ -545,6 +632,8 @@ pen_r |>
 
 ### Python
 
+#### pandas
+
 -   'old':'new'
 
 ```{python class.source="bg-success"}
@@ -552,6 +641,14 @@ pen_p.rename(columns = {'species':'species2',
                         'island':'island2'})
 
 ```
+
+#### polars
+```{python class.source="bg-success"}
+pen_pl.rename({"species":"species2",
+              "island":"island2"})
+```
+
+
 
 ## 列の値で並び変える
 
@@ -568,7 +665,7 @@ pen_r |> arrange(desc(bill_length_mm))
 ```
 
 ### Python
-
+#### pandas
 ```{python class.source="bg-success"}
 # 昇順
 pen_p.sort_values('bill_length_mm')
@@ -576,6 +673,16 @@ pen_p.sort_values('bill_length_mm')
 # 降順
 pen_p.sort_values('bill_length_mm', ascending = False)
 ```
+
+#### polars
+```{python class.source="bg-success"}
+# 昇順
+pen_pl.sort("bill_length_mm")
+
+# 降順
+pen_pl.sort("bill_length_mm", descending = True)
+```
+
 
 ## 行を選ぶ
 
@@ -609,15 +716,30 @@ pen_r |>
 ```{python class.source="bg-success"}
 pen_p[pen_p['bill_length_mm'] > 55]
 pen_p[pen_p.bill_length_mm > 55]
+```
 
+
+##### pandas
+```{python class.source="bg-success"}
+# data frame
 pen_p.query('bill_length_mm > 55 & bill_depth_mm == 17')
-
 pen_p.query('species == "Gentoo"')
 
+# series
 pen_p[pen_p['species'].str.contains('Gen')] # match
 pen_p.loc[pen_p.species.str.contains('Gen')] # match
 
 ```
+
+
+##### polars
+```{python class.source="bg-success"}
+pen_pl.filter((pl.col("bill_length_mm") > 55)
+              & (pl.col("bill_depth_mm") == 17))
+
+
+```
+
 
 ### 欠損のある行を落とす
 
@@ -641,7 +763,22 @@ pen_r |>
 pen_p.dropna(subset = ['sex'])
 
 # 確認
-pen_p.dropna(subset = ['sex']).value_counts(['sex'])
+
+pen_p['sex'].value_counts(dropna = False)
+pen_p['sex'].dropna().value_counts(dropna = False)
+
+# pen_p.value_counts(['sex'], dropna = False)
+# pen_p.dropna(subset = ['sex']).value_counts(['sex'], dropna = False)
+```
+
+```{python class.source="bg-success"}
+pen_pl.drop_nulls(subset = ["sex"])
+
+# 確認
+pen_pl["sex"].value_counts()
+pen_pl["sex"].drop_nulls().value_counts()
+
+# pen_pl.drop_nulls(subset = ['sex']).select([pl.col("sex").value_counts()])
 ```
 
 ## 新たな列を作る
@@ -666,13 +803,48 @@ pen_r |>
 ```
 
 #### Python
-
+##### pandas 
 ```{python class.source="bg-success"}
 pen_p.assign(species2 = pen_p['species'],
               island2 = pen_p['island'])
 
 # 列を選択してから表示のため
 pen_p[['species']].assign(species2 = pen_p['species'])  
+
+```
+
+
+##### polars 
+
+- alias()はRename the output of an expression.
+- https://pola-rs.github.io/polars/py-polars/html/reference/expressions/api/polars.Expr.alias.html#polars.Expr.alias
+
+```{python class.source="bg-success"}
+
+pen_pl.with_columns((pl.col("species")).alias("species2"))
+
+
+# 列を選択してから表示のため
+(
+pen_pl
+  .select("species")
+  .with_columns((pl.col("species"))
+  .alias("species2"))
+)
+
+```
+
+- キーワードの引数でも新しい列名をつけられる
+
+```{python class.source="bg-success"}
+# 列を選択してから表示のため
+(
+pen_pl
+  .select(["species", "sex"])
+  .with_columns(species2 = pl.col("species"),
+                    sex2 = pl.col("sex"))
+)
+
 
 ```
 
@@ -691,16 +863,23 @@ pen_r |>
 ```
 
 #### python
+##### pandas
 ```{python class.source="bg-success"}
-pen_p.assign(blmm_mean = pen_p['bill_length_mm'].mean())
+pen_p[['bill_length_mm']].assign(blmm_mean = pen_p['bill_length_mm'].mean())
 
 # できない？
 # pen_p.groupby('species').assign(blmm_mean = pen_p['bill_length_mm'].mean())
-
-
-
 ```
 
+##### polars
+```{python class.source="bg-success"}
+(
+pen_pl
+.select('bill_length_mm')
+.with_columns(blmm_mean = pl.col('bill_length_mm').mean())
+)
+
+```
 
 ### 連続量のカテゴリ化列作成
 
@@ -782,7 +961,6 @@ pen_p.assign(blmc = np.select(conditions, choices))
 ###### デフォルトでは区分点までが範囲となる
 
 ```{python class.source="bg-success"}
-import pandas as pd
 
 (
 pen_p.assign(blmc2 = lambda x: pd.cut(x['bill_length_mm'], 
@@ -906,6 +1084,7 @@ pen_r |>
 
 -   欠損値は自動で削除して計算されている
 
+##### pandas
 ```{python class.source="bg-success"}
 pen_p.bill_length_mm.mean()
 pen_p.bill_length_mm.std()
@@ -925,6 +1104,23 @@ pen_p.bill_length_mm.agg(['mean', 'std', 'count'])
 pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count']})
 ```
 
+##### polars
+```{python class.source="bg-success"}
+pen_pl.select(pl.col('bill_length_mm').mean())
+pen_pl.select(pl.col('bill_length_mm').std())
+pen_pl.select(pl.col('bill_length_mm').count())
+```
+
+
+<!-- ```{python class.source="bg-success"} -->
+<!-- pen_pl.agg([ -->
+<!--    pl.col([]).mean().suffix("_binmean"), -->
+<!--    pl.exclude("datetime").count().suffix("_bincount") -->
+<!-- ]) -->
+
+<!-- ``` -->
+
+
 ### 変数複数
 
 #### R
@@ -932,22 +1128,23 @@ pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count']})
 ```{r}
 pen_r |> 
   summarise(across(c(bill_length_mm, bill_depth_mm),
-                   list(mean = ~mean(., na.rm = TRUE),
-                          sd =   ~sd(., na.rm = TRUE),
-                           n =  ~sum(!is.na(.)))))
+                   list(mean = \(x) mean(x, na.rm = TRUE),
+                          sd =  \(x) sd(x, na.rm = TRUE),
+                           n =  \(x) sum(!is.na(x)))))
 
 # 列名格納版
 cols <- c("bill_length_mm", "bill_depth_mm")
 pen_r |> 
   summarise(across(all_of(cols),
-                   list(mean = ~mean(., na.rm = TRUE),
-                          sd =   ~sd(., na.rm = TRUE),
-                           n =  ~sum(!is.na(.)))))
+                   list(mean = \(x) mean(x, na.rm = TRUE),
+                          sd =  \(x) sd(x, na.rm = TRUE),
+                           n =  \(x) sum(!is.na(x)))))
 
 
 ```
 
 #### Python
+##### pandas
 
 ```{python class.source="bg-success"}
 pen_p.agg({'bill_length_mm' : ['mean', 'std', 'count'],
@@ -966,6 +1163,15 @@ pen_p[cols].agg(['mean', 'std', 'count'])
 
 ```
 
+##### polars
+
+```{python class.source="bg-success"}
+pen_pl.select(
+   pl.col('bill_length_mm', 'bill_depth_mm').mean().suffix("_mean")
+   )
+```
+
+
 ### グループごとに集計
 
 #### R
@@ -978,11 +1184,30 @@ pen_r |>
 ```
 
 #### Python
+##### pandas
+* [python/pandas equivalent to dplyr 1.0.0 summarize(across())](https://stackoverflow.com/questions/63200530/python-pandas-equivalent-to-dplyr-1-0-0-summarizeacross)
+
+```{python class.source="bg-success"}
+pen_p.groupby('species').agg({'bill_length_mm' : ['mean']})
+
+```
+
+* series
 
 ```{python class.source="bg-success"}
 pen_p.groupby('species').bill_length_mm.agg('mean')
 
 ```
+
+##### polars
+
+*[polars.dataframe.groupby.GroupBy.agg](https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.dataframe.groupby.GroupBy.agg.html#polars.dataframe.groupby.GroupBy.agg)
+
+```{python}
+pen_pl.groupby("species").agg(pl.col("bill_length_mm").mean().prefix("mean_"))
+```
+
+
 
 ### データフレーム全体
 
@@ -995,10 +1220,16 @@ pen_r |>
 ```
 
 #### Python
-
+##### pandas
 ```{python class.source="bg-success"}
 pen_p.agg('mean')
 ```
+
+##### polars
+```{python class.source="bg-success"}
+pen_pl.mean()
+```
+
 
 ### 度数分布
 
@@ -1011,12 +1242,31 @@ pen_r |> count(sex)
 ```
 
 #### Python
-
+##### pandas
 ```{python class.source="bg-success"}
 pen_p.value_counts(['species'])
 
 pen_p.value_counts(['sex'], dropna = False)
 ```
+
+##### polars
+```{python class.source="bg-success"}
+pen_pl['species'].value_counts()
+
+pen_pl['sex'].value_counts()
+
+
+
+pen_pl.select(
+    [
+        pl.col("sex").value_counts(sort=True),
+    ]
+    )
+
+
+```
+
+
 
 ### 複数列の組み合わせの度数
 
@@ -1027,11 +1277,19 @@ pen_r |> count(species, sex)
 ```
 
 #### Python
-
+##### pandas
 ```{python class.source="bg-success"}
 pen_p.value_counts(['species', 'sex'])
 
 ```
+
+##### polars（分からないので調べ中）
+
+<!-- ```{python class.source="bg-success"} -->
+<!-- pen_pl.value_counts(['species', 'sex']) -->
+
+<!-- ``` -->
+
 
 ### クロス表
 
