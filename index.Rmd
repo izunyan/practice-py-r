@@ -53,17 +53,16 @@ options(tibble_opt)
 
 ## パッケージの管理（pip関連）
 
-```{=html}
+
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
-https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
+https://support.posit.co/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
 
-Installing and Configuring Python with RStudio
-https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio
+https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio
 
 
  -->
-```
+ 
 <!-- python Japan -->
 
 <!-- https://www.python.jp/install/windows/pip.html -->
@@ -98,10 +97,14 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 
 -   現在のディレクトリ表示
     -   `pwd`
+-   ディレクトリ内のファイル一覧表示
+    -   `dir`
+-   1つ上の階層に移動
+    -   `cd ..`
 -   ルートに移動
     -   `cd \`
 -   ディレクトリに移動しカレントに
-    -   `cd ここにパス`
+    -   `cd ここにパス,カレントディレクトリ内ならフォルダ名`
 -   フォルダ作成
     -   `mkdir フォルダ名`
 -   構造図式化
@@ -136,9 +139,7 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 -   仮想環境から出る
     -   `deactivate`
 
-### RStudioで初めてPythonを実行する際の注意
 
--   コンソールでminicondaのインストールをきかれたらNo(n)と回答
 
 ## 実行環境
 
@@ -165,7 +166,7 @@ rsinfo$version
 
 ### Python
 
-```{r include=FALSE}
+```{r eval=FALSE, include=FALSE}
 reticulate::repl_python()
 ```
 
@@ -429,22 +430,31 @@ pen_r
 
 ### Pythonでもペンギン
 
--   ペンギンデータ for python
+-   seabornパッケージにpenguinsデータが入っている
+-   pypiからpalmerpenguinsをインストールして使うことも可能
     -   <https://pypi.org/project/palmerpenguins/>
 
 ```{python class.source="bg-success"}
-from palmerpenguins import load_penguins
-pen_p = load_penguins()
+import seaborn as sns
+pen_p = sns.load_dataset("penguins")
+
+# from palmerpenguins import load_penguins
+# pen_p = load_penguins()
  
 pen_p
 ```
 
-### Python(polarsでcsvファイルから)
+### Python(polars)
 
-- 日本語の列を1つ追加しているため，列数が9となる
+- csvを読む場合は日本語の列を1つ追加しているため，列数が9となる
 
 ```{python class.source="bg-success"}
-pen_pl = pl.read_csv("data/ペンギン_utf8.csv")
+pen_pl = (sns.load_dataset("penguins")
+          .pipe(pl.from_pandas)
+        )
+
+
+# pen_pl = pl.read_csv("data/ペンギン_utf8.csv")
 pen_pl
 ```
 
@@ -1221,12 +1231,12 @@ pen_r |>
 
 #### Python
 ##### pandas
-```{python class.source="bg-success"}
+```{python eval=FALSE, class.source="bg-success", include=FALSE}
 pen_p.agg('mean')
 ```
 
 ##### polars
-```{python class.source="bg-success"}
+```{python eval=FALSE, class.source="bg-success", include=FALSE}
 pen_pl.mean()
 ```
 
