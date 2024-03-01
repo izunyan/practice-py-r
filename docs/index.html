@@ -1481,7 +1481,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2023/09/23</h4>
+<h4 class="date">2024/02/29</h4>
 
 </div>
 
@@ -1526,10 +1526,9 @@ WindowsでのPythonインストール</h2>
 パッケージの管理（pip関連）</h2>
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
-https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
+https://support.posit.co/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
 
-Installing and Configuring Python with RStudio
-https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio
+https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio
 
 
  -->
@@ -1564,6 +1563,10 @@ https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Config
 <li>パッケージのアップデート
 <ul>
 <li><code>python -m pip install -U ここにパッケージ名</code></li>
+</ul></li>
+<li>パッケージを一括でアップデート
+<ul>
+<li><code>pip-review --auto</code></li>
 </ul></li>
 <li>pip自体のアップデート
 <ul>
@@ -1673,7 +1676,7 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2023-09-23
+##  date     2024-02-29
 ##  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)</code></pre>
 <!-- xfun::session_info() -->
 </div>
@@ -1684,7 +1687,7 @@ version</h3>
 rstudioapi::versionInfo()
 
 rsinfo$version</code></pre>
-<pre><code>## [1] &#39;2023.6.2.561&#39;</code></pre>
+<pre><code>## [1] &#39;2023.9.0.463&#39;</code></pre>
 </div>
 <div id="python" class="section level3" number="2.6.3">
 <h3><span class="header-section-number">2.6.3</span> Python</h3>
@@ -2045,57 +2048,65 @@ pen_r</code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="pythonでもペンギン" class="section level3" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span>
-Pythonでもペンギン</h3>
+<div id="python-4" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Python</h3>
+<div id="pandas-1" class="section level4" number="5.3.2.1">
+<h4><span class="header-section-number">5.3.2.1</span> pandas</h4>
 <ul>
-<li>seabornパッケージにpenguinsデータが入っている</li>
+<li>seabornパッケージにpenguinsデータが入っている　→
+なぜかインポートできなくなったのであきらめる</li>
 <li>pypiからpalmerpenguinsをインストールして使うことも可能
 <ul>
 <li><a href="https://pypi.org/project/palmerpenguins/" class="uri">https://pypi.org/project/palmerpenguins/</a></li>
 </ul></li>
 </ul>
-<pre class="python bg-success"><code>import seaborn as sns
-pen_p = sns.load_dataset(&quot;penguins&quot;)
+<pre class="python bg-success"><code>from palmerpenguins import load_penguins
+pen_p = load_penguins()
 
-# from palmerpenguins import load_penguins
-# pen_p = load_penguins()
+# import seaborn as sns
+# pen_p = sns.load_dataset(&quot;penguins&quot;)
+
+
  
 pen_p</code></pre>
-<pre><code>##     species     island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 0    Adelie  Torgersen            39.1  ...              181.0       3750.0    Male
-## 1    Adelie  Torgersen            39.5  ...              186.0       3800.0  Female
-## 2    Adelie  Torgersen            40.3  ...              195.0       3250.0  Female
-## 3    Adelie  Torgersen             NaN  ...                NaN          NaN     NaN
-## 4    Adelie  Torgersen            36.7  ...              193.0       3450.0  Female
-## ..      ...        ...             ...  ...                ...          ...     ...
-## 339  Gentoo     Biscoe             NaN  ...                NaN          NaN     NaN
-## 340  Gentoo     Biscoe            46.8  ...              215.0       4850.0  Female
-## 341  Gentoo     Biscoe            50.4  ...              222.0       5750.0    Male
-## 342  Gentoo     Biscoe            45.2  ...              212.0       5200.0  Female
-## 343  Gentoo     Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##        species     island  bill_length_mm  ...  body_mass_g     sex  year
+## 0       Adelie  Torgersen            39.1  ...       3750.0    male  2007
+## 1       Adelie  Torgersen            39.5  ...       3800.0  female  2007
+## 2       Adelie  Torgersen            40.3  ...       3250.0  female  2007
+## 3       Adelie  Torgersen             NaN  ...          NaN     NaN  2007
+## 4       Adelie  Torgersen            36.7  ...       3450.0  female  2007
+## ..         ...        ...             ...  ...          ...     ...   ...
+## 339  Chinstrap      Dream            55.8  ...       4000.0    male  2009
+## 340  Chinstrap      Dream            43.5  ...       3400.0  female  2009
+## 341  Chinstrap      Dream            49.6  ...       3775.0    male  2009
+## 342  Chinstrap      Dream            50.8  ...       4100.0    male  2009
+## 343  Chinstrap      Dream            50.2  ...       3775.0  female  2009
 ## 
-## [344 rows x 7 columns]</code></pre>
+## [344 rows x 8 columns]</code></pre>
 </div>
-<div id="pythonpolars" class="section level3" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Python(polars)</h3>
-<ul>
-<li>csvを読む場合は日本語の列を1つ追加しているため，列数が9となる</li>
-</ul>
-<pre class="python bg-success"><code>pen_pl = (sns.load_dataset(&quot;penguins&quot;)
-          .pipe(pl.from_pandas)
-        )
+<div id="polars-1" class="section level4" number="5.3.2.2">
+<h4><span class="header-section-number">5.3.2.2</span> polars</h4>
+<!-- - csvを読む場合は日本語の列を1つ追加しているため，列数が9となる -->
+<pre class="python bg-success"><code>pen_pl = pl.from_pandas(pen_p)
+
+
+# こちらでも動く
+# pen_pl = (sns.load_dataset(&quot;penguins&quot;)
+#           .pipe(pl.from_pandas)
+#         )
 
 
 # pen_pl = pl.read_csv(&quot;data/ペンギン_utf8.csv&quot;)
 pen_pl</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.9</td><td>17.8</td><td>181.0</td><td>3625.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.2</td><td>19.6</td><td>195.0</td><td>4675.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>42.0</td><td>20.2</td><td>190.0</td><td>4250.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.1</td><td>186.0</td><td>3300.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.3</td><td>180.0</td><td>3700.0</td><td>null</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>43.5</td><td>15.2</td><td>213.0</td><td>4650.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>51.5</td><td>16.3</td><td>230.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.2</td><td>14.1</td><td>217.0</td><td>4375.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>44.5</td><td>15.7</td><td>217.0</td><td>4875.0</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>48.8</td><td>16.2</td><td>222.0</td><td>6000.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>47.2</td><td>13.7</td><td>214.0</td><td>4925.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>43.5</td><td>18.1</td><td>202.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>49.6</td><td>18.2</td><td>193.0</td><td>3775.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.8</td><td>19.0</td><td>210.0</td><td>4100.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.2</td><td>18.7</td><td>198.0</td><td>3775.0</td><td>&quot;female&quot;</td><td>2009</td></tr></tbody></table></div>
+</div>
 </div>
 </div>
 <div id="列を選ぶ" class="section level2" number="5.4">
@@ -2204,9 +2215,9 @@ names(pen_r)</code></pre>
 ## [344] Chinstrap
 ## Levels: Adelie Chinstrap Gentoo</code></pre>
 </div>
-<div id="python-4" class="section level4" number="5.4.1.2">
+<div id="python-5" class="section level4" number="5.4.1.2">
 <h4><span class="header-section-number">5.4.1.2</span> Python</h4>
-<div id="pandas-1" class="section level5" number="5.4.1.2.1">
+<div id="pandas-2" class="section level5" number="5.4.1.2.1">
 <h5><span class="header-section-number">5.4.1.2.1</span> pandas</h5>
 <ul>
 <li>単一</li>
@@ -2214,54 +2225,54 @@ names(pen_r)</code></pre>
 <pre class="python bg-success"><code># 列名確認
 pen_p.columns</code></pre>
 <pre><code>## Index([&#39;species&#39;, &#39;island&#39;, &#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;,
-##        &#39;flipper_length_mm&#39;, &#39;body_mass_g&#39;, &#39;sex&#39;],
+##        &#39;flipper_length_mm&#39;, &#39;body_mass_g&#39;, &#39;sex&#39;, &#39;year&#39;],
 ##       dtype=&#39;object&#39;)</code></pre>
 <pre class="python bg-success"><code>pen_p[[&#39;species&#39;]]</code></pre>
-<pre><code>##     species
-## 0    Adelie
-## 1    Adelie
-## 2    Adelie
-## 3    Adelie
-## 4    Adelie
-## ..      ...
-## 339  Gentoo
-## 340  Gentoo
-## 341  Gentoo
-## 342  Gentoo
-## 343  Gentoo
+<pre><code>##        species
+## 0       Adelie
+## 1       Adelie
+## 2       Adelie
+## 3       Adelie
+## 4       Adelie
+## ..         ...
+## 339  Chinstrap
+## 340  Chinstrap
+## 341  Chinstrap
+## 342  Chinstrap
+## 343  Chinstrap
 ## 
 ## [344 rows x 1 columns]</code></pre>
 <ul>
 <li>複数列</li>
 </ul>
 <pre class="python bg-success"><code>pen_p[[&#39;species&#39;, &#39;bill_length_mm&#39;]]</code></pre>
-<pre><code>##     species  bill_length_mm
-## 0    Adelie            39.1
-## 1    Adelie            39.5
-## 2    Adelie            40.3
-## 3    Adelie             NaN
-## 4    Adelie            36.7
-## ..      ...             ...
-## 339  Gentoo             NaN
-## 340  Gentoo            46.8
-## 341  Gentoo            50.4
-## 342  Gentoo            45.2
-## 343  Gentoo            49.9
+<pre><code>##        species  bill_length_mm
+## 0       Adelie            39.1
+## 1       Adelie            39.5
+## 2       Adelie            40.3
+## 3       Adelie             NaN
+## 4       Adelie            36.7
+## ..         ...             ...
+## 339  Chinstrap            55.8
+## 340  Chinstrap            43.5
+## 341  Chinstrap            49.6
+## 342  Chinstrap            50.8
+## 343  Chinstrap            50.2
 ## 
 ## [344 rows x 2 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p.loc[:, &#39;species&#39;:&#39;bill_length_mm&#39;]</code></pre>
-<pre><code>##     species     island  bill_length_mm
-## 0    Adelie  Torgersen            39.1
-## 1    Adelie  Torgersen            39.5
-## 2    Adelie  Torgersen            40.3
-## 3    Adelie  Torgersen             NaN
-## 4    Adelie  Torgersen            36.7
-## ..      ...        ...             ...
-## 339  Gentoo     Biscoe             NaN
-## 340  Gentoo     Biscoe            46.8
-## 341  Gentoo     Biscoe            50.4
-## 342  Gentoo     Biscoe            45.2
-## 343  Gentoo     Biscoe            49.9
+<pre><code>##        species     island  bill_length_mm
+## 0       Adelie  Torgersen            39.1
+## 1       Adelie  Torgersen            39.5
+## 2       Adelie  Torgersen            40.3
+## 3       Adelie  Torgersen             NaN
+## 4       Adelie  Torgersen            36.7
+## ..         ...        ...             ...
+## 339  Chinstrap      Dream            55.8
+## 340  Chinstrap      Dream            43.5
+## 341  Chinstrap      Dream            49.6
+## 342  Chinstrap      Dream            50.8
+## 343  Chinstrap      Dream            50.2
 ## 
 ## [344 rows x 3 columns]</code></pre>
 <ul>
@@ -2272,59 +2283,61 @@ pen_p.columns</code></pre>
 </ul></li>
 </ul>
 <pre class="python bg-success"><code>pen_p[&#39;species&#39;]</code></pre>
-<pre><code>## 0      Adelie
-## 1      Adelie
-## 2      Adelie
-## 3      Adelie
-## 4      Adelie
-##         ...  
-## 339    Gentoo
-## 340    Gentoo
-## 341    Gentoo
-## 342    Gentoo
-## 343    Gentoo
+<pre><code>## 0         Adelie
+## 1         Adelie
+## 2         Adelie
+## 3         Adelie
+## 4         Adelie
+##          ...    
+## 339    Chinstrap
+## 340    Chinstrap
+## 341    Chinstrap
+## 342    Chinstrap
+## 343    Chinstrap
 ## Name: species, Length: 344, dtype: object</code></pre>
 <pre class="python bg-success"><code>pen_p.species</code></pre>
-<pre><code>## 0      Adelie
-## 1      Adelie
-## 2      Adelie
-## 3      Adelie
-## 4      Adelie
-##         ...  
-## 339    Gentoo
-## 340    Gentoo
-## 341    Gentoo
-## 342    Gentoo
-## 343    Gentoo
+<pre><code>## 0         Adelie
+## 1         Adelie
+## 2         Adelie
+## 3         Adelie
+## 4         Adelie
+##          ...    
+## 339    Chinstrap
+## 340    Chinstrap
+## 341    Chinstrap
+## 342    Chinstrap
+## 343    Chinstrap
 ## Name: species, Length: 344, dtype: object</code></pre>
 </div>
-<div id="polars-1" class="section level5" number="5.4.1.2.2">
+<div id="polars-2" class="section level5" number="5.4.1.2.2">
 <h5><span class="header-section-number">5.4.1.2.2</span> polars</h5>
 <ul>
 <li>単一</li>
 </ul>
 <pre class="python bg-success"><code># 列名確認
 pen_pl.columns</code></pre>
-<pre><code>## [&#39;species&#39;, &#39;island&#39;, &#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;, &#39;flipper_length_mm&#39;, &#39;body_mass_g&#39;, &#39;sex&#39;]</code></pre>
+<pre><code>## [&#39;species&#39;, &#39;island&#39;, &#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;, &#39;flipper_length_mm&#39;, &#39;body_mass_g&#39;, &#39;sex&#39;, &#39;year&#39;]</code></pre>
 <pre class="python bg-success"><code>pen_pl.select(&quot;species&quot;)</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 1)</small><table border="1" class="dataframe"><thead><tr><th>species</th></tr><tr><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 1)</small><table border="1" class="dataframe"><thead><tr><th>species</th></tr><tr><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td></tr><tr><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td></tr></tbody></table></div>
 <ul>
 <li>複数列</li>
 </ul>
 <pre class="python bg-success"><code>pen_pl.select([&quot;species&quot;, &quot;sex&quot;])</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2356,9 +2369,9 @@ text-align: right;
 ## 5           36.7          19.3               193
 ## # ℹ 339 more rows</code></pre>
 </div>
-<div id="python-5" class="section level4" number="5.4.2.2">
+<div id="python-6" class="section level4" number="5.4.2.2">
 <h4><span class="header-section-number">5.4.2.2</span> Python</h4>
-<div id="pandas-2" class="section level5" number="5.4.2.2.1">
+<div id="pandas-3" class="section level5" number="5.4.2.2.1">
 <h5><span class="header-section-number">5.4.2.2.1</span> pandas</h5>
 <!-- https://stackoverflow.com/questions/30808430/how-to-select-columns-from-dataframe-by-regex -->
 <pre class="python bg-success"><code>pen_p.filter(regex = &#39;^bill&#39;)</code></pre>
@@ -2369,11 +2382,11 @@ text-align: right;
 ## 3               NaN            NaN
 ## 4              36.7           19.3
 ## ..              ...            ...
-## 339             NaN            NaN
-## 340            46.8           14.3
-## 341            50.4           15.7
-## 342            45.2           14.8
-## 343            49.9           16.1
+## 339            55.8           19.8
+## 340            43.5           18.1
+## 341            49.6           18.2
+## 342            50.8           19.0
+## 343            50.2           18.7
 ## 
 ## [344 rows x 2 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p.filter(regex = &#39;mm$&#39;)</code></pre>
@@ -2384,11 +2397,11 @@ text-align: right;
 ## 3               NaN            NaN                NaN
 ## 4              36.7           19.3              193.0
 ## ..              ...            ...                ...
-## 339             NaN            NaN                NaN
-## 340            46.8           14.3              215.0
-## 341            50.4           15.7              222.0
-## 342            45.2           14.8              212.0
-## 343            49.9           16.1              213.0
+## 339            55.8           19.8              207.0
+## 340            43.5           18.1              202.0
+## 341            49.6           18.2              193.0
+## 342            50.8           19.0              210.0
+## 343            50.2           18.7              198.0
 ## 
 ## [344 rows x 3 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p.loc[:, pen_p.columns.str.match(&#39;^bill&#39;)]</code></pre>
@@ -2399,15 +2412,15 @@ text-align: right;
 ## 3               NaN            NaN
 ## 4              36.7           19.3
 ## ..              ...            ...
-## 339             NaN            NaN
-## 340            46.8           14.3
-## 341            50.4           15.7
-## 342            45.2           14.8
-## 343            49.9           16.1
+## 339            55.8           19.8
+## 340            43.5           18.1
+## 341            49.6           18.2
+## 342            50.8           19.0
+## 343            50.2           18.7
 ## 
 ## [344 rows x 2 columns]</code></pre>
 </div>
-<div id="polars-2" class="section level5" number="5.4.2.2.2">
+<div id="polars-3" class="section level5" number="5.4.2.2.2">
 <h5><span class="header-section-number">5.4.2.2.2</span> polars</h5>
 <ul>
 <li>検索したい文字列に加え<code>&quot;.*$&quot;</code>の指定が必要
@@ -2417,12 +2430,13 @@ text-align: right;
 </ul>
 <pre class="python bg-success"><code>pen_pl.select(pl.col(&quot;^bill.*$&quot;))</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>bill_depth_mm</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>39.1</td><td>18.7</td></tr><tr><td>39.5</td><td>17.4</td></tr><tr><td>40.3</td><td>18.0</td></tr><tr><td>null</td><td>null</td></tr><tr><td>36.7</td><td>19.3</td></tr><tr><td>39.3</td><td>20.6</td></tr><tr><td>38.9</td><td>17.8</td></tr><tr><td>39.2</td><td>19.6</td></tr><tr><td>34.1</td><td>18.1</td></tr><tr><td>42.0</td><td>20.2</td></tr><tr><td>37.8</td><td>17.1</td></tr><tr><td>37.8</td><td>17.3</td></tr><tr><td>…</td><td>…</td></tr><tr><td>43.5</td><td>15.2</td></tr><tr><td>51.5</td><td>16.3</td></tr><tr><td>46.2</td><td>14.1</td></tr><tr><td>55.1</td><td>16.0</td></tr><tr><td>44.5</td><td>15.7</td></tr><tr><td>48.8</td><td>16.2</td></tr><tr><td>47.2</td><td>13.7</td></tr><tr><td>null</td><td>null</td></tr><tr><td>46.8</td><td>14.3</td></tr><tr><td>50.4</td><td>15.7</td></tr><tr><td>45.2</td><td>14.8</td></tr><tr><td>49.9</td><td>16.1</td></tr></tbody></table></div>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>bill_depth_mm</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>39.1</td><td>18.7</td></tr><tr><td>39.5</td><td>17.4</td></tr><tr><td>40.3</td><td>18.0</td></tr><tr><td>null</td><td>null</td></tr><tr><td>36.7</td><td>19.3</td></tr><tr><td>…</td><td>…</td></tr><tr><td>55.8</td><td>19.8</td></tr><tr><td>43.5</td><td>18.1</td></tr><tr><td>49.6</td><td>18.2</td></tr><tr><td>50.8</td><td>19.0</td></tr><tr><td>50.2</td><td>18.7</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2441,36 +2455,37 @@ text-align: right;
 ## 5           36.7          19.3               193        3450 female  2007
 ## # ℹ 339 more rows</code></pre>
 </div>
-<div id="python-6" class="section level4" number="5.4.3.2">
+<div id="python-7" class="section level4" number="5.4.3.2">
 <h4><span class="header-section-number">5.4.3.2</span> Python</h4>
-<div id="pandas-3" class="section level5" number="5.4.3.2.1">
+<div id="pandas-4" class="section level5" number="5.4.3.2.1">
 <h5><span class="header-section-number">5.4.3.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.drop(columns = [&#39;species&#39;, &#39;island&#39;])</code></pre>
-<pre><code>##      bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g     sex
-## 0              39.1           18.7              181.0       3750.0    Male
-## 1              39.5           17.4              186.0       3800.0  Female
-## 2              40.3           18.0              195.0       3250.0  Female
-## 3               NaN            NaN                NaN          NaN     NaN
-## 4              36.7           19.3              193.0       3450.0  Female
-## ..              ...            ...                ...          ...     ...
-## 339             NaN            NaN                NaN          NaN     NaN
-## 340            46.8           14.3              215.0       4850.0  Female
-## 341            50.4           15.7              222.0       5750.0    Male
-## 342            45.2           14.8              212.0       5200.0  Female
-## 343            49.9           16.1              213.0       5400.0    Male
+<pre><code>##      bill_length_mm  bill_depth_mm  ...     sex  year
+## 0              39.1           18.7  ...    male  2007
+## 1              39.5           17.4  ...  female  2007
+## 2              40.3           18.0  ...  female  2007
+## 3               NaN            NaN  ...     NaN  2007
+## 4              36.7           19.3  ...  female  2007
+## ..              ...            ...  ...     ...   ...
+## 339            55.8           19.8  ...    male  2009
+## 340            43.5           18.1  ...  female  2009
+## 341            49.6           18.2  ...    male  2009
+## 342            50.8           19.0  ...    male  2009
+## 343            50.2           18.7  ...  female  2009
 ## 
-## [344 rows x 5 columns]</code></pre>
+## [344 rows x 6 columns]</code></pre>
 </div>
-<div id="polars-3" class="section level5" number="5.4.3.2.2">
+<div id="polars-4" class="section level5" number="5.4.3.2.2">
 <h5><span class="header-section-number">5.4.3.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl.drop([&quot;species&quot;, &quot;island&quot;])</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 5)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td></tr><tr><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td></tr><tr><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td></tr><tr><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;Male&quot;</td></tr><tr><td>38.9</td><td>17.8</td><td>181.0</td><td>3625.0</td><td>&quot;Female&quot;</td></tr><tr><td>39.2</td><td>19.6</td><td>195.0</td><td>4675.0</td><td>&quot;Male&quot;</td></tr><tr><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>42.0</td><td>20.2</td><td>190.0</td><td>4250.0</td><td>null</td></tr><tr><td>37.8</td><td>17.1</td><td>186.0</td><td>3300.0</td><td>null</td></tr><tr><td>37.8</td><td>17.3</td><td>180.0</td><td>3700.0</td><td>null</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>43.5</td><td>15.2</td><td>213.0</td><td>4650.0</td><td>&quot;Female&quot;</td></tr><tr><td>51.5</td><td>16.3</td><td>230.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>46.2</td><td>14.1</td><td>217.0</td><td>4375.0</td><td>&quot;Female&quot;</td></tr><tr><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>44.5</td><td>15.7</td><td>217.0</td><td>4875.0</td><td>null</td></tr><tr><td>48.8</td><td>16.2</td><td>222.0</td><td>6000.0</td><td>&quot;Male&quot;</td></tr><tr><td>47.2</td><td>13.7</td><td>214.0</td><td>4925.0</td><td>&quot;Female&quot;</td></tr><tr><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td></tr><tr><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td></tr><tr><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td></tr><tr><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 6)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td></tr><tr><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>43.5</td><td>18.1</td><td>202.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2009</td></tr><tr><td>49.6</td><td>18.2</td><td>193.0</td><td>3775.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>50.8</td><td>19.0</td><td>210.0</td><td>4100.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>50.2</td><td>18.7</td><td>198.0</td><td>3775.0</td><td>&quot;female&quot;</td><td>2009</td></tr></tbody></table></div>
 <!-- ###  -->
 <!-- #### R -->
 <!-- ```{r} -->
@@ -2503,41 +2518,42 @@ text-align: right;
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-7" class="section level3" number="5.5.2">
+<div id="python-8" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Python</h3>
-<div id="pandas-4" class="section level4" number="5.5.2.1">
+<div id="pandas-5" class="section level4" number="5.5.2.1">
 <h4><span class="header-section-number">5.5.2.1</span> pandas</h4>
 <ul>
 <li>‘old’:‘new’</li>
 </ul>
 <pre class="python bg-success"><code>pen_p.rename(columns = {&#39;species&#39;:&#39;species2&#39;,
                         &#39;island&#39;:&#39;island2&#39;})</code></pre>
-<pre><code>##     species2    island2  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 0     Adelie  Torgersen            39.1  ...              181.0       3750.0    Male
-## 1     Adelie  Torgersen            39.5  ...              186.0       3800.0  Female
-## 2     Adelie  Torgersen            40.3  ...              195.0       3250.0  Female
-## 3     Adelie  Torgersen             NaN  ...                NaN          NaN     NaN
-## 4     Adelie  Torgersen            36.7  ...              193.0       3450.0  Female
-## ..       ...        ...             ...  ...                ...          ...     ...
-## 339   Gentoo     Biscoe             NaN  ...                NaN          NaN     NaN
-## 340   Gentoo     Biscoe            46.8  ...              215.0       4850.0  Female
-## 341   Gentoo     Biscoe            50.4  ...              222.0       5750.0    Male
-## 342   Gentoo     Biscoe            45.2  ...              212.0       5200.0  Female
-## 343   Gentoo     Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##       species2    island2  bill_length_mm  ...  body_mass_g     sex  year
+## 0       Adelie  Torgersen            39.1  ...       3750.0    male  2007
+## 1       Adelie  Torgersen            39.5  ...       3800.0  female  2007
+## 2       Adelie  Torgersen            40.3  ...       3250.0  female  2007
+## 3       Adelie  Torgersen             NaN  ...          NaN     NaN  2007
+## 4       Adelie  Torgersen            36.7  ...       3450.0  female  2007
+## ..         ...        ...             ...  ...          ...     ...   ...
+## 339  Chinstrap      Dream            55.8  ...       4000.0    male  2009
+## 340  Chinstrap      Dream            43.5  ...       3400.0  female  2009
+## 341  Chinstrap      Dream            49.6  ...       3775.0    male  2009
+## 342  Chinstrap      Dream            50.8  ...       4100.0    male  2009
+## 343  Chinstrap      Dream            50.2  ...       3775.0  female  2009
 ## 
-## [344 rows x 7 columns]</code></pre>
+## [344 rows x 8 columns]</code></pre>
 </div>
-<div id="polars-4" class="section level4" number="5.5.2.2">
+<div id="polars-5" class="section level4" number="5.5.2.2">
 <h4><span class="header-section-number">5.5.2.2</span> polars</h4>
 <pre class="python bg-success"><code>pen_pl.rename({&quot;species&quot;:&quot;species2&quot;,
               &quot;island&quot;:&quot;island2&quot;})</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species2</th><th>island2</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.9</td><td>17.8</td><td>181.0</td><td>3625.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.2</td><td>19.6</td><td>195.0</td><td>4675.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>42.0</td><td>20.2</td><td>190.0</td><td>4250.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.1</td><td>186.0</td><td>3300.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.3</td><td>180.0</td><td>3700.0</td><td>null</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>43.5</td><td>15.2</td><td>213.0</td><td>4650.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>51.5</td><td>16.3</td><td>230.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.2</td><td>14.1</td><td>217.0</td><td>4375.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>44.5</td><td>15.7</td><td>217.0</td><td>4875.0</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>48.8</td><td>16.2</td><td>222.0</td><td>6000.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>47.2</td><td>13.7</td><td>214.0</td><td>4925.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 8)</small><table border="1" class="dataframe"><thead><tr><th>species2</th><th>island2</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>43.5</td><td>18.1</td><td>202.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>49.6</td><td>18.2</td><td>193.0</td><td>3775.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.8</td><td>19.0</td><td>210.0</td><td>4100.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.2</td><td>18.7</td><td>198.0</td><td>3775.0</td><td>&quot;female&quot;</td><td>2009</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2571,63 +2587,65 @@ pen_r |&gt; arrange(desc(bill_length_mm))</code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-8" class="section level3" number="5.6.2">
+<div id="python-9" class="section level3" number="5.6.2">
 <h3><span class="header-section-number">5.6.2</span> Python</h3>
-<div id="pandas-5" class="section level4" number="5.6.2.1">
+<div id="pandas-6" class="section level4" number="5.6.2.1">
 <h4><span class="header-section-number">5.6.2.1</span> pandas</h4>
 <pre class="python bg-success"><code># 昇順
 pen_p.sort_values(&#39;bill_length_mm&#39;)</code></pre>
-<pre><code>##        species     island  ...  body_mass_g     sex
-## 142     Adelie      Dream  ...       3050.0  Female
-## 98      Adelie      Dream  ...       2900.0  Female
-## 70      Adelie  Torgersen  ...       3600.0  Female
-## 92      Adelie      Dream  ...       3400.0  Female
-## 8       Adelie  Torgersen  ...       3475.0     NaN
-## ..         ...        ...  ...          ...     ...
-## 321     Gentoo     Biscoe  ...       5600.0    Male
-## 169  Chinstrap      Dream  ...       3700.0  Female
-## 253     Gentoo     Biscoe  ...       6050.0    Male
-## 3       Adelie  Torgersen  ...          NaN     NaN
-## 339     Gentoo     Biscoe  ...          NaN     NaN
+<pre><code>##        species     island  bill_length_mm  ...  body_mass_g     sex  year
+## 142     Adelie      Dream            32.1  ...       3050.0  female  2009
+## 98      Adelie      Dream            33.1  ...       2900.0  female  2008
+## 70      Adelie  Torgersen            33.5  ...       3600.0  female  2008
+## 92      Adelie      Dream            34.0  ...       3400.0  female  2008
+## 8       Adelie  Torgersen            34.1  ...       3475.0     NaN  2007
+## ..         ...        ...             ...  ...          ...     ...   ...
+## 253     Gentoo     Biscoe            55.9  ...       5600.0    male  2009
+## 293  Chinstrap      Dream            58.0  ...       3700.0  female  2007
+## 185     Gentoo     Biscoe            59.6  ...       6050.0    male  2007
+## 3       Adelie  Torgersen             NaN  ...          NaN     NaN  2007
+## 271     Gentoo     Biscoe             NaN  ...          NaN     NaN  2009
 ## 
-## [344 rows x 7 columns]</code></pre>
+## [344 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code># 降順
 pen_p.sort_values(&#39;bill_length_mm&#39;, ascending = False)</code></pre>
-<pre><code>##        species     island  ...  body_mass_g     sex
-## 253     Gentoo     Biscoe  ...       6050.0    Male
-## 169  Chinstrap      Dream  ...       3700.0  Female
-## 321     Gentoo     Biscoe  ...       5600.0    Male
-## 215  Chinstrap      Dream  ...       4000.0    Male
-## 335     Gentoo     Biscoe  ...       5850.0    Male
-## ..         ...        ...  ...          ...     ...
-## 70      Adelie  Torgersen  ...       3600.0  Female
-## 98      Adelie      Dream  ...       2900.0  Female
-## 142     Adelie      Dream  ...       3050.0  Female
-## 3       Adelie  Torgersen  ...          NaN     NaN
-## 339     Gentoo     Biscoe  ...          NaN     NaN
+<pre><code>##        species     island  bill_length_mm  ...  body_mass_g     sex  year
+## 185     Gentoo     Biscoe            59.6  ...       6050.0    male  2007
+## 293  Chinstrap      Dream            58.0  ...       3700.0  female  2007
+## 253     Gentoo     Biscoe            55.9  ...       5600.0    male  2009
+## 339  Chinstrap      Dream            55.8  ...       4000.0    male  2009
+## 267     Gentoo     Biscoe            55.1  ...       5850.0    male  2009
+## ..         ...        ...             ...  ...          ...     ...   ...
+## 70      Adelie  Torgersen            33.5  ...       3600.0  female  2008
+## 98      Adelie      Dream            33.1  ...       2900.0  female  2008
+## 142     Adelie      Dream            32.1  ...       3050.0  female  2009
+## 3       Adelie  Torgersen             NaN  ...          NaN     NaN  2007
+## 271     Gentoo     Biscoe             NaN  ...          NaN     NaN  2009
 ## 
-## [344 rows x 7 columns]</code></pre>
+## [344 rows x 8 columns]</code></pre>
 </div>
-<div id="polars-5" class="section level4" number="5.6.2.2">
+<div id="polars-6" class="section level4" number="5.6.2.2">
 <h4><span class="header-section-number">5.6.2.2</span> polars</h4>
 <pre class="python bg-success"><code># 昇順
 pen_pl.sort(&quot;bill_length_mm&quot;)</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>34.0</td><td>17.1</td><td>185.0</td><td>3400.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.4</td><td>18.4</td><td>184.0</td><td>3325.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Biscoe&quot;</td><td>34.5</td><td>18.1</td><td>187.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.6</td><td>21.1</td><td>198.0</td><td>4400.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.6</td><td>17.2</td><td>189.0</td><td>3200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Biscoe&quot;</td><td>35.0</td><td>17.9</td><td>190.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>52.5</td><td>15.6</td><td>221.0</td><td>5450.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>52.7</td><td>19.8</td><td>197.0</td><td>3725.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>52.8</td><td>20.0</td><td>205.0</td><td>4550.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>53.4</td><td>15.8</td><td>219.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>53.5</td><td>19.9</td><td>205.0</td><td>4500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>54.2</td><td>20.8</td><td>201.0</td><td>4300.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>54.3</td><td>15.7</td><td>231.0</td><td>5650.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2009</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;female&quot;</td><td>2009</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;female&quot;</td><td>2008</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;female&quot;</td><td>2008</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;male&quot;</td><td>2007</td></tr></tbody></table></div>
 <pre class="python bg-success"><code># 降順
 pen_pl.sort(&quot;bill_length_mm&quot;, descending = True)</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>54.3</td><td>15.7</td><td>231.0</td><td>5650.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>54.2</td><td>20.8</td><td>201.0</td><td>4300.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>53.5</td><td>19.9</td><td>205.0</td><td>4500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>53.4</td><td>15.8</td><td>219.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>52.8</td><td>20.0</td><td>205.0</td><td>4550.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>52.7</td><td>19.8</td><td>197.0</td><td>3725.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>52.5</td><td>15.6</td><td>221.0</td><td>5450.0</td><td>&quot;Male&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Biscoe&quot;</td><td>35.0</td><td>17.9</td><td>192.0</td><td>3725.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.6</td><td>21.1</td><td>198.0</td><td>4400.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.6</td><td>17.2</td><td>189.0</td><td>3200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Biscoe&quot;</td><td>34.5</td><td>18.1</td><td>187.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.4</td><td>18.4</td><td>184.0</td><td>3325.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>34.0</td><td>17.1</td><td>185.0</td><td>3400.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div>
+<small>shape: (344, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2009</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>34.0</td><td>17.1</td><td>185.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2008</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;female&quot;</td><td>2008</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;female&quot;</td><td>2008</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;female&quot;</td><td>2009</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2681,95 +2699,96 @@ text-align: right;
 ## # ℹ 119 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-9" class="section level4" number="5.7.1.2">
+<div id="python-10" class="section level4" number="5.7.1.2">
 <h4><span class="header-section-number">5.7.1.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values -->
 <!-- https://towardsdatascience.com/how-to-select-rows-from-pandas-dataframe-based-on-column-values-d3f5da421e93 -->
 <pre class="python bg-success"><code>pen_p[pen_p[&#39;bill_length_mm&#39;] &gt; 55]</code></pre>
-<pre><code>##        species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 169  Chinstrap   Dream            58.0  ...              181.0       3700.0  Female
-## 215  Chinstrap   Dream            55.8  ...              207.0       4000.0    Male
-## 253     Gentoo  Biscoe            59.6  ...              230.0       6050.0    Male
-## 321     Gentoo  Biscoe            55.9  ...              228.0       5600.0    Male
-## 335     Gentoo  Biscoe            55.1  ...              230.0       5850.0    Male
+<pre><code>##        species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 185     Gentoo  Biscoe            59.6  ...       6050.0    male  2007
+## 253     Gentoo  Biscoe            55.9  ...       5600.0    male  2009
+## 267     Gentoo  Biscoe            55.1  ...       5850.0    male  2009
+## 293  Chinstrap   Dream            58.0  ...       3700.0  female  2007
+## 339  Chinstrap   Dream            55.8  ...       4000.0    male  2009
 ## 
-## [5 rows x 7 columns]</code></pre>
+## [5 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p[pen_p.bill_length_mm &gt; 55]</code></pre>
-<pre><code>##        species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 169  Chinstrap   Dream            58.0  ...              181.0       3700.0  Female
-## 215  Chinstrap   Dream            55.8  ...              207.0       4000.0    Male
-## 253     Gentoo  Biscoe            59.6  ...              230.0       6050.0    Male
-## 321     Gentoo  Biscoe            55.9  ...              228.0       5600.0    Male
-## 335     Gentoo  Biscoe            55.1  ...              230.0       5850.0    Male
+<pre><code>##        species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 185     Gentoo  Biscoe            59.6  ...       6050.0    male  2007
+## 253     Gentoo  Biscoe            55.9  ...       5600.0    male  2009
+## 267     Gentoo  Biscoe            55.1  ...       5850.0    male  2009
+## 293  Chinstrap   Dream            58.0  ...       3700.0  female  2007
+## 339  Chinstrap   Dream            55.8  ...       4000.0    male  2009
 ## 
-## [5 rows x 7 columns]</code></pre>
-<div id="pandas-6" class="section level5" number="5.7.1.2.1">
+## [5 rows x 8 columns]</code></pre>
+<div id="pandas-7" class="section level5" number="5.7.1.2.1">
 <h5><span class="header-section-number">5.7.1.2.1</span> pandas</h5>
 <pre class="python bg-success"><code># data frame
 pen_p.query(&#39;bill_length_mm &gt; 55 &amp; bill_depth_mm == 17&#39;)</code></pre>
-<pre><code>##     species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g   sex
-## 253  Gentoo  Biscoe            59.6  ...              230.0       6050.0  Male
-## 321  Gentoo  Biscoe            55.9  ...              228.0       5600.0  Male
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g   sex  year
+## 185  Gentoo  Biscoe            59.6  ...       6050.0  male  2007
+## 253  Gentoo  Biscoe            55.9  ...       5600.0  male  2009
 ## 
-## [2 rows x 7 columns]</code></pre>
+## [2 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p.query(&#39;species == &quot;Gentoo&quot;&#39;)</code></pre>
-<pre><code>##     species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 220  Gentoo  Biscoe            46.1  ...              211.0       4500.0  Female
-## 221  Gentoo  Biscoe            50.0  ...              230.0       5700.0    Male
-## 222  Gentoo  Biscoe            48.7  ...              210.0       4450.0  Female
-## 223  Gentoo  Biscoe            50.0  ...              218.0       5700.0    Male
-## 224  Gentoo  Biscoe            47.6  ...              215.0       5400.0    Male
-## ..      ...     ...             ...  ...                ...          ...     ...
-## 339  Gentoo  Biscoe             NaN  ...                NaN          NaN     NaN
-## 340  Gentoo  Biscoe            46.8  ...              215.0       4850.0  Female
-## 341  Gentoo  Biscoe            50.4  ...              222.0       5750.0    Male
-## 342  Gentoo  Biscoe            45.2  ...              212.0       5200.0  Female
-## 343  Gentoo  Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
 ## 
-## [124 rows x 7 columns]</code></pre>
+## [124 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code># series
 pen_p[pen_p[&#39;species&#39;].str.contains(&#39;Gen&#39;)] # match</code></pre>
-<pre><code>##     species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 220  Gentoo  Biscoe            46.1  ...              211.0       4500.0  Female
-## 221  Gentoo  Biscoe            50.0  ...              230.0       5700.0    Male
-## 222  Gentoo  Biscoe            48.7  ...              210.0       4450.0  Female
-## 223  Gentoo  Biscoe            50.0  ...              218.0       5700.0    Male
-## 224  Gentoo  Biscoe            47.6  ...              215.0       5400.0    Male
-## ..      ...     ...             ...  ...                ...          ...     ...
-## 339  Gentoo  Biscoe             NaN  ...                NaN          NaN     NaN
-## 340  Gentoo  Biscoe            46.8  ...              215.0       4850.0  Female
-## 341  Gentoo  Biscoe            50.4  ...              222.0       5750.0    Male
-## 342  Gentoo  Biscoe            45.2  ...              212.0       5200.0  Female
-## 343  Gentoo  Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
 ## 
-## [124 rows x 7 columns]</code></pre>
+## [124 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code>pen_p.loc[pen_p.species.str.contains(&#39;Gen&#39;)] # match</code></pre>
-<pre><code>##     species  island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 220  Gentoo  Biscoe            46.1  ...              211.0       4500.0  Female
-## 221  Gentoo  Biscoe            50.0  ...              230.0       5700.0    Male
-## 222  Gentoo  Biscoe            48.7  ...              210.0       4450.0  Female
-## 223  Gentoo  Biscoe            50.0  ...              218.0       5700.0    Male
-## 224  Gentoo  Biscoe            47.6  ...              215.0       5400.0    Male
-## ..      ...     ...             ...  ...                ...          ...     ...
-## 339  Gentoo  Biscoe             NaN  ...                NaN          NaN     NaN
-## 340  Gentoo  Biscoe            46.8  ...              215.0       4850.0  Female
-## 341  Gentoo  Biscoe            50.4  ...              222.0       5750.0    Male
-## 342  Gentoo  Biscoe            45.2  ...              212.0       5200.0  Female
-## 343  Gentoo  Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##     species  island  bill_length_mm  ...  body_mass_g     sex  year
+## 152  Gentoo  Biscoe            46.1  ...       4500.0  female  2007
+## 153  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 154  Gentoo  Biscoe            48.7  ...       4450.0  female  2007
+## 155  Gentoo  Biscoe            50.0  ...       5700.0    male  2007
+## 156  Gentoo  Biscoe            47.6  ...       5400.0    male  2007
+## ..      ...     ...             ...  ...          ...     ...   ...
+## 271  Gentoo  Biscoe             NaN  ...          NaN     NaN  2009
+## 272  Gentoo  Biscoe            46.8  ...       4850.0  female  2009
+## 273  Gentoo  Biscoe            50.4  ...       5750.0    male  2009
+## 274  Gentoo  Biscoe            45.2  ...       5200.0  female  2009
+## 275  Gentoo  Biscoe            49.9  ...       5400.0    male  2009
 ## 
-## [124 rows x 7 columns]</code></pre>
+## [124 rows x 8 columns]</code></pre>
 </div>
-<div id="polars-6" class="section level5" number="5.7.1.2.2">
+<div id="polars-7" class="section level5" number="5.7.1.2.2">
 <h5><span class="header-section-number">5.7.1.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl.filter((pl.col(&quot;bill_length_mm&quot;) &gt; 55)
               &amp; (pl.col(&quot;bill_depth_mm&quot;) == 17))</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (2, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (2, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;male&quot;</td><td>2009</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2800,67 +2819,70 @@ pen_r |&gt;
 ## 1 female   165
 ## 2 male     168</code></pre>
 </div>
-<div id="python-10" class="section level4" number="5.7.2.2">
+<div id="python-11" class="section level4" number="5.7.2.2">
 <h4><span class="header-section-number">5.7.2.2</span> Python</h4>
 <ul>
 <li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html" class="uri">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html</a></li>
 </ul>
 <pre class="python bg-success"><code>pen_p.dropna(subset = [&#39;sex&#39;])</code></pre>
-<pre><code>##     species     island  bill_length_mm  ...  flipper_length_mm  body_mass_g     sex
-## 0    Adelie  Torgersen            39.1  ...              181.0       3750.0    Male
-## 1    Adelie  Torgersen            39.5  ...              186.0       3800.0  Female
-## 2    Adelie  Torgersen            40.3  ...              195.0       3250.0  Female
-## 4    Adelie  Torgersen            36.7  ...              193.0       3450.0  Female
-## 5    Adelie  Torgersen            39.3  ...              190.0       3650.0    Male
-## ..      ...        ...             ...  ...                ...          ...     ...
-## 338  Gentoo     Biscoe            47.2  ...              214.0       4925.0  Female
-## 340  Gentoo     Biscoe            46.8  ...              215.0       4850.0  Female
-## 341  Gentoo     Biscoe            50.4  ...              222.0       5750.0    Male
-## 342  Gentoo     Biscoe            45.2  ...              212.0       5200.0  Female
-## 343  Gentoo     Biscoe            49.9  ...              213.0       5400.0    Male
+<pre><code>##        species     island  bill_length_mm  ...  body_mass_g     sex  year
+## 0       Adelie  Torgersen            39.1  ...       3750.0    male  2007
+## 1       Adelie  Torgersen            39.5  ...       3800.0  female  2007
+## 2       Adelie  Torgersen            40.3  ...       3250.0  female  2007
+## 4       Adelie  Torgersen            36.7  ...       3450.0  female  2007
+## 5       Adelie  Torgersen            39.3  ...       3650.0    male  2007
+## ..         ...        ...             ...  ...          ...     ...   ...
+## 339  Chinstrap      Dream            55.8  ...       4000.0    male  2009
+## 340  Chinstrap      Dream            43.5  ...       3400.0  female  2009
+## 341  Chinstrap      Dream            49.6  ...       3775.0    male  2009
+## 342  Chinstrap      Dream            50.8  ...       4100.0    male  2009
+## 343  Chinstrap      Dream            50.2  ...       3775.0  female  2009
 ## 
-## [333 rows x 7 columns]</code></pre>
+## [333 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code># 確認
 
 pen_p[&#39;sex&#39;].value_counts(dropna = False)</code></pre>
 <pre><code>## sex
-## Male      168
-## Female    165
+## male      168
+## female    165
 ## NaN        11
 ## Name: count, dtype: int64</code></pre>
 <pre class="python bg-success"><code>pen_p[&#39;sex&#39;].dropna().value_counts(dropna = False)</code></pre>
 <pre><code>## sex
-## Male      168
-## Female    165
+## male      168
+## female    165
 ## Name: count, dtype: int64</code></pre>
 <pre class="python bg-success"><code>
 # pen_p.value_counts([&#39;sex&#39;], dropna = False)
 # pen_p.dropna(subset = [&#39;sex&#39;]).value_counts([&#39;sex&#39;], dropna = False)</code></pre>
 <pre class="python bg-success"><code>pen_pl.drop_nulls(subset = [&quot;sex&quot;])</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (333, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.9</td><td>17.8</td><td>181.0</td><td>3625.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.2</td><td>19.6</td><td>195.0</td><td>4675.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>41.1</td><td>17.6</td><td>182.0</td><td>3200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.6</td><td>21.2</td><td>191.0</td><td>3800.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.6</td><td>21.1</td><td>198.0</td><td>4400.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.6</td><td>17.8</td><td>185.0</td><td>3700.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.7</td><td>19.0</td><td>195.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.5</td><td>15.2</td><td>216.0</td><td>5000.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.8</td><td>15.9</td><td>229.0</td><td>5950.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>43.5</td><td>15.2</td><td>213.0</td><td>4650.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>51.5</td><td>16.3</td><td>230.0</td><td>5500.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.2</td><td>14.1</td><td>217.0</td><td>4375.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>48.8</td><td>16.2</td><td>222.0</td><td>6000.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>47.2</td><td>13.7</td><td>214.0</td><td>4925.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (333, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;female&quot;</td><td>2007</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;male&quot;</td><td>2007</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>43.5</td><td>18.1</td><td>202.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>49.6</td><td>18.2</td><td>193.0</td><td>3775.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.8</td><td>19.0</td><td>210.0</td><td>4100.0</td><td>&quot;male&quot;</td><td>2009</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.2</td><td>18.7</td><td>198.0</td><td>3775.0</td><td>&quot;female&quot;</td><td>2009</td></tr></tbody></table></div>
 <pre class="python bg-success"><code># 確認
 pen_pl[&quot;sex&quot;].value_counts()</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>counts</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;male&quot;</td><td>168</td></tr><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&quot;sex&quot;].drop_nulls().value_counts()</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>counts</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr></tbody></table></div>
+<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>
 # pen_pl.drop_nulls(subset = [&#39;sex&#39;]).select([pl.col(&quot;sex&quot;).value_counts()])</code></pre>
 </div>
@@ -2890,44 +2912,44 @@ text-align: right;
 #   select(species) |&gt; 
 #   mutate(species2 = species) </code></pre>
 </div>
-<div id="python-11" class="section level4" number="5.8.1.2">
+<div id="python-12" class="section level4" number="5.8.1.2">
 <h4><span class="header-section-number">5.8.1.2</span> Python</h4>
-<div id="pandas-7" class="section level5" number="5.8.1.2.1">
+<div id="pandas-8" class="section level5" number="5.8.1.2.1">
 <h5><span class="header-section-number">5.8.1.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.assign(species2 = pen_p[&#39;species&#39;],
               island2 = pen_p[&#39;island&#39;])</code></pre>
-<pre><code>##     species     island  bill_length_mm  ...     sex  species2    island2
-## 0    Adelie  Torgersen            39.1  ...    Male    Adelie  Torgersen
-## 1    Adelie  Torgersen            39.5  ...  Female    Adelie  Torgersen
-## 2    Adelie  Torgersen            40.3  ...  Female    Adelie  Torgersen
-## 3    Adelie  Torgersen             NaN  ...     NaN    Adelie  Torgersen
-## 4    Adelie  Torgersen            36.7  ...  Female    Adelie  Torgersen
-## ..      ...        ...             ...  ...     ...       ...        ...
-## 339  Gentoo     Biscoe             NaN  ...     NaN    Gentoo     Biscoe
-## 340  Gentoo     Biscoe            46.8  ...  Female    Gentoo     Biscoe
-## 341  Gentoo     Biscoe            50.4  ...    Male    Gentoo     Biscoe
-## 342  Gentoo     Biscoe            45.2  ...  Female    Gentoo     Biscoe
-## 343  Gentoo     Biscoe            49.9  ...    Male    Gentoo     Biscoe
+<pre><code>##        species     island  bill_length_mm  ...  year   species2    island2
+## 0       Adelie  Torgersen            39.1  ...  2007     Adelie  Torgersen
+## 1       Adelie  Torgersen            39.5  ...  2007     Adelie  Torgersen
+## 2       Adelie  Torgersen            40.3  ...  2007     Adelie  Torgersen
+## 3       Adelie  Torgersen             NaN  ...  2007     Adelie  Torgersen
+## 4       Adelie  Torgersen            36.7  ...  2007     Adelie  Torgersen
+## ..         ...        ...             ...  ...   ...        ...        ...
+## 339  Chinstrap      Dream            55.8  ...  2009  Chinstrap      Dream
+## 340  Chinstrap      Dream            43.5  ...  2009  Chinstrap      Dream
+## 341  Chinstrap      Dream            49.6  ...  2009  Chinstrap      Dream
+## 342  Chinstrap      Dream            50.8  ...  2009  Chinstrap      Dream
+## 343  Chinstrap      Dream            50.2  ...  2009  Chinstrap      Dream
 ## 
-## [344 rows x 9 columns]</code></pre>
+## [344 rows x 10 columns]</code></pre>
 <pre class="python bg-success"><code># 列を選択してから表示のため
 pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code></pre>
-<pre><code>##     species species2
-## 0    Adelie   Adelie
-## 1    Adelie   Adelie
-## 2    Adelie   Adelie
-## 3    Adelie   Adelie
-## 4    Adelie   Adelie
-## ..      ...      ...
-## 339  Gentoo   Gentoo
-## 340  Gentoo   Gentoo
-## 341  Gentoo   Gentoo
-## 342  Gentoo   Gentoo
-## 343  Gentoo   Gentoo
+<pre><code>##        species   species2
+## 0       Adelie     Adelie
+## 1       Adelie     Adelie
+## 2       Adelie     Adelie
+## 3       Adelie     Adelie
+## 4       Adelie     Adelie
+## ..         ...        ...
+## 339  Chinstrap  Chinstrap
+## 340  Chinstrap  Chinstrap
+## 341  Chinstrap  Chinstrap
+## 342  Chinstrap  Chinstrap
+## 343  Chinstrap  Chinstrap
 ## 
 ## [344 rows x 2 columns]</code></pre>
 </div>
-<div id="polars-7" class="section level5" number="5.8.1.2.2">
+<div id="polars-8" class="section level5" number="5.8.1.2.2">
 <h5><span class="header-section-number">5.8.1.2.2</span> polars</h5>
 <ul>
 <li>alias()はRename the output of an expression.</li>
@@ -2935,12 +2957,13 @@ pen_p[[&#39;species&#39;]].assign(species2 = pen_p[&#39;species&#39;])  </code><
 </ul>
 <pre class="python bg-success"><code>pen_pl.with_columns((pl.col(&quot;species&quot;)).alias(&quot;species2&quot;))</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 8)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>species2</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.3</td><td>20.6</td><td>190.0</td><td>3650.0</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>38.9</td><td>17.8</td><td>181.0</td><td>3625.0</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.2</td><td>19.6</td><td>195.0</td><td>4675.0</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>42.0</td><td>20.2</td><td>190.0</td><td>4250.0</td><td>null</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.1</td><td>186.0</td><td>3300.0</td><td>null</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>37.8</td><td>17.3</td><td>180.0</td><td>3700.0</td><td>null</td><td>&quot;Adelie&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>43.5</td><td>15.2</td><td>213.0</td><td>4650.0</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>51.5</td><td>16.3</td><td>230.0</td><td>5500.0</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.2</td><td>14.1</td><td>217.0</td><td>4375.0</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.1</td><td>16.0</td><td>230.0</td><td>5850.0</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>44.5</td><td>15.7</td><td>217.0</td><td>4875.0</td><td>null</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>48.8</td><td>16.2</td><td>222.0</td><td>6000.0</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>47.2</td><td>13.7</td><td>214.0</td><td>4925.0</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 9)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th><th>year</th><th>species2</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td><td>i64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;male&quot;</td><td>2007</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;female&quot;</td><td>2007</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;female&quot;</td><td>2007</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2007</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;female&quot;</td><td>2007</td><td>&quot;Adelie&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>55.8</td><td>19.8</td><td>207.0</td><td>4000.0</td><td>&quot;male&quot;</td><td>2009</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>43.5</td><td>18.1</td><td>202.0</td><td>3400.0</td><td>&quot;female&quot;</td><td>2009</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>49.6</td><td>18.2</td><td>193.0</td><td>3775.0</td><td>&quot;male&quot;</td><td>2009</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.8</td><td>19.0</td><td>210.0</td><td>4100.0</td><td>&quot;male&quot;</td><td>2009</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>50.2</td><td>18.7</td><td>198.0</td><td>3775.0</td><td>&quot;female&quot;</td><td>2009</td><td>&quot;Chinstrap&quot;</td></tr></tbody></table></div>
 <pre class="python bg-success"><code># 列を選択してから表示のため
 (
 pen_pl
@@ -2949,12 +2972,13 @@ pen_pl
   .alias(&quot;species2&quot;))
 )</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>species2</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Gentoo&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>species2</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Adelie&quot;</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Chinstrap&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Chinstrap&quot;</td></tr></tbody></table></div>
 <ul>
 <li>キーワードの引数でも新しい列名をつけられる</li>
 </ul>
@@ -2966,12 +2990,13 @@ pen_pl
                     sex2 = pl.col(&quot;sex&quot;))
 )</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 4)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th><th>species2</th><th>sex2</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>null</td><td>&quot;Gentoo&quot;</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>null</td><td>&quot;Gentoo&quot;</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td><td>&quot;Gentoo&quot;</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 4)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th><th>species2</th><th>sex2</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;male&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3007,9 +3032,9 @@ text-align: right;
 ## 5 Gentoo              46.1      47.5
 ## 6 Gentoo              50        47.5</code></pre>
 </div>
-<div id="python-12" class="section level4" number="5.8.2.2">
+<div id="python-13" class="section level4" number="5.8.2.2">
 <h4><span class="header-section-number">5.8.2.2</span> python</h4>
-<div id="pandas-8" class="section level5" number="5.8.2.2.1">
+<div id="pandas-9" class="section level5" number="5.8.2.2.1">
 <h5><span class="header-section-number">5.8.2.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p[[&#39;bill_length_mm&#39;]].assign(blmm_mean = pen_p[&#39;bill_length_mm&#39;].mean())</code></pre>
 <pre><code>##      bill_length_mm  blmm_mean
@@ -3019,18 +3044,18 @@ text-align: right;
 ## 3               NaN   43.92193
 ## 4              36.7   43.92193
 ## ..              ...        ...
-## 339             NaN   43.92193
-## 340            46.8   43.92193
-## 341            50.4   43.92193
-## 342            45.2   43.92193
-## 343            49.9   43.92193
+## 339            55.8   43.92193
+## 340            43.5   43.92193
+## 341            49.6   43.92193
+## 342            50.8   43.92193
+## 343            50.2   43.92193
 ## 
 ## [344 rows x 2 columns]</code></pre>
 <pre class="python bg-success"><code>
 # できない？
 # pen_p.groupby(&#39;species&#39;).assign(blmm_mean = pen_p[&#39;bill_length_mm&#39;].mean())</code></pre>
 </div>
-<div id="polars-8" class="section level5" number="5.8.2.2.2">
+<div id="polars-9" class="section level5" number="5.8.2.2.2">
 <h5><span class="header-section-number">5.8.2.2.2</span> polars</h5>
 <pre class="python bg-success"><code>(
 pen_pl
@@ -3038,12 +3063,13 @@ pen_pl
 .with_columns(blmm_mean = pl.col(&#39;bill_length_mm&#39;).mean())
 )</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>blmm_mean</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>39.1</td><td>43.92193</td></tr><tr><td>39.5</td><td>43.92193</td></tr><tr><td>40.3</td><td>43.92193</td></tr><tr><td>null</td><td>43.92193</td></tr><tr><td>36.7</td><td>43.92193</td></tr><tr><td>39.3</td><td>43.92193</td></tr><tr><td>38.9</td><td>43.92193</td></tr><tr><td>39.2</td><td>43.92193</td></tr><tr><td>34.1</td><td>43.92193</td></tr><tr><td>42.0</td><td>43.92193</td></tr><tr><td>37.8</td><td>43.92193</td></tr><tr><td>37.8</td><td>43.92193</td></tr><tr><td>…</td><td>…</td></tr><tr><td>43.5</td><td>43.92193</td></tr><tr><td>51.5</td><td>43.92193</td></tr><tr><td>46.2</td><td>43.92193</td></tr><tr><td>55.1</td><td>43.92193</td></tr><tr><td>44.5</td><td>43.92193</td></tr><tr><td>48.8</td><td>43.92193</td></tr><tr><td>47.2</td><td>43.92193</td></tr><tr><td>null</td><td>43.92193</td></tr><tr><td>46.8</td><td>43.92193</td></tr><tr><td>50.4</td><td>43.92193</td></tr><tr><td>45.2</td><td>43.92193</td></tr><tr><td>49.9</td><td>43.92193</td></tr></tbody></table></div>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th><th>blmm_mean</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>39.1</td><td>43.92193</td></tr><tr><td>39.5</td><td>43.92193</td></tr><tr><td>40.3</td><td>43.92193</td></tr><tr><td>null</td><td>43.92193</td></tr><tr><td>36.7</td><td>43.92193</td></tr><tr><td>…</td><td>…</td></tr><tr><td>55.8</td><td>43.92193</td></tr><tr><td>43.5</td><td>43.92193</td></tr><tr><td>49.6</td><td>43.92193</td></tr><tr><td>50.8</td><td>43.92193</td></tr><tr><td>50.2</td><td>43.92193</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3082,7 +3108,7 @@ pen_r |&gt;
 ## 3 third     57
 ## 4 &lt;NA&gt;       2</code></pre>
 </div>
-<div id="python-13" class="section level4" number="5.8.3.2">
+<div id="python-14" class="section level4" number="5.8.3.2">
 <h4><span class="header-section-number">5.8.3.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
@@ -3241,7 +3267,7 @@ pen_p.value_counts([&#39;blmc3&#39;])</code></pre>
 ## 2 Chinstrap        0    68
 ## 3 Gentoo           0   124</code></pre>
 </div>
-<div id="python-14" class="section level4" number="5.8.4.2">
+<div id="python-15" class="section level4" number="5.8.4.2">
 <h4><span class="header-section-number">5.8.4.2</span> Python</h4>
 <!-- 欠損値のあつかい -->
 <!-- https://stackoverflow.com/questions/66081445/from-r-to-python-ifelse-conditional-in-mutate-dataframe -->
@@ -3261,7 +3287,7 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 <div id="r-15" class="section level4" number="5.8.5.1">
 <h4><span class="header-section-number">5.8.5.1</span> R</h4>
 </div>
-<div id="python-15" class="section level4" number="5.8.5.2">
+<div id="python-16" class="section level4" number="5.8.5.2">
 <h4><span class="header-section-number">5.8.5.2</span> Python</h4>
 </div>
 </div>
@@ -3283,12 +3309,12 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 ##      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1     43.9   5.46   342</code></pre>
 </div>
-<div id="python-16" class="section level4" number="5.9.1.2">
+<div id="python-17" class="section level4" number="5.9.1.2">
 <h4><span class="header-section-number">5.9.1.2</span> Python</h4>
 <ul>
 <li>欠損値は自動で削除して計算されている</li>
 </ul>
-<div id="pandas-9" class="section level5" number="5.9.1.2.1">
+<div id="pandas-10" class="section level5" number="5.9.1.2.1">
 <h5><span class="header-section-number">5.9.1.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.bill_length_mm.mean()</code></pre>
 <pre><code>## 43.9219298245614</code></pre>
@@ -3313,32 +3339,35 @@ pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count
 ## std          5.459584
 ## count      342.000000</code></pre>
 </div>
-<div id="polars-9" class="section level5" number="5.9.1.2.2">
+<div id="polars-10" class="section level5" number="5.9.1.2.2">
 <h5><span class="header-section-number">5.9.1.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl.select(pl.col(&#39;bill_length_mm&#39;).mean())</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
 <small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th></tr><tr><td>f64</td></tr></thead><tbody><tr><td>43.92193</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl.select(pl.col(&#39;bill_length_mm&#39;).std())</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
 <small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th></tr><tr><td>f64</td></tr></thead><tbody><tr><td>5.459584</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl.select(pl.col(&#39;bill_length_mm&#39;).count())</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th></tr><tr><td>u32</td></tr></thead><tbody><tr><td>344</td></tr></tbody></table></div>
+<small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm</th></tr><tr><td>u32</td></tr></thead><tbody><tr><td>342</td></tr></tbody></table></div>
 <!-- ```{python class.source="bg-success"} -->
 <!-- pen_pl.agg([ -->
 <!--    pl.col([]).mean().suffix("_binmean"), -->
@@ -3375,9 +3404,9 @@ pen_r |&gt;
 ## 1                43.9              5.46              342               17.2
 ## # ℹ 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
-<div id="python-17" class="section level4" number="5.9.2.2">
+<div id="python-18" class="section level4" number="5.9.2.2">
 <h4><span class="header-section-number">5.9.2.2</span> Python</h4>
-<div id="pandas-10" class="section level5" number="5.9.2.2.1">
+<div id="pandas-11" class="section level5" number="5.9.2.2.1">
 <h5><span class="header-section-number">5.9.2.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.agg({&#39;bill_length_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;],
             &#39;bill_depth_mm&#39; : [&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;]})</code></pre>
@@ -3401,15 +3430,16 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## std          5.459584       1.974793
 ## count      342.000000     342.000000</code></pre>
 </div>
-<div id="polars-10" class="section level5" number="5.9.2.2.2">
+<div id="polars-11" class="section level5" number="5.9.2.2.2">
 <h5><span class="header-section-number">5.9.2.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl.select(
    pl.col(&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;).mean().suffix(&quot;_mean&quot;)
    )</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
 <small>shape: (1, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm_mean</th><th>bill_depth_mm_mean</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>43.92193</td><td>17.15117</td></tr></tbody></table></div>
@@ -3432,9 +3462,9 @@ text-align: right;
 ## 2 Chinstrap     48.8
 ## 3 Gentoo        47.5</code></pre>
 </div>
-<div id="python-18" class="section level4" number="5.9.3.2">
+<div id="python-19" class="section level4" number="5.9.3.2">
 <h4><span class="header-section-number">5.9.3.2</span> Python</h4>
-<div id="pandas-11" class="section level5" number="5.9.3.2.1">
+<div id="pandas-12" class="section level5" number="5.9.3.2.1">
 <h5><span class="header-section-number">5.9.3.2.1</span> pandas</h5>
 <ul>
 <li><a href="https://stackoverflow.com/questions/63200530/python-pandas-equivalent-to-dplyr-1-0-0-summarizeacross">python/pandas
@@ -3457,17 +3487,18 @@ equivalent to dplyr 1.0.0 summarize(across())</a></li>
 ## Gentoo       47.504878
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
-<div id="polars-11" class="section level5" number="5.9.3.2.2">
+<div id="polars-12" class="section level5" number="5.9.3.2.2">
 <h5><span class="header-section-number">5.9.3.2.2</span> polars</h5>
 <p>*<a href="https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.dataframe.groupby.GroupBy.agg.html#polars.dataframe.groupby.GroupBy.agg">polars.dataframe.groupby.GroupBy.agg</a></p>
 <pre class="python"><code>pen_pl.groupby(&quot;species&quot;).agg(pl.col(&quot;bill_length_mm&quot;).mean().prefix(&quot;mean_&quot;))</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>mean_bill_length_mm</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>47.504878</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>48.833824</td></tr><tr><td>&quot;Adelie&quot;</td><td>38.791391</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>mean_bill_length_mm</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>47.504878</td></tr><tr><td>&quot;Adelie&quot;</td><td>38.791391</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>48.833824</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3484,12 +3515,12 @@ text-align: right;
 ##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 ## 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div id="python-19" class="section level4" number="5.9.4.2">
+<div id="python-20" class="section level4" number="5.9.4.2">
 <h4><span class="header-section-number">5.9.4.2</span> Python</h4>
-<div id="pandas-12" class="section level5" number="5.9.4.2.1">
+<div id="pandas-13" class="section level5" number="5.9.4.2.1">
 <h5><span class="header-section-number">5.9.4.2.1</span> pandas</h5>
 </div>
-<div id="polars-12" class="section level5" number="5.9.4.2.2">
+<div id="polars-13" class="section level5" number="5.9.4.2.2">
 <h5><span class="header-section-number">5.9.4.2.2</span> polars</h5>
 </div>
 </div>
@@ -3513,9 +3544,9 @@ text-align: right;
 ## 2 male     168
 ## 3 &lt;NA&gt;      11</code></pre>
 </div>
-<div id="python-20" class="section level4" number="5.9.5.2">
+<div id="python-21" class="section level4" number="5.9.5.2">
 <h4><span class="header-section-number">5.9.5.2</span> Python</h4>
-<div id="pandas-13" class="section level5" number="5.9.5.2.1">
+<div id="pandas-14" class="section level5" number="5.9.5.2.1">
 <h5><span class="header-section-number">5.9.5.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.value_counts([&#39;species&#39;])</code></pre>
 <pre><code>## species  
@@ -3525,41 +3556,44 @@ text-align: right;
 ## Name: count, dtype: int64</code></pre>
 <pre class="python bg-success"><code>pen_p.value_counts([&#39;sex&#39;], dropna = False)</code></pre>
 <pre><code>## sex   
-## Male      168
-## Female    165
+## male      168
+## female    165
 ## NaN        11
 ## Name: count, dtype: int64</code></pre>
 </div>
-<div id="polars-13" class="section level5" number="5.9.5.2.2">
+<div id="polars-14" class="section level5" number="5.9.5.2.2">
 <h5><span class="header-section-number">5.9.5.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl[&#39;species&#39;].value_counts()</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>counts</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr><tr><td>&quot;Adelie&quot;</td><td>152</td></tr><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr><tr><td>&quot;Adelie&quot;</td><td>152</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&#39;sex&#39;].value_counts()</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>counts</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>11</td></tr><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl.select(
     [
         pl.col(&quot;sex&quot;).value_counts(sort=True),
     ]
     )</code></pre>
 <div><style>
-.dataframe > thead > tr > th,
-.dataframe > tbody > tr > td {
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
 text-align: right;
+white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 1)</small><table border="1" class="dataframe"><thead><tr><th>sex</th></tr><tr><td>struct[2]</td></tr></thead><tbody><tr><td>{&quot;Male&quot;,168}</td></tr><tr><td>{&quot;Female&quot;,165}</td></tr><tr><td>{null,11}</td></tr></tbody></table></div>
+<small>shape: (3, 1)</small><table border="1" class="dataframe"><thead><tr><th>sex</th></tr><tr><td>struct[2]</td></tr></thead><tbody><tr><td>{&quot;male&quot;,168}</td></tr><tr><td>{&quot;female&quot;,165}</td></tr><tr><td>{null,11}</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3581,18 +3615,18 @@ text-align: right;
 ## 7 Gentoo    male      61
 ## 8 Gentoo    &lt;NA&gt;       5</code></pre>
 </div>
-<div id="python-21" class="section level4" number="5.9.6.2">
+<div id="python-22" class="section level4" number="5.9.6.2">
 <h4><span class="header-section-number">5.9.6.2</span> Python</h4>
-<div id="pandas-14" class="section level5" number="5.9.6.2.1">
+<div id="pandas-15" class="section level5" number="5.9.6.2.1">
 <h5><span class="header-section-number">5.9.6.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.value_counts([&#39;species&#39;, &#39;sex&#39;])</code></pre>
 <pre><code>## species    sex   
-## Adelie     Female    73
-##            Male      73
-## Gentoo     Male      61
-##            Female    58
-## Chinstrap  Female    34
-##            Male      34
+## Adelie     female    73
+##            male      73
+## Gentoo     male      61
+##            female    58
+## Chinstrap  female    34
+##            male      34
 ## Name: count, dtype: int64</code></pre>
 </div>
 <div id="polars分からないので調べ中" class="section level5" number="5.9.6.2.2">
@@ -3615,16 +3649,16 @@ polars（分からないので調べ中）</h5>
 ##   Chinstrap     34   34
 ##   Gentoo        58   61</code></pre>
 </div>
-<div id="python-22" class="section level4" number="5.9.7.2">
+<div id="python-23" class="section level4" number="5.9.7.2">
 <h4><span class="header-section-number">5.9.7.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.crosstab(pen_p[&#39;species&#39;], pen_p[&#39;sex&#39;])</code></pre>
-<pre><code>## sex        Female  Male
+<pre><code>## sex        female  male
 ## species                
 ## Adelie         73    73
 ## Chinstrap      34    34
 ## Gentoo         58    61</code></pre>
 <pre class="python bg-success"><code>pd.crosstab(pen_p.species, pen_p.sex)</code></pre>
-<pre><code>## sex        Female  Male
+<pre><code>## sex        female  male
 ## species                
 ## Adelie         73    73
 ## Chinstrap      34    34
@@ -3652,7 +3686,7 @@ polars（分からないので調べ中）</h5>
 ## 5 Gentoo            47.6
 ## # ℹ 119 more rows</code></pre>
 </div>
-<div id="python-23" class="section level3" number="5.10.2">
+<div id="python-24" class="section level3" number="5.10.2">
 <h3><span class="header-section-number">5.10.2</span> Python</h3>
 <ul>
 <li>[pandasチートシート]&lt;<a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" class="uri">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a></li>
@@ -3663,17 +3697,17 @@ polars（分からないので調べ中）</h5>
       .query(&#39;species == &quot;Gentoo&quot;&#39;)
  )</code></pre>
 <pre><code>##     species  bill_length_mm
-## 220  Gentoo            46.1
-## 221  Gentoo            50.0
-## 222  Gentoo            48.7
-## 223  Gentoo            50.0
-## 224  Gentoo            47.6
+## 152  Gentoo            46.1
+## 153  Gentoo            50.0
+## 154  Gentoo            48.7
+## 155  Gentoo            50.0
+## 156  Gentoo            47.6
 ## ..      ...             ...
-## 339  Gentoo             NaN
-## 340  Gentoo            46.8
-## 341  Gentoo            50.4
-## 342  Gentoo            45.2
-## 343  Gentoo            49.9
+## 271  Gentoo             NaN
+## 272  Gentoo            46.8
+## 273  Gentoo            50.4
+## 274  Gentoo            45.2
+## 275  Gentoo            49.9
 ## 
 ## [124 rows x 2 columns]</code></pre>
 </div>
@@ -3718,7 +3752,7 @@ df_r_a</code></pre>
 ## 2     2    20    90
 ## 3     4    40   100</code></pre>
 </div>
-<div id="python-24" class="section level3" number="6.1.2">
+<div id="python-25" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Python</h3>
 <pre class="python bg-success"><code>df_py_a = pd.DataFrame([[1,10,50], 
                         [2,20,60], 
@@ -3772,7 +3806,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 2     2    20    60    20    90
 ## 3     3    30    70    NA    NA</code></pre>
 </div>
-<div id="python-25" class="section level4" number="6.2.1.2">
+<div id="python-26" class="section level4" number="6.2.1.2">
 <h4><span class="header-section-number">6.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, on = &#39;id&#39;, how = &#39;left&#39;)</code></pre>
 <pre><code>##    id  x1_x  x2  x1_y    x3
@@ -3795,7 +3829,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 3     3    30    70    NA
 ## 4     4    40    NA   100</code></pre>
 </div>
-<div id="python-26" class="section level4" number="6.2.2.2">
+<div id="python-27" class="section level4" number="6.2.2.2">
 <h4><span class="header-section-number">6.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;outer&#39;)</code></pre>
 <pre><code>##    id  x1    x2     x3
@@ -3818,7 +3852,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 1     1    10    50    80
 ## 2     2    20    60    90</code></pre>
 </div>
-<div id="python-27" class="section level4" number="6.2.3.2">
+<div id="python-28" class="section level4" number="6.2.3.2">
 <h4><span class="header-section-number">6.2.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;inner&#39;)</code></pre>
 <pre><code>##    id  x1  x2  x3
@@ -3891,7 +3925,7 @@ bind_rows(df_r_l, .id = &quot;df_id&quot;)</code></pre>
 ## 6 df_r_b2     6    60   100   130</code></pre>
 </div>
 </div>
-<div id="python-28" class="section level3" number="6.3.2">
+<div id="python-29" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Python</h3>
 <pre class="python bg-success"><code># 連結用データ作成
 df_py_b2 = pd.DataFrame([[4,40,80,110], 
@@ -3952,7 +3986,7 @@ df_r_a_long</code></pre>
 ## 5     3 x1       30
 ## 6     3 x2       70</code></pre>
 </div>
-<div id="python-29" class="section level4" number="6.4.1.2">
+<div id="python-30" class="section level4" number="6.4.1.2">
 <h4><span class="header-section-number">6.4.1.2</span> Python</h4>
 <pre class="python bg-success"><code>df_py_a_long = pd.melt(df_py_a, 
                            id_vars = [&#39;id&#39;],
@@ -3983,7 +4017,7 @@ df_py_a_long          </code></pre>
 ## 2     2    20    60
 ## 3     3    30    70</code></pre>
 </div>
-<div id="python-30" class="section level4" number="6.4.2.2">
+<div id="python-31" class="section level4" number="6.4.2.2">
 <h4><span class="header-section-number">6.4.2.2</span> Python</h4>
 <ul>
 <li>id列を示したい場合は，引数<code>index =</code>に列名を指定することで，indexとしてなら示せる</li>
@@ -4004,7 +4038,7 @@ df_py_a_long          </code></pre>
 <div id="r-31" class="section level4" number="6.4.3.1">
 <h4><span class="header-section-number">6.4.3.1</span> R</h4>
 </div>
-<div id="python-31" class="section level4" number="6.4.3.2">
+<div id="python-32" class="section level4" number="6.4.3.2">
 <h4><span class="header-section-number">6.4.3.2</span> Python</h4>
 </div>
 </div>
@@ -4031,7 +4065,7 @@ df_py_a_long          </code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 3 more variables: body_mass_g &lt;dbl&gt;, sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-32" class="section level4" number="7.1.1.2">
+<div id="python-33" class="section level4" number="7.1.1.2">
 <h4><span class="header-section-number">7.1.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.read_excel(&#39;data/ペンギン.xlsx&#39;)</code></pre>
 <pre><code>##        species    種類     island  ...  body_mass_g     sex  year
@@ -4072,7 +4106,7 @@ penr_csv</code></pre>
 ## # ℹ 5 more variables: `②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）` &lt;dbl&gt;, `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `㊛㊚` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-33" class="section level5" number="7.1.2.1.2">
+<div id="python-34" class="section level5" number="7.1.2.1.2">
 <h5><span class="header-section-number">7.1.2.1.2</span> Python</h5>
 <pre class="python bg-success"><code>penp_csv = pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_utf8.csv&#39;)
 
@@ -4112,7 +4146,7 @@ shift-jis(cp932)</h4>
 ## # ℹ 5 more variables: `②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）` &lt;dbl&gt;, `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `??` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-34" class="section level5" number="7.1.2.2.2">
+<div id="python-35" class="section level5" number="7.1.2.2.2">
 <h5><span class="header-section-number">7.1.2.2.2</span> Python</h5>
 <pre class="python bg-success"><code>pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_cp932.csv&#39;,
              encoding = &#39;cp932&#39;)</code></pre>
@@ -4148,7 +4182,7 @@ shift-jis(cp932)</h4>
   head(3) |&gt; 
   writexl::write_xlsx(&quot;out/pen_r_head.xlsx&quot;)</code></pre>
 </div>
-<div id="python-35" class="section level4" number="7.2.1.2">
+<div id="python-36" class="section level4" number="7.2.1.2">
 <h4><span class="header-section-number">7.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_excel(&quot;out/pen_p_head.xlsx&quot;, index = False)</code></pre>
 </div>
@@ -4161,7 +4195,7 @@ shift-jis(cp932)</h4>
   head(3) |&gt; 
   write_csv(&quot;out/pen_r_head.csv&quot;)</code></pre>
 </div>
-<div id="python-36" class="section level4" number="7.2.2.2">
+<div id="python-37" class="section level4" number="7.2.2.2">
 <h4><span class="header-section-number">7.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_csv(&quot;out/pen_p_head.csv&quot;, index = False)</code></pre>
 </div>
@@ -4184,7 +4218,7 @@ shift-jis(cp932)</h4>
 fn_r(1)</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="python-37" class="section level3" number="8.1.2">
+<div id="python-38" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Python</h3>
 <pre class="python bg-success"><code>def fn_p(x):
   return x + 1
@@ -4202,7 +4236,7 @@ fn_p(1)  </code></pre>
 <pre class="r"><code>(\(x) x + 1)(1)</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="python-38" class="section level3" number="8.2.2">
+<div id="python-39" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Python</h3>
 <ul>
 <li><a href="https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html" class="uri">https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html</a></li>
@@ -4219,7 +4253,7 @@ fn_p(1)  </code></pre>
 <div id="r-39" class="section level3" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> R</h3>
 </div>
-<div id="python-39" class="section level3" number="9.1.2">
+<div id="python-40" class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Python</h3>
 </div>
 </div>

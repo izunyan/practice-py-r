@@ -86,6 +86,8 @@ https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuri
     -   `python -m pip list -o`
 -   パッケージのアップデート
     -   `python -m pip install -U ここにパッケージ名`
+-   パッケージを一括でアップデート
+    -   `pip-review --auto`
 -   pip自体のアップデート
     -   `python -m pip install --upgrade pip`
 
@@ -284,6 +286,8 @@ r.df_r.head()
 df_py = r.df_r[['species',	'bill_length_mm']]
 ```
 
+
+
 ### RからPythonで加工したデータフレーム読み込み
 
 ```{r }
@@ -428,35 +432,45 @@ pen_r <-   palmerpenguins::penguins
 pen_r
 ```
 
-### Pythonでもペンギン
+### Python
+#### pandas
 
--   seabornパッケージにpenguinsデータが入っている
+-   seabornパッケージにpenguinsデータが入っている　→ なぜかインポートできなくなったのであきらめる
 -   pypiからpalmerpenguinsをインストールして使うことも可能
     -   <https://pypi.org/project/palmerpenguins/>
 
 ```{python class.source="bg-success"}
-import seaborn as sns
-pen_p = sns.load_dataset("penguins")
 
-# from palmerpenguins import load_penguins
-# pen_p = load_penguins()
+from palmerpenguins import load_penguins
+pen_p = load_penguins()
+
+# import seaborn as sns
+# pen_p = sns.load_dataset("penguins")
+
+
  
 pen_p
 ```
 
-### Python(polars)
+#### polars
 
-- csvを読む場合は日本語の列を1つ追加しているため，列数が9となる
+<!-- - csvを読む場合は日本語の列を1つ追加しているため，列数が9となる -->
 
 ```{python class.source="bg-success"}
-pen_pl = (sns.load_dataset("penguins")
-          .pipe(pl.from_pandas)
-        )
+pen_pl = pl.from_pandas(pen_p)
+
+
+# こちらでも動く
+# pen_pl = (sns.load_dataset("penguins")
+#           .pipe(pl.from_pandas)
+#         )
 
 
 # pen_pl = pl.read_csv("data/ペンギン_utf8.csv")
 pen_pl
 ```
+
+
 
 ## 列を選ぶ
 
