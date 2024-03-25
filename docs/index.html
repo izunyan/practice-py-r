@@ -1481,7 +1481,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2024/02/29</h4>
+<h4 class="date">2024/03/25</h4>
 
 </div>
 
@@ -1676,7 +1676,7 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2024-02-29
+##  date     2024-03-25
 ##  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)</code></pre>
 <!-- xfun::session_info() -->
 </div>
@@ -1808,8 +1808,14 @@ df_r &lt;- palmerpenguins::penguins</code></pre>
 <h3><span class="header-section-number">4.1.2</span>
 PythonでRのデータフレーム読み込みして列選択</h3>
 <ul>
-<li>注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる</li>
-<li>対処法は検討中</li>
+<li><p>注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる</p></li>
+<li><p>関係する議論</p>
+<ul>
+<li><a href="https://github.com/rstudio/reticulate/issues/197">What
+should NA be converted to in Python?</a></li>
+<li><a href="https://github.com/rstudio/reticulate/pull/1439">Preserve
+NAs when casting R data.frames to pandas.</a></li>
+</ul></li>
 </ul>
 <pre class="python bg-success"><code>r.df_r.head()</code></pre>
 <pre><code>##   species     island  bill_length_mm  ...  body_mass_g     sex  year
@@ -1822,6 +1828,19 @@ PythonでRのデータフレーム読み込みして列選択</h3>
 ## [5 rows x 8 columns]</code></pre>
 <pre class="python bg-success"><code>
 df_py = r.df_r[[&#39;species&#39;,  &#39;bill_length_mm&#39;]]</code></pre>
+<ul>
+<li>解決策</li>
+</ul>
+<pre class="r"><code>options(reticulate.pandas_use_nullable_dtypes = TRUE)</code></pre>
+<pre class="python bg-success"><code>r.df_r.head()</code></pre>
+<pre><code>##   species     island  bill_length_mm  ...  body_mass_g     sex  year
+## 0  Adelie  Torgersen            39.1  ...         3750    male  2007
+## 1  Adelie  Torgersen            39.5  ...         3800  female  2007
+## 2  Adelie  Torgersen            40.3  ...         3250  female  2007
+## 3  Adelie  Torgersen            &lt;NA&gt;  ...         &lt;NA&gt;     NaN  2007
+## 4  Adelie  Torgersen            36.7  ...         3450  female  2007
+## 
+## [5 rows x 8 columns]</code></pre>
 </div>
 <div id="rからpythonで加工したデータフレーム読み込み" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span>
@@ -2330,6 +2349,24 @@ white-space: pre-wrap;
 <li>複数列</li>
 </ul>
 <pre class="python bg-success"><code>pen_pl.select([&quot;species&quot;, &quot;sex&quot;])</code></pre>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr></tbody></table></div>
+<pre class="python bg-success"><code>pen_pl.select(&quot;species&quot;, &quot;sex&quot;)</code></pre>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (344, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>sex</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;female&quot;</td></tr><tr><td>…</td><td>…</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;female&quot;</td></tr></tbody></table></div>
+<pre class="python bg-success"><code>pen_pl.select(pl.col(&quot;species&quot;, &quot;sex&quot;))</code></pre>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2873,7 +2910,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;male&quot;</td><td>168</td></tr><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&quot;sex&quot;].drop_nulls().value_counts()</code></pre>
 <div><style>
 .dataframe > thead > tr,
@@ -2882,7 +2919,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr></tbody></table></div>
+<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;male&quot;</td><td>168</td></tr><tr><td>&quot;female&quot;</td><td>165</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>
 # pen_pl.drop_nulls(subset = [&#39;sex&#39;]).select([pl.col(&quot;sex&quot;).value_counts()])</code></pre>
 </div>
@@ -3498,7 +3535,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>mean_bill_length_mm</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>47.504878</td></tr><tr><td>&quot;Adelie&quot;</td><td>38.791391</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>48.833824</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>mean_bill_length_mm</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;Chinstrap&quot;</td><td>48.833824</td></tr><tr><td>&quot;Adelie&quot;</td><td>38.791391</td></tr><tr><td>&quot;Gentoo&quot;</td><td>47.504878</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3571,7 +3608,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr><tr><td>&quot;Adelie&quot;</td><td>152</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr><tr><td>&quot;Adelie&quot;</td><td>152</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&#39;sex&#39;].value_counts()</code></pre>
 <div><style>
 .dataframe > thead > tr,
@@ -3580,7 +3617,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>11</td></tr><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr><tr><td>&quot;male&quot;</td><td>168</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl.select(
     [
         pl.col(&quot;sex&quot;).value_counts(sort=True),

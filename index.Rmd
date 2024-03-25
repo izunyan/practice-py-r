@@ -268,17 +268,22 @@ py_ndarray2
 
 ### Rでデータフレーム読み込み
 
-```{r }
+```{r}
 library(reticulate)
 
 df_r <- palmerpenguins::penguins
+
 
 ```
 
 ### PythonでRのデータフレーム読み込みして列選択
 
 -   注意！：整数型のNAが，Pythonでは-2147483648と読み込まれる
--   対処法は検討中
+
+- 関係する議論
+  - [What should NA be converted to in Python?](https://github.com/rstudio/reticulate/issues/197)
+  - [Preserve NAs when casting R data.frames to pandas.](https://github.com/rstudio/reticulate/pull/1439)
+
 
 ```{python class.source="bg-success"}
 r.df_r.head()
@@ -287,6 +292,16 @@ df_py = r.df_r[['species',	'bill_length_mm']]
 ```
 
 
+- 解決策
+
+```{r}
+options(reticulate.pandas_use_nullable_dtypes = TRUE)
+```
+
+
+```{python class.source="bg-success"}
+r.df_r.head()
+```
 
 ### RからPythonで加工したデータフレーム読み込み
 
@@ -561,6 +576,15 @@ pen_pl.select(["species", "sex"])
 
 ```
 
+```{python class.source="bg-success"}
+pen_pl.select("species", "sex")
+
+```
+
+```{python class.source="bg-success"}
+pen_pl.select(pl.col("species", "sex"))
+
+```
 
 ### 列名を正規表現で選ぶ
 
