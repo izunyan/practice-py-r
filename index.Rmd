@@ -450,19 +450,17 @@ pen_r
 ### Python
 #### pandas
 
--   seabornパッケージにpenguinsデータが入っている　→ なぜかインポートできなくなったのであきらめる
+-   seabornパッケージにpenguinsデータが入っている　
 -   pypiからpalmerpenguinsをインストールして使うことも可能
     -   <https://pypi.org/project/palmerpenguins/>
 
 ```{python class.source="bg-success"}
 
-from palmerpenguins import load_penguins
-pen_p = load_penguins()
+import seaborn as sns
+pen_p = sns.load_dataset("penguins")
 
-# import seaborn as sns
-# pen_p = sns.load_dataset("penguins")
-
-
+# from palmerpenguins import load_penguins
+# pen_p = load_penguins()
  
 pen_p
 ```
