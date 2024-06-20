@@ -1743,9 +1743,31 @@ fn_p(1)
 
 (lambda x: x + 1)(1)
 
-
-
 ```
+
+# 時間計測
+
+## R
+
+```{r}
+tictoc::tic()
+pen_r |> 
+  arrange(bill_length_mm)
+tictoc::toc()
+```
+
+## Python
+
+```{python class.source="bg-success"}
+import time
+
+start = time.time()
+df_pl.sort("bill_length_mm")
+print(time.time() - start)
+```
+
+
+
 
 # ※テンプレ
 
@@ -1761,6 +1783,8 @@ fn_p(1)
 ```{python class.source="bg-success"}
 
 ```
+
+
 
 # 参考情報
 
