@@ -50,9 +50,12 @@ options(tibble_opt)
     -   <https://www.python.org/downloads/>
 -   `Add Python 3.x to PATH`にチェックを入れる
     -   参照：<https://www.python.jp/install/windows/install.html>
+    - ただし，複数バージョンのpythonを使う必要があるなどの場合は，チェックを入れずに，やったほうがよいこともある
+    - VS Codeで違うバージョンのpython使いたい時は，`F1 > Python:select interpreter`で対応
 
 ## パッケージの管理（pip関連）
 
+以下はWindowsでのやり方のみ
 
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
@@ -75,6 +78,8 @@ https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuri
     -   ただし仮想環境あるとできないぽい？
     -   Windowsでは，コマンドプロンプトからも実行できる
     -   `Windowsキー＋R`，または，タスクバーにある「ここに入力して検索」に`cmd`と入れて検索
+-   入っているPythonの一覧確認
+    - `py --list`
 -   pipが適用されるPythonのバージョン確認
     -   `python -V`
 -   省略しても実行可能だが，`python -m`を最初につけることが推奨されている
@@ -121,6 +126,16 @@ https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuri
 - Minicondaのインストールを求められても'n'を入力
 ![](image/miniconda.png)
 
+## VSCodeのメモ
+
+- [web版](https://code.visualstudio.com/docs/editor/vscode-web)もある
+
+### 設定
+
+- `Preferences > Settings` 
+- `Ctrl-Shift-P` or `F1`
+
+  <!-- {{< kbd Ctrl-Shift-P >}} or  {{< kbd F1 >}}  -->
 
 ## その他
 ### ブラウザからjupyter labを使うこともできる
@@ -130,17 +145,17 @@ https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuri
 -   terminalで次のコマンドを実行するとブラウザで開かれる
     -   `jupyter lab`
 
-### (本記事では扱わないが参考のためメモ)仮想環境:venv
+### 仮想環境:venv(本記事では扱わないが参考のためメモ)
 
 -   以下，コマンドプロンプトまたはRStudioのTerminalから実行
--   作成
-    -   `python -m venv パス名\myenv` (名前は任意;この丸カッコ部分ごと不要)
-    -   該当フォルダがすでにカレントになっていればmyenvだけでOK
--   仮想環境に入る
-    -   `myenv\Scripts\activate`
--   仮想環境から出る
-    -   `deactivate`
-
+-   仮想環境作成
+    -    まずcdで仮想環境のフォルダを作りたいディレクトリに移動
+    -   仮想環境フォルダ作成 `python -m venv .venv` 
+        -  名前は任意,ここではよく使われる`.venv`を使用
+    -    Pythonのバージョンを指定したい時の例`py -3.11 -m venv .venv`
+-   仮想環境に入る   `.venv\Scripts\activate`
+-   仮想環境から出る `deactivate`
+-   Git管理から外すために`.gitignore`にフォルダ名を追記しておく
 
 
 ## 実行環境
@@ -284,8 +299,14 @@ df_r <- palmerpenguins::penguins
   - [What should NA be converted to in Python?](https://github.com/rstudio/reticulate/issues/197)
   - [Preserve NAs when casting R data.frames to pandas.](https://github.com/rstudio/reticulate/pull/1439)
 
+- 以下，入っていなければterminalでパッケージをインストールしておく
+python -m pip install pandas polars seaborn pyarrow numpy openpyxl
+
+<!-- "ibis-framework[polars]" -->
 
 ```{python class.source="bg-success"}
+import pandas as pd
+
 r.df_r.head()
 
 df_py = r.df_r[['species',	'bill_length_mm']]
@@ -396,13 +417,10 @@ r.r_nl
 
 -   Rのtidyverseのイメージ :🌌
 -   Pythonのpandasのイメージ:🐼
--   PythonのPolarsのイメージ:️
+-   Pythonのpolarsのイメージ:シロクマの絵文字予定(win11)
+-   Pythonのibisのイメージ:トキの絵文字あれば
 
 ## 資料
-### Python
-
-
-
 ### pandas
 -   公式ドキュメント
     -   <https://pandas.pydata.org/>
@@ -414,12 +432,20 @@ r.r_nl
 ### polars
 -   公式ドキュメント
     -   <https://www.pola.rs/>
--   cheatsheet
-    -   <https://github.com/FranzDiebold/polars-cheat-sheet>
+-   AWESOME POLARS
+    -   <https://ddotta.github.io/awesome-polars/>
+    
+<!-- -   cheatsheet -->
+<!--     -   <https://github.com/FranzDiebold/polars-cheat-sheet> -->
 
--   Modern Polars 
-    -   polarsとpandasの比較
-    -   <https://kevinheavey.github.io/modern-polars/>
+<!-- -   Modern Polars  -->
+<!--     -   polarsとpandasの比較 -->
+<!--     -   <https://kevinheavey.github.io/modern-polars/> -->
+
+
+### ibis
+-   公式ドキュメント
+    -   <https://ibis-project.org/>
 
 ## ★パッケージ読み込み
 
@@ -483,6 +509,19 @@ pen_pl = pl.from_pandas(pen_p)
 pen_pl
 ```
 
+
+<!-- #### ibis -->
+
+
+<!-- ```{python class.source="bg-success"} -->
+<!-- import ibis -->
+
+<!-- ibis.options.interactive = True -->
+
+<!-- pen_ib = ibis.Schema.from_polars(pen_pl) -->
+
+
+<!-- ``` -->
 
 
 ## 列を選ぶ
@@ -956,9 +995,9 @@ pen_r |>
 
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
 
-##### 方法1 np.select
+##### (現在はエラー？)方法1 np.select
 
-```{python class.source="bg-success"}
+```{python class.source="bg-success", include=FALSE, eval=FALSE}
 ## 分布確認
 # import matplotlib.pyplot as plt
 # pen_p[['bill_length_mm']].plt.hist()
@@ -1209,9 +1248,9 @@ pen_p[cols].agg(['mean', 'std', 'count'])
 
 ```
 
-##### polars
+##### （動かない）polars
 
-```{python class.source="bg-success"}
+```{python class.source="bg-success", eval=FALSE, include=FALSE}
 pen_pl.select(
    pl.col('bill_length_mm', 'bill_depth_mm').mean().suffix("_mean")
    )
@@ -1245,11 +1284,11 @@ pen_p.groupby('species').bill_length_mm.agg('mean')
 
 ```
 
-##### polars
+##### （動かない）polars
 
 *[polars.dataframe.groupby.GroupBy.agg](https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.dataframe.groupby.GroupBy.agg.html#polars.dataframe.groupby.GroupBy.agg)
 
-```{python}
+```{python eval=FALSE, include=FALSE}
 pen_pl.groupby("species").agg(pl.col("bill_length_mm").mean().prefix("mean_"))
 ```
 
@@ -1758,7 +1797,7 @@ tictoc::toc()
 
 ## Python
 
-```{python class.source="bg-success"}
+```{python class.source="bg-success", eval=FALSE, include=FALSE}
 import time
 
 start = time.time()

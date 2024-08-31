@@ -1481,7 +1481,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">RとPythonは仲良し</h1>
 <h4 class="author">やわらかクジラ</h4>
-<h4 class="date">2024/05/01</h4>
+<h4 class="date">2024/08/31</h4>
 
 </div>
 
@@ -1518,12 +1518,16 @@ WindowsでのPythonインストール</h2>
 <li><code>Add Python 3.x to PATH</code>にチェックを入れる
 <ul>
 <li>参照：<a href="https://www.python.jp/install/windows/install.html" class="uri">https://www.python.jp/install/windows/install.html</a></li>
+<li>ただし，複数バージョンのpythonを使う必要があるなどの場合は，チェックを入れずに，やったほうがよいこともある</li>
+<li>VS
+Codeで違うバージョンのpython使いたい時は，<code>F1 &gt; Python:select interpreter</code>で対応</li>
 </ul></li>
 </ul>
 </div>
 <div id="パッケージの管理pip関連" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span>
 パッケージの管理（pip関連）</h2>
+<p>以下はWindowsでのやり方のみ</p>
 <!-- 
 Using the RStudio Terminal in the RStudio IDE
 https://support.posit.co/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE
@@ -1542,6 +1546,10 @@ https://support.posit.co/hc/en-us/articles/360023654474-Installing-and-Configuri
 <li>ただし仮想環境あるとできないぽい？</li>
 <li>Windowsでは，コマンドプロンプトからも実行できる</li>
 <li><code>Windowsキー＋R</code>，または，タスクバーにある「ここに入力して検索」に<code>cmd</code>と入れて検索</li>
+</ul></li>
+<li>入っているPythonの一覧確認
+<ul>
+<li><code>py --list</code></li>
 </ul></li>
 <li>pipが適用されるPythonのバージョン確認
 <ul>
@@ -1621,10 +1629,24 @@ Pythonコードの実行</h2>
 <li>Minicondaのインストールを求められても’n’を入力 <img src="data:image/png;base64,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" /></li>
 </ul>
 </div>
-<div id="その他" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> その他</h2>
-<div id="ブラウザからjupyter-labを使うこともできる" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> ブラウザからjupyter
+<div id="vscodeのメモ" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> VSCodeのメモ</h2>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/editor/vscode-web">web版</a>もある</li>
+</ul>
+<div id="設定" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> 設定</h3>
+<ul>
+<li><p><code>Preferences &gt; Settings</code></p></li>
+<li><p><code>Ctrl-Shift-P</code> or <code>F1</code></p>
+<!-- {{< kbd Ctrl-Shift-P >}} or  {{< kbd F1 >}}  --></li>
+</ul>
+</div>
+</div>
+<div id="その他" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> その他</h2>
+<div id="ブラウザからjupyter-labを使うこともできる" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> ブラウザからjupyter
 labを使うこともできる</h3>
 <ul>
 <li>入ってなければインストール
@@ -1637,38 +1659,36 @@ labを使うこともできる</h3>
 </ul></li>
 </ul>
 </div>
-<div id="本記事では扱わないが参考のためメモ仮想環境venv" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span>
-(本記事では扱わないが参考のためメモ)仮想環境:venv</h3>
+<div id="仮想環境venv本記事では扱わないが参考のためメモ" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span>
+仮想環境:venv(本記事では扱わないが参考のためメモ)</h3>
 <ul>
 <li>以下，コマンドプロンプトまたはRStudioのTerminalから実行</li>
-<li>作成
+<li>仮想環境作成
 <ul>
-<li><code>python -m venv パス名\myenv</code>
-(名前は任意;この丸カッコ部分ごと不要)</li>
-<li>該当フォルダがすでにカレントになっていればmyenvだけでOK</li>
-</ul></li>
-<li>仮想環境に入る
+<li>まずcdで仮想環境のフォルダを作りたいディレクトリに移動</li>
+<li>仮想環境フォルダ作成 <code>python -m venv .venv</code>
 <ul>
-<li><code>myenv\Scripts\activate</code></li>
+<li>名前は任意,ここではよく使われる<code>.venv</code>を使用</li>
 </ul></li>
-<li>仮想環境から出る
-<ul>
-<li><code>deactivate</code></li>
+<li>Pythonのバージョンを指定したい時の例<code>py -3.11 -m venv .venv</code></li>
 </ul></li>
+<li>仮想環境に入る <code>.venv\Scripts\activate</code></li>
+<li>仮想環境から出る <code>deactivate</code></li>
+<li>Git管理から外すために<code>.gitignore</code>にフォルダ名を追記しておく</li>
 </ul>
 </div>
 </div>
-<div id="実行環境" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> 実行環境</h2>
-<div id="r" class="section level3" number="2.6.1">
-<h3><span class="header-section-number">2.6.1</span> R</h3>
+<div id="実行環境" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> 実行環境</h2>
+<div id="r" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> R</h3>
 <pre class="r"><code>sinfo &lt;- 
 sessioninfo::session_info()
 
 sinfo$platform</code></pre>
 <pre><code>##  setting  value
-##  version  R version 4.3.0 (2023-04-21 ucrt)
+##  version  R version 4.4.1 (2024-06-14 ucrt)
 ##  os       Windows 10 x64 (build 19045)
 ##  system   x86_64, mingw32
 ##  ui       RTerm
@@ -1676,12 +1696,12 @@ sinfo$platform</code></pre>
 ##  collate  Japanese_Japan.utf8
 ##  ctype    Japanese_Japan.utf8
 ##  tz       Asia/Tokyo
-##  date     2024-05-01
+##  date     2024-08-31
 ##  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)</code></pre>
 <!-- xfun::session_info() -->
 </div>
-<div id="rstudio-version" class="section level3" number="2.6.2">
-<h3><span class="header-section-number">2.6.2</span> RStudio
+<div id="rstudio-version" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> RStudio
 version</h3>
 <pre class="r"><code>rsinfo &lt;- 
 rstudioapi::versionInfo()
@@ -1689,8 +1709,8 @@ rstudioapi::versionInfo()
 rsinfo$version</code></pre>
 <pre><code>## [1] &#39;2023.9.0.463&#39;</code></pre>
 </div>
-<div id="python" class="section level3" number="2.6.3">
-<h3><span class="header-section-number">2.6.3</span> Python</h3>
+<div id="python" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Python</h3>
 <pre class="r"><code>reticulate::py_version()</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
@@ -1816,8 +1836,14 @@ should NA be converted to in Python?</a></li>
 <li><a href="https://github.com/rstudio/reticulate/pull/1439">Preserve
 NAs when casting R data.frames to pandas.</a></li>
 </ul></li>
+<li><p>以下，入っていなければterminalでパッケージをインストールしておく
+python -m pip install pandas polars seaborn pyarrow numpy
+openpyxl</p></li>
 </ul>
-<pre class="python bg-success"><code>r.df_r.head()</code></pre>
+<!-- "ibis-framework[polars]" -->
+<pre class="python bg-success"><code>import pandas as pd
+
+r.df_r.head()</code></pre>
 <pre><code>##   species     island  bill_length_mm  ...  body_mass_g     sex  year
 ## 0  Adelie  Torgersen            39.1  ...         3750    male  2007
 ## 1  Adelie  Torgersen            39.5  ...         3800  female  2007
@@ -1992,15 +2018,13 @@ PythonでRのオブジェクトを読む</h2>
 <ul>
 <li>Rのtidyverseのイメージ :🌌</li>
 <li>Pythonのpandasのイメージ:🐼</li>
-<li>PythonのPolarsのイメージ:️</li>
+<li>Pythonのpolarsのイメージ:シロクマの絵文字予定(win11)</li>
+<li>Pythonのibisのイメージ:トキの絵文字あれば</li>
 </ul>
 <div id="資料" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> 資料</h2>
-<div id="python-2" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Python</h3>
-</div>
-<div id="pandas" class="section level3" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> pandas</h3>
+<div id="pandas" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> pandas</h3>
 <ul>
 <li>公式ドキュメント
 <ul>
@@ -2016,21 +2040,30 @@ PythonでRのオブジェクトを読む</h2>
 </ul></li>
 </ul>
 </div>
-<div id="polars" class="section level3" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> polars</h3>
+<div id="polars" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> polars</h3>
 <ul>
 <li>公式ドキュメント
 <ul>
 <li><a href="https://www.pola.rs/" class="uri">https://www.pola.rs/</a></li>
 </ul></li>
-<li>cheatsheet
+<li>AWESOME POLARS
 <ul>
-<li><a href="https://github.com/FranzDiebold/polars-cheat-sheet" class="uri">https://github.com/FranzDiebold/polars-cheat-sheet</a></li>
+<li><a href="https://ddotta.github.io/awesome-polars/" class="uri">https://ddotta.github.io/awesome-polars/</a></li>
 </ul></li>
-<li>Modern Polars
+</ul>
+<!-- -   cheatsheet -->
+<!--     -   <https://github.com/FranzDiebold/polars-cheat-sheet> -->
+<!-- -   Modern Polars  -->
+<!--     -   polarsとpandasの比較 -->
+<!--     -   <https://kevinheavey.github.io/modern-polars/> -->
+</div>
+<div id="ibis" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> ibis</h3>
 <ul>
-<li>polarsとpandasの比較</li>
-<li><a href="https://kevinheavey.github.io/modern-polars/" class="uri">https://kevinheavey.github.io/modern-polars/</a></li>
+<li>公式ドキュメント
+<ul>
+<li><a href="https://ibis-project.org/" class="uri">https://ibis-project.org/</a></li>
 </ul></li>
 </ul>
 </div>
@@ -2042,7 +2075,7 @@ PythonでRのオブジェクトを読む</h2>
 <h3><span class="header-section-number">5.2.1</span> R</h3>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
-<div id="python-3" class="section level3" number="5.2.2">
+<div id="python-2" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Python</h3>
 <pre class="python bg-success"><code>import pandas as pd
 import polars as pl
@@ -2067,7 +2100,7 @@ pen_r</code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-4" class="section level3" number="5.3.2">
+<div id="python-3" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Python</h3>
 <div id="pandas-1" class="section level4" number="5.3.2.1">
 <h4><span class="header-section-number">5.3.2.1</span> pandas</h4>
@@ -2122,6 +2155,12 @@ white-space: pre-wrap;
 }
 </style>
 <small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.1</td><td>18.7</td><td>181.0</td><td>3750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>39.5</td><td>17.4</td><td>186.0</td><td>3800.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>40.3</td><td>18.0</td><td>195.0</td><td>3250.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>36.7</td><td>19.3</td><td>193.0</td><td>3450.0</td><td>&quot;Female&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>46.8</td><td>14.3</td><td>215.0</td><td>4850.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>50.4</td><td>15.7</td><td>222.0</td><td>5750.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>45.2</td><td>14.8</td><td>212.0</td><td>5200.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>49.9</td><td>16.1</td><td>213.0</td><td>5400.0</td><td>&quot;Male&quot;</td></tr></tbody></table></div>
+<!-- #### ibis -->
+<!-- ```{python class.source="bg-success"} -->
+<!-- import ibis -->
+<!-- ibis.options.interactive = True -->
+<!-- pen_ib = ibis.Schema.from_polars(pen_pl) -->
+<!-- ``` -->
 </div>
 </div>
 </div>
@@ -2231,7 +2270,7 @@ names(pen_r)</code></pre>
 ## [344] Chinstrap
 ## Levels: Adelie Chinstrap Gentoo</code></pre>
 </div>
-<div id="python-5" class="section level4" number="5.4.1.2">
+<div id="python-4" class="section level4" number="5.4.1.2">
 <h4><span class="header-section-number">5.4.1.2</span> Python</h4>
 <div id="pandas-2" class="section level5" number="5.4.1.2.1">
 <h5><span class="header-section-number">5.4.1.2.1</span> pandas</h5>
@@ -2403,7 +2442,7 @@ white-space: pre-wrap;
 ## 5           36.7          19.3               193
 ## # ℹ 339 more rows</code></pre>
 </div>
-<div id="python-6" class="section level4" number="5.4.2.2">
+<div id="python-5" class="section level4" number="5.4.2.2">
 <h4><span class="header-section-number">5.4.2.2</span> Python</h4>
 <div id="pandas-3" class="section level5" number="5.4.2.2.1">
 <h5><span class="header-section-number">5.4.2.2.1</span> pandas</h5>
@@ -2489,7 +2528,7 @@ white-space: pre-wrap;
 ## 5           36.7          19.3               193        3450 female  2007
 ## # ℹ 339 more rows</code></pre>
 </div>
-<div id="python-7" class="section level4" number="5.4.3.2">
+<div id="python-6" class="section level4" number="5.4.3.2">
 <h4><span class="header-section-number">5.4.3.2</span> Python</h4>
 <div id="pandas-4" class="section level5" number="5.4.3.2.1">
 <h5><span class="header-section-number">5.4.3.2.1</span> pandas</h5>
@@ -2552,7 +2591,7 @@ white-space: pre-wrap;
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-8" class="section level3" number="5.5.2">
+<div id="python-7" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Python</h3>
 <div id="pandas-5" class="section level4" number="5.5.2.1">
 <h4><span class="header-section-number">5.5.2.1</span> pandas</h4>
@@ -2621,7 +2660,7 @@ pen_r |&gt; arrange(desc(bill_length_mm))</code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-9" class="section level3" number="5.6.2">
+<div id="python-8" class="section level3" number="5.6.2">
 <h3><span class="header-section-number">5.6.2</span> Python</h3>
 <div id="pandas-6" class="section level4" number="5.6.2.1">
 <h4><span class="header-section-number">5.6.2.1</span> pandas</h4>
@@ -2679,7 +2718,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;Male&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>34.0</td><td>17.1</td><td>185.0</td><td>3400.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;Female&quot;</td></tr></tbody></table></div>
+<small>shape: (344, 7)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>island</th><th>bill_length_mm</th><th>bill_depth_mm</th><th>flipper_length_mm</th><th>body_mass_g</th><th>sex</th></tr><tr><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>str</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>59.6</td><td>17.0</td><td>230.0</td><td>6050.0</td><td>&quot;Male&quot;</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>&quot;Dream&quot;</td><td>58.0</td><td>17.8</td><td>181.0</td><td>3700.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Gentoo&quot;</td><td>&quot;Biscoe&quot;</td><td>55.9</td><td>17.0</td><td>228.0</td><td>5600.0</td><td>&quot;Male&quot;</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>34.1</td><td>18.1</td><td>193.0</td><td>3475.0</td><td>null</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>34.0</td><td>17.1</td><td>185.0</td><td>3400.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Torgersen&quot;</td><td>33.5</td><td>19.0</td><td>190.0</td><td>3600.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>33.1</td><td>16.1</td><td>178.0</td><td>2900.0</td><td>&quot;Female&quot;</td></tr><tr><td>&quot;Adelie&quot;</td><td>&quot;Dream&quot;</td><td>32.1</td><td>15.5</td><td>188.0</td><td>3050.0</td><td>&quot;Female&quot;</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -2733,7 +2772,7 @@ white-space: pre-wrap;
 ## # ℹ 119 more rows
 ## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div id="python-10" class="section level4" number="5.7.1.2">
+<div id="python-9" class="section level4" number="5.7.1.2">
 <h4><span class="header-section-number">5.7.1.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values -->
 <!-- https://towardsdatascience.com/how-to-select-rows-from-pandas-dataframe-based-on-column-values-d3f5da421e93 -->
@@ -2853,7 +2892,7 @@ pen_r |&gt;
 ## 1 female   165
 ## 2 male     168</code></pre>
 </div>
-<div id="python-11" class="section level4" number="5.7.2.2">
+<div id="python-10" class="section level4" number="5.7.2.2">
 <h4><span class="header-section-number">5.7.2.2</span> Python</h4>
 <ul>
 <li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html" class="uri">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html</a></li>
@@ -2907,7 +2946,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>null</td><td>11</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Female&quot;</td><td>165</td></tr><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&quot;sex&quot;].drop_nulls().value_counts()</code></pre>
 <div><style>
 .dataframe > thead > tr,
@@ -2916,7 +2955,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Female&quot;</td><td>165</td></tr><tr><td>&quot;Male&quot;</td><td>168</td></tr></tbody></table></div>
+<small>shape: (2, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>
 # pen_pl.drop_nulls(subset = [&#39;sex&#39;]).select([pl.col(&quot;sex&quot;).value_counts()])</code></pre>
 </div>
@@ -2946,7 +2985,7 @@ white-space: pre-wrap;
 #   select(species) |&gt; 
 #   mutate(species2 = species) </code></pre>
 </div>
-<div id="python-12" class="section level4" number="5.8.1.2">
+<div id="python-11" class="section level4" number="5.8.1.2">
 <h4><span class="header-section-number">5.8.1.2</span> Python</h4>
 <div id="pandas-8" class="section level5" number="5.8.1.2.1">
 <h5><span class="header-section-number">5.8.1.2.1</span> pandas</h5>
@@ -3066,7 +3105,7 @@ white-space: pre-wrap;
 ## 5 Gentoo              46.1      47.5
 ## 6 Gentoo              50        47.5</code></pre>
 </div>
-<div id="python-13" class="section level4" number="5.8.2.2">
+<div id="python-12" class="section level4" number="5.8.2.2">
 <h4><span class="header-section-number">5.8.2.2</span> python</h4>
 <div id="pandas-9" class="section level5" number="5.8.2.2.1">
 <h5><span class="header-section-number">5.8.2.2.1</span> pandas</h5>
@@ -3142,56 +3181,13 @@ pen_r |&gt;
 ## 3 third     57
 ## 4 &lt;NA&gt;       2</code></pre>
 </div>
-<div id="python-14" class="section level4" number="5.8.3.2">
+<div id="python-13" class="section level4" number="5.8.3.2">
 <h4><span class="header-section-number">5.8.3.2</span> Python</h4>
 <!-- https://stackoverflow.com/questions/54653356/case-when-function-from-r-to-python -->
 <!-- https://stackoverflow.com/questions/66944310/using-case-when-with-mutate-equivalent-in-python -->
-<div id="方法1-np.select" class="section level5" number="5.8.3.2.1">
-<h5><span class="header-section-number">5.8.3.2.1</span> 方法1
-np.select</h5>
-<pre class="python bg-success"><code>## 分布確認
-# import matplotlib.pyplot as plt
-# pen_p[[&#39;bill_length_mm&#39;]].plt.hist()
-
-## 条件で変数作成
-import numpy as np
-
-## np.selectの中に入れる部分を作成
-
-conditions = [
-  (pen_p[&quot;bill_length_mm&quot;] &lt; 40),
-  (pen_p[&quot;bill_length_mm&quot;] &gt;= 40) &amp; (pen_p[&quot;bill_length_mm&quot;] &lt; 50),
-  (pen_p[&quot;bill_length_mm&quot;] &gt;= 50)
-]
-
-# または
-# conditions = [
-#   (pen_p[&quot;bill_length_mm&quot;].lt(40)),
-#   (pen_p[&quot;bill_length_mm&quot;].ge(40) &amp; pen_p[&quot;bill_length_mm&quot;].lt(50)),
-#   (pen_p[&quot;bill_length_mm&quot;].ge(50))
-# ]
-
-choices = [&quot;first&quot;, &quot;second&quot;, &quot;third&quot;]
-
-## np.selectの実行
-(
-pen_p.assign(blmc = np.select(conditions, choices))
-     .value_counts([&#39;blmc&#39;])
-)</code></pre>
-<pre><code>## blmc  
-## second    185
-## first     100
-## third      57
-## 0           2
-## Name: count, dtype: int64</code></pre>
-<pre class="python bg-success"><code>
-# pen_p[&quot;blmc&quot;] = np.select(conditions, choices)
-
-
-# 確認
-# pen_p.value_counts([&#39;blmc&#39;, &#39;bill_length_mm&#39;])
-# 
-# pen_p.value_counts([&#39;blmc&#39;])</code></pre>
+<div id="現在はエラー方法1-np.select" class="section level5" number="5.8.3.2.1">
+<h5><span class="header-section-number">5.8.3.2.1</span>
+(現在はエラー？)方法1 np.select</h5>
 <!-- https://stackoverflow.com/questions/57609780/pandas-using-assign-and-if-else-statement-in-method-chaining -->
 <!-- https://stackoverflow.com/questions/49762705/if-else-conditional-assignment-in-pandas -->
 </div>
@@ -3301,7 +3297,7 @@ pen_p.value_counts([&#39;blmc3&#39;])</code></pre>
 ## 2 Chinstrap        0    68
 ## 3 Gentoo           0   124</code></pre>
 </div>
-<div id="python-15" class="section level4" number="5.8.4.2">
+<div id="python-14" class="section level4" number="5.8.4.2">
 <h4><span class="header-section-number">5.8.4.2</span> Python</h4>
 <!-- 欠損値のあつかい -->
 <!-- https://stackoverflow.com/questions/66081445/from-r-to-python-ifelse-conditional-in-mutate-dataframe -->
@@ -3321,7 +3317,7 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 <div id="r-15" class="section level4" number="5.8.5.1">
 <h4><span class="header-section-number">5.8.5.1</span> R</h4>
 </div>
-<div id="python-16" class="section level4" number="5.8.5.2">
+<div id="python-15" class="section level4" number="5.8.5.2">
 <h4><span class="header-section-number">5.8.5.2</span> Python</h4>
 </div>
 </div>
@@ -3343,7 +3339,7 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 ##      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1     43.9   5.46   342</code></pre>
 </div>
-<div id="python-17" class="section level4" number="5.9.1.2">
+<div id="python-16" class="section level4" number="5.9.1.2">
 <h4><span class="header-section-number">5.9.1.2</span> Python</h4>
 <ul>
 <li>欠損値は自動で削除して計算されている</li>
@@ -3351,11 +3347,11 @@ pen_p.assign(species2 = np.where(pen_p[&#39;species&#39;].isin([&#39;Adelie&#39;
 <div id="pandas-10" class="section level5" number="5.9.1.2.1">
 <h5><span class="header-section-number">5.9.1.2.1</span> pandas</h5>
 <pre class="python bg-success"><code>pen_p.bill_length_mm.mean()</code></pre>
-<pre><code>## 43.9219298245614</code></pre>
+<pre><code>## np.float64(43.9219298245614)</code></pre>
 <pre class="python bg-success"><code>pen_p.bill_length_mm.std()</code></pre>
-<pre><code>## 5.4595837139265315</code></pre>
+<pre><code>## np.float64(5.4595837139265315)</code></pre>
 <pre class="python bg-success"><code>pen_p.bill_length_mm.count()</code></pre>
-<pre><code>## 342</code></pre>
+<pre><code>## np.int64(342)</code></pre>
 <ul>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.aggregate.html#">pandas.DataFrame.aggregate</a></li>
 <li>短縮して<code>agg</code>で実行できる</li>
@@ -3438,7 +3434,7 @@ pen_r |&gt;
 ## 1                43.9              5.46              342               17.2
 ## # ℹ 2 more variables: bill_depth_mm_sd &lt;dbl&gt;, bill_depth_mm_n &lt;int&gt;</code></pre>
 </div>
-<div id="python-18" class="section level4" number="5.9.2.2">
+<div id="python-17" class="section level4" number="5.9.2.2">
 <h4><span class="header-section-number">5.9.2.2</span> Python</h4>
 <div id="pandas-11" class="section level5" number="5.9.2.2.1">
 <h5><span class="header-section-number">5.9.2.2.1</span> pandas</h5>
@@ -3464,19 +3460,9 @@ pen_p[cols].agg([&#39;mean&#39;, &#39;std&#39;, &#39;count&#39;])</code></pre>
 ## std          5.459584       1.974793
 ## count      342.000000     342.000000</code></pre>
 </div>
-<div id="polars-11" class="section level5" number="5.9.2.2.2">
-<h5><span class="header-section-number">5.9.2.2.2</span> polars</h5>
-<pre class="python bg-success"><code>pen_pl.select(
-   pl.col(&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;).mean().suffix(&quot;_mean&quot;)
-   )</code></pre>
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-text-align: right;
-white-space: pre-wrap;
-}
-</style>
-<small>shape: (1, 2)</small><table border="1" class="dataframe"><thead><tr><th>bill_length_mm_mean</th><th>bill_depth_mm_mean</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>43.92193</td><td>17.15117</td></tr></tbody></table></div>
+<div id="動かないpolars" class="section level5" number="5.9.2.2.2">
+<h5><span class="header-section-number">5.9.2.2.2</span>
+（動かない）polars</h5>
 </div>
 </div>
 </div>
@@ -3496,7 +3482,7 @@ white-space: pre-wrap;
 ## 2 Chinstrap     48.8
 ## 3 Gentoo        47.5</code></pre>
 </div>
-<div id="python-19" class="section level4" number="5.9.3.2">
+<div id="python-18" class="section level4" number="5.9.3.2">
 <h4><span class="header-section-number">5.9.3.2</span> Python</h4>
 <div id="pandas-12" class="section level5" number="5.9.3.2.1">
 <h5><span class="header-section-number">5.9.3.2.1</span> pandas</h5>
@@ -3521,18 +3507,10 @@ equivalent to dplyr 1.0.0 summarize(across())</a></li>
 ## Gentoo       47.504878
 ## Name: bill_length_mm, dtype: float64</code></pre>
 </div>
-<div id="polars-12" class="section level5" number="5.9.3.2.2">
-<h5><span class="header-section-number">5.9.3.2.2</span> polars</h5>
+<div id="動かないpolars-1" class="section level5" number="5.9.3.2.2">
+<h5><span class="header-section-number">5.9.3.2.2</span>
+（動かない）polars</h5>
 <p>*<a href="https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.dataframe.groupby.GroupBy.agg.html#polars.dataframe.groupby.GroupBy.agg">polars.dataframe.groupby.GroupBy.agg</a></p>
-<pre class="python"><code>pen_pl.groupby(&quot;species&quot;).agg(pl.col(&quot;bill_length_mm&quot;).mean().prefix(&quot;mean_&quot;))</code></pre>
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-text-align: right;
-white-space: pre-wrap;
-}
-</style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>mean_bill_length_mm</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;Chinstrap&quot;</td><td>48.833824</td></tr><tr><td>&quot;Adelie&quot;</td><td>38.791391</td></tr><tr><td>&quot;Gentoo&quot;</td><td>47.504878</td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -3549,12 +3527,12 @@ white-space: pre-wrap;
 ##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 ## 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div id="python-20" class="section level4" number="5.9.4.2">
+<div id="python-19" class="section level4" number="5.9.4.2">
 <h4><span class="header-section-number">5.9.4.2</span> Python</h4>
 <div id="pandas-13" class="section level5" number="5.9.4.2.1">
 <h5><span class="header-section-number">5.9.4.2.1</span> pandas</h5>
 </div>
-<div id="polars-13" class="section level5" number="5.9.4.2.2">
+<div id="polars-11" class="section level5" number="5.9.4.2.2">
 <h5><span class="header-section-number">5.9.4.2.2</span> polars</h5>
 </div>
 </div>
@@ -3578,7 +3556,7 @@ white-space: pre-wrap;
 ## 2 male     168
 ## 3 &lt;NA&gt;      11</code></pre>
 </div>
-<div id="python-21" class="section level4" number="5.9.5.2">
+<div id="python-20" class="section level4" number="5.9.5.2">
 <h4><span class="header-section-number">5.9.5.2</span> Python</h4>
 <div id="pandas-14" class="section level5" number="5.9.5.2.1">
 <h5><span class="header-section-number">5.9.5.2.1</span> pandas</h5>
@@ -3595,7 +3573,7 @@ white-space: pre-wrap;
 ## NaN        11
 ## Name: count, dtype: int64</code></pre>
 </div>
-<div id="polars-14" class="section level5" number="5.9.5.2.2">
+<div id="polars-12" class="section level5" number="5.9.5.2.2">
 <h5><span class="header-section-number">5.9.5.2.2</span> polars</h5>
 <pre class="python bg-success"><code>pen_pl[&#39;species&#39;].value_counts()</code></pre>
 <div><style>
@@ -3605,7 +3583,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr><tr><td>&quot;Adelie&quot;</td><td>152</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>species</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Adelie&quot;</td><td>152</td></tr><tr><td>&quot;Gentoo&quot;</td><td>124</td></tr><tr><td>&quot;Chinstrap&quot;</td><td>68</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl[&#39;sex&#39;].value_counts()</code></pre>
 <div><style>
 .dataframe > thead > tr,
@@ -3614,7 +3592,7 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr><tr><td>null</td><td>11</td></tr></tbody></table></div>
+<small>shape: (3, 2)</small><table border="1" class="dataframe"><thead><tr><th>sex</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Male&quot;</td><td>168</td></tr><tr><td>null</td><td>11</td></tr><tr><td>&quot;Female&quot;</td><td>165</td></tr></tbody></table></div>
 <pre class="python bg-success"><code>pen_pl.select(
     [
         pl.col(&quot;sex&quot;).value_counts(sort=True),
@@ -3649,7 +3627,7 @@ white-space: pre-wrap;
 ## 7 Gentoo    male      61
 ## 8 Gentoo    &lt;NA&gt;       5</code></pre>
 </div>
-<div id="python-22" class="section level4" number="5.9.6.2">
+<div id="python-21" class="section level4" number="5.9.6.2">
 <h4><span class="header-section-number">5.9.6.2</span> Python</h4>
 <div id="pandas-15" class="section level5" number="5.9.6.2.1">
 <h5><span class="header-section-number">5.9.6.2.1</span> pandas</h5>
@@ -3659,8 +3637,8 @@ white-space: pre-wrap;
 ##            Male      73
 ## Gentoo     Male      61
 ##            Female    58
-## Chinstrap  Female    34
-##            Male      34
+## Chinstrap  Male      34
+##            Female    34
 ## Name: count, dtype: int64</code></pre>
 </div>
 <div id="polars分からないので調べ中" class="section level5" number="5.9.6.2.2">
@@ -3683,7 +3661,7 @@ polars（分からないので調べ中）</h5>
 ##   Chinstrap     34   34
 ##   Gentoo        58   61</code></pre>
 </div>
-<div id="python-23" class="section level4" number="5.9.7.2">
+<div id="python-22" class="section level4" number="5.9.7.2">
 <h4><span class="header-section-number">5.9.7.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.crosstab(pen_p[&#39;species&#39;], pen_p[&#39;sex&#39;])</code></pre>
 <pre><code>## sex        Female  Male
@@ -3720,7 +3698,7 @@ polars（分からないので調べ中）</h5>
 ## 5 Gentoo            47.6
 ## # ℹ 119 more rows</code></pre>
 </div>
-<div id="python-24" class="section level3" number="5.10.2">
+<div id="python-23" class="section level3" number="5.10.2">
 <h3><span class="header-section-number">5.10.2</span> Python</h3>
 <ul>
 <li>[pandasチートシート]&lt;<a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" class="uri">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a></li>
@@ -3786,7 +3764,7 @@ df_r_a</code></pre>
 ## 2     2    20    90
 ## 3     4    40   100</code></pre>
 </div>
-<div id="python-25" class="section level3" number="6.1.2">
+<div id="python-24" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Python</h3>
 <pre class="python bg-success"><code>df_py_a = pd.DataFrame([[1,10,50], 
                         [2,20,60], 
@@ -3840,7 +3818,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 2     2    20    60    20    90
 ## 3     3    30    70    NA    NA</code></pre>
 </div>
-<div id="python-26" class="section level4" number="6.2.1.2">
+<div id="python-25" class="section level4" number="6.2.1.2">
 <h4><span class="header-section-number">6.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, on = &#39;id&#39;, how = &#39;left&#39;)</code></pre>
 <pre><code>##    id  x1_x  x2  x1_y    x3
@@ -3863,7 +3841,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 3     3    30    70    NA
 ## 4     4    40    NA   100</code></pre>
 </div>
-<div id="python-27" class="section level4" number="6.2.2.2">
+<div id="python-26" class="section level4" number="6.2.2.2">
 <h4><span class="header-section-number">6.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;outer&#39;)</code></pre>
 <pre><code>##    id  x1    x2     x3
@@ -3886,7 +3864,7 @@ pd.DataFrame({&#39;id&#39;:[1,2,3],
 ## 1     1    10    50    80
 ## 2     2    20    60    90</code></pre>
 </div>
-<div id="python-28" class="section level4" number="6.2.3.2">
+<div id="python-27" class="section level4" number="6.2.3.2">
 <h4><span class="header-section-number">6.2.3.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.merge(df_py_a, df_py_b, how = &#39;inner&#39;)</code></pre>
 <pre><code>##    id  x1  x2  x3
@@ -3959,7 +3937,7 @@ bind_rows(df_r_l, .id = &quot;df_id&quot;)</code></pre>
 ## 6 df_r_b2     6    60   100   130</code></pre>
 </div>
 </div>
-<div id="python-29" class="section level3" number="6.3.2">
+<div id="python-28" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Python</h3>
 <pre class="python bg-success"><code># 連結用データ作成
 df_py_b2 = pd.DataFrame([[4,40,80,110], 
@@ -4020,7 +3998,7 @@ df_r_a_long</code></pre>
 ## 5     3 x1       30
 ## 6     3 x2       70</code></pre>
 </div>
-<div id="python-30" class="section level4" number="6.4.1.2">
+<div id="python-29" class="section level4" number="6.4.1.2">
 <h4><span class="header-section-number">6.4.1.2</span> Python</h4>
 <pre class="python bg-success"><code>df_py_a_long = pd.melt(df_py_a, 
                            id_vars = [&#39;id&#39;],
@@ -4051,7 +4029,7 @@ df_py_a_long          </code></pre>
 ## 2     2    20    60
 ## 3     3    30    70</code></pre>
 </div>
-<div id="python-31" class="section level4" number="6.4.2.2">
+<div id="python-30" class="section level4" number="6.4.2.2">
 <h4><span class="header-section-number">6.4.2.2</span> Python</h4>
 <ul>
 <li>id列を示したい場合は，引数<code>index =</code>に列名を指定することで，indexとしてなら示せる</li>
@@ -4072,7 +4050,7 @@ df_py_a_long          </code></pre>
 <div id="r-31" class="section level4" number="6.4.3.1">
 <h4><span class="header-section-number">6.4.3.1</span> R</h4>
 </div>
-<div id="python-32" class="section level4" number="6.4.3.2">
+<div id="python-31" class="section level4" number="6.4.3.2">
 <h4><span class="header-section-number">6.4.3.2</span> Python</h4>
 </div>
 </div>
@@ -4099,7 +4077,7 @@ df_py_a_long          </code></pre>
 ## # ℹ 339 more rows
 ## # ℹ 3 more variables: body_mass_g &lt;dbl&gt;, sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-33" class="section level4" number="7.1.1.2">
+<div id="python-32" class="section level4" number="7.1.1.2">
 <h4><span class="header-section-number">7.1.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pd.read_excel(&#39;data/ペンギン.xlsx&#39;)</code></pre>
 <pre><code>##        species    種類     island  ...  body_mass_g     sex  year
@@ -4140,7 +4118,7 @@ penr_csv</code></pre>
 ## # ℹ 5 more variables: `②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）` &lt;dbl&gt;, `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `㊛㊚` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-34" class="section level5" number="7.1.2.1.2">
+<div id="python-33" class="section level5" number="7.1.2.1.2">
 <h5><span class="header-section-number">7.1.2.1.2</span> Python</h5>
 <pre class="python bg-success"><code>penp_csv = pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_utf8.csv&#39;)
 
@@ -4180,7 +4158,7 @@ shift-jis(cp932)</h4>
 ## # ℹ 5 more variables: `②ｸﾁﾊﾞｼ＿大きさ（ｍｍ）` &lt;dbl&gt;, `翼：長さ(mm)` &lt;dbl&gt;,
 ## #   `■体重　単位はｇ` &lt;dbl&gt;, `??` &lt;chr&gt;, `２００７～２００９` &lt;dbl&gt;</code></pre>
 </div>
-<div id="python-35" class="section level5" number="7.1.2.2.2">
+<div id="python-34" class="section level5" number="7.1.2.2.2">
 <h5><span class="header-section-number">7.1.2.2.2</span> Python</h5>
 <pre class="python bg-success"><code>pd.read_csv(&#39;data/ペンギン（ひどい列名）ver_cp932.csv&#39;,
              encoding = &#39;cp932&#39;)</code></pre>
@@ -4216,7 +4194,7 @@ shift-jis(cp932)</h4>
   head(3) |&gt; 
   writexl::write_xlsx(&quot;out/pen_r_head.xlsx&quot;)</code></pre>
 </div>
-<div id="python-36" class="section level4" number="7.2.1.2">
+<div id="python-35" class="section level4" number="7.2.1.2">
 <h4><span class="header-section-number">7.2.1.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_excel(&quot;out/pen_p_head.xlsx&quot;, index = False)</code></pre>
 </div>
@@ -4229,7 +4207,7 @@ shift-jis(cp932)</h4>
   head(3) |&gt; 
   write_csv(&quot;out/pen_r_head.csv&quot;)</code></pre>
 </div>
-<div id="python-37" class="section level4" number="7.2.2.2">
+<div id="python-36" class="section level4" number="7.2.2.2">
 <h4><span class="header-section-number">7.2.2.2</span> Python</h4>
 <pre class="python bg-success"><code>pen_p.head(3).to_csv(&quot;out/pen_p_head.csv&quot;, index = False)</code></pre>
 </div>
@@ -4252,7 +4230,7 @@ shift-jis(cp932)</h4>
 fn_r(1)</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="python-38" class="section level3" number="8.1.2">
+<div id="python-37" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Python</h3>
 <pre class="python bg-success"><code>def fn_p(x):
   return x + 1
@@ -4270,7 +4248,7 @@ fn_p(1)  </code></pre>
 <pre class="r"><code>(\(x) x + 1)(1)</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="python-39" class="section level3" number="8.2.2">
+<div id="python-38" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Python</h3>
 <ul>
 <li><a href="https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html" class="uri">https://www1.gifu-u.ac.jp/~fujilab/lambda_html/index.html</a></li>
@@ -4280,20 +4258,44 @@ fn_p(1)  </code></pre>
 </div>
 </div>
 </div>
-<div id="テンプレ-1" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> ※テンプレ</h1>
-<div id="section-1" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> </h2>
-<div id="r-39" class="section level3" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> R</h3>
+<div id="時間計測" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> 時間計測</h1>
+<div id="r-39" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> R</h2>
+<pre class="r"><code>tictoc::tic()
+pen_r |&gt; 
+  arrange(bill_length_mm)</code></pre>
+<pre><code>## # A tibble: 344 × 9
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Dream               32.1          15.5               188        3050
+## 2 Adelie  Dream               33.1          16.1               178        2900
+## 3 Adelie  Torgersen           33.5          19                 190        3600
+## 4 Adelie  Dream               34            17.1               185        3400
+## 5 Adelie  Torgersen           34.1          18.1               193        3475
+## # ℹ 339 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, blmc &lt;chr&gt;</code></pre>
+<pre class="r"><code>tictoc::toc()</code></pre>
+<pre><code>## 0.27 sec elapsed</code></pre>
 </div>
-<div id="python-40" class="section level3" number="9.1.2">
-<h3><span class="header-section-number">9.1.2</span> Python</h3>
+<div id="python-39" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Python</h2>
+</div>
+</div>
+<div id="テンプレ-1" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> ※テンプレ</h1>
+<div id="section-1" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> </h2>
+<div id="r-40" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> R</h3>
+</div>
+<div id="python-40" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Python</h3>
 </div>
 </div>
 </div>
-<div id="参考情報" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> 参考情報</h1>
+<div id="参考情報" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> 参考情報</h1>
 <ul>
 <li><a href="https://wesmckinney.com/book/">Python for Data Analysis,
 3E</a></li>
